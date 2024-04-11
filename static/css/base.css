@@ -20,17 +20,33 @@ body {
 }
 
 .logo-font {
-    text-transform: uppercase;
-}
+    font-family: 'Roboto', sans-serif; /* or 'Montserrat', or any other font you prefer */
+    font-size: 48px; /* Adjust font size as needed */
+    font-weight: bold; /* You can adjust the font weight if necessary */
+    color: #ffffff; /* White color for text to stand out on dark background */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds a subtle shadow to the text */
+    letter-spacing: 1px; /* Adjust letter spacing for better readability */
+  }
 
 .main-logo-link {
     width: fit-content;
 }
 
 .shop-now-button {
-    background: black;
-    color: white;
-    min-width: 260px;
+    background: #ff6b6b; /* Red background color for contrast */
+    color: #fff; /* White text color */
+    min-width: 200px; /* Adjusted minimum width */
+    padding: 15px 30px; /* Add padding for better visual appearance */
+    border: none; /* Remove button border */
+    border-radius: 5px; /* Add some rounded corners for a softer look */
+    font-size: 16px; /* Adjust font size for readability */
+    font-weight: bold; /* Make text bold for emphasis */ c
+    cursor: pointer; /* Change cursor to pointer to indicate interactivity */
+    transition: background 0.3s ease; /* Add transition effect for smoother hover effect */
+}
+
+.shop-now-button:hover {
+    background: #ff4d4d; /* Darker red background color on hover for emphasis */
 }
 
 .btn-black {
