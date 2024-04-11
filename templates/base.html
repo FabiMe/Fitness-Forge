@@ -43,6 +43,7 @@
                 </a>
             </div>
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+                <img src="static/css/media/logo.png" alt="Logo" class="logo">
                 <form method="GET" action="">
                     <div class="input-group w-100">
                         <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search our site">
@@ -104,10 +105,8 @@
                 {% include 'includes/main-nav.html' %}
             </nav>
         </div>
-        <div id="delivery-banner" class="row text-center">
-            <div class="col bg-black text-white">
-                <h4 class="logo-font my-1">Free delivery on orders over ${{ free_shipping_threshold }}!</h4>                
-            </div>            
+        <div id="banner" class="banner">
+            <h2 class="banner-text">Unlock exclusive savings! Register now and enjoy 10% off your first purchase.</h2>
         </div>
     </header>
 
