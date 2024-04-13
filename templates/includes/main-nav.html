@@ -1,4 +1,3 @@
-
 <div class="collapse navbar-collapse" id="main-nav">
     <ul class="navbar-nav w-auto mx-auto">
         
@@ -7,10 +6,10 @@
                 Adventures
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="adventures-link">
-                <a href="" class="dropdown-item">Hiking Trails</a>
-                <a href="" class="dropdown-item">Water Adventures</a>
-                <a href="" class="dropdown-item">Camping Spots</a>
-                <a href="" class="dropdown-item">Adventure Travel Guides</a>
+                <a href="{% url 'products' %}?category=hiking_trails" class="dropdown-item">Hiking Trails</a>
+                <a href="{% url 'products' %}?category=water_adventures" class="dropdown-item">Water Adventures</a>
+                <a href="{% url 'products' %}?category=camping_spots" class="dropdown-item">Camping Spots</a>
+                <a href="{% url 'products' %}?category=adventure_travel_guides" class="dropdown-item">Adventure Travel Guides</a>
             </div>
         </li>
 
@@ -19,10 +18,9 @@
                 Sports Events
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="sportsevents-link">
-                <a href="" class="dropdown-item">Try-Out Sessions</a>
-                <a href="" class="dropdown-item">Amateur Tournaments</a>
-                <a href="" class="dropdown-item">Community Sports</a>
-                <a href="" class="dropdown-item">Health and Fitness Classes</a>
+                <a href="{% url 'products' %}?category=try_out_sessions" class="dropdown-item">Try-Out Sessions</a>
+                <a href="{% url 'products' %}?category=amateur_tournaments" class="dropdown-item">Amateur Tournaments</a>
+                <a href="{% url 'products' %}?category=health_fitness_classes" class="dropdown-item">Health and Fitness Classes</a>
             </div>
         </li>
 
@@ -31,9 +29,8 @@
                 Special Offers
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="specials-link">
-                <a href="" class="dropdown-item">Adventure Packages</a>
-                <a href="" class="dropdown-item">Sports Gear Discounts</a>
-                <a href="" class="dropdown-item">Travel Deals</a>
+                <a href="{% url 'products' %}?category=adventure_packages" class="dropdown-item">Adventure Packages</a>
+                <a href="{% url 'products' %}?category=sports_gear_discounts" class="dropdown-item">Sports Gear Discounts</a>
             </div>
         </li>
     </ul>
