@@ -157,8 +157,3 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-TIER_1_THRESHOLD = Decimal('50.00')
-TIER_2_THRESHOLD = Decimal('100.00')
-TIER_3_THRESHOLD = Decimal('150.00')
-TIER_4_THRESHOLD = Decimal('200.00')
