@@ -5,7 +5,7 @@ html {
 body {
     background: url('media/heroimage.jpeg') no-repeat center top fixed;
     background-size: cover;
-    padding-top: 50px; /* Add padding to the top to accommodate the header */
+    padding-top: 0; /* Add padding to the top to accommodate the header */
     color: #555;
     font-family: 'Lato';
 }
@@ -85,6 +85,11 @@ body {
 	position: fixed;
 	background: white;
 	z-index: -1;
+}
+
+.zoom-on-hover:hover {
+    transform: scale(1.05); /* adjust the scale factor as needed */
+    transition: transform 0.3s ease; /* adjust the transition duration as needed */
 }
 
 @keyframes fadeIn {
@@ -183,6 +188,28 @@ body {
     background-color: #f5f5f5;
 }
 
+.btt-button {
+    position: fixed;
+    bottom: 20px; /* Adjust this value as needed */
+    right: 20px;
+    z-index: 1000;
+}
+
+.btt-link {
+    cursor: pointer;
+}
+
+.back-to-products a {
+    font-family: Arial, sans-serif; /* Use a different font */
+    color: #333; /* Set the color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s; /* Add transition effect */
+}
+
+.back-to-products a:hover {
+    color: #666; /* Change color on hover */
+}
+
 /* Product Name */
 .product-name {
     font-size: 1.25rem; /* Adjust font size as needed */
@@ -233,6 +260,17 @@ body {
 /* Header Container */
 .header-container {
     margin-top: 3rem; /* Adjust margin as needed */
+    margin-bottom: 100px; /* Adjust this value as needed */
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Set the minimum height of the flex container to 100% of the viewport height */
+}
+
+.footer {
+    margin-top: auto; /* Push the footer to the bottom of the flex container */
 }
 
 /* -------------------------------- Media Queries */
