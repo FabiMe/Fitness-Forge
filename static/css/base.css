@@ -245,6 +245,11 @@ body {
     margin-top: 1rem;
 }
 
+.card-img-top {
+    height: 40vh; /* Adjust the height as needed */
+    object-fit: cover; /* Ensures the image covers the entire space */
+}
+
 /* Product Detail Page Styling */
 
 /* Image Container */
@@ -271,6 +276,45 @@ body {
 
 .footer {
     margin-top: auto; /* Push the footer to the bottom of the flex container */
+}
+
+/* Custom styling for sorting dropdown */
+#sort-selector {
+    width: 100%;
+    padding: 0.5rem 2rem 0.5rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    background-color: #fff;
+    background-image: none;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    appearance: none; /* Remove default styling */
+}
+
+/* Style for selected option */
+#sort-selector option:checked {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Style for dropdown container */
+.sort-select-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden; /* Hide overflow */
+}
+
+/* Hover effect */
+.sort-select-wrapper:hover #sort-selector {
+    border-color: #6c757d;
+}
+
+/* Focus effect */
+.sort-select-wrapper #sort-selector:focus {
+    outline: none;
+    border-color: #333;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 /* -------------------------------- Media Queries */
