@@ -159,3 +159,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Define Mystery Box Tiers and their price thresholds
+MYSTERY_BOX_TIERS = {
+    'Tier 1': 50,
+    'Tier 2': 100,
+    'Tier 3': 250,
+    'Tier 4': 500
+}

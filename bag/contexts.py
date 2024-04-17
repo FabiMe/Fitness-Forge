@@ -3,12 +3,11 @@ from django.conf import settings
 from django.shortcuts import get_object_or_404
 from products.models import Product
 
-# Define Mystery Box Tiers and their price thresholds
 MYSTERY_BOX_TIERS = {
     'Tier 1': 50,
     'Tier 2': 100,
-    'Tier 3': 150,
-    'Tier 4': 200
+    'Tier 3': 250,
+    'Tier 4': 500
 }
 
 def get_mystery_box_tier(total):
