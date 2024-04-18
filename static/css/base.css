@@ -547,6 +547,8 @@ body {
     align-items: center; /* Center vertically */
     object-fit: cover; 
 }
+
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
