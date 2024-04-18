@@ -36,19 +36,19 @@
                         <span class="float-right">${{ total|floatformat:2 }}</span>
                     {% if total >= 500 %}
                         <p class="mb-0 p-2 bg-info shadow-sm text-black text-center">
-                            You qualify for a Mystery Box Type 4! <i class="fa-solid fa-gift spinning"></i>
+                            You qualify for a Mystery Box Tier 4! <i class="fa-solid fa-gift spinning"></i>
                         </p>
                     {% elif total >= 250 %}
                         <p class="mb-0 p-2 bg-info shadow-sm text-black text-center">
-                            You qualify for a Mystery Box Type 3! <i class="fa-solid fa-gift spinning"></i>
+                            You qualify for a Mystery Box Tier 3! <i class="fa-solid fa-gift spinning"></i>
                         </p>
                     {% elif total >= 150 %}
                         <p class="mb-0 p-2 bg-info shadow-sm text-black text-center">
-                            You qualify for a Mystery Box Type 2! <i class="fa-solid fa-gift spinning"></i>
+                            You qualify for a Mystery Box Tier 2! <i class="fa-solid fa-gift spinning"></i>
                         </p>
                     {% elif total >= 50 %}
                         <p class="mb-0 p-2 bg-info shadow-sm text-black text-center">
-                            You qualify for a Mystery Box Type 1! <i class="fa-solid fa-gift spinning"></i>
+                            You qualify for a Mystery Box Tier 1! <i class="fa-solid fa-gift spinning"></i>
                         </p>
                     {% endif %}                    
                     <a href="{% url 'view_bag' %}" class="btn btn-black btn-block rounded-0">

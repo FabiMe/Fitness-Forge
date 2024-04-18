@@ -503,6 +503,50 @@ body {
     }
 }
 
+.mystery_box {
+    font-family: 'Mystery Quest', sans-serif;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, violet, indigo, blue, green, yellow, orange, red);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+@keyframes rainbow {
+    0% { color: violet; }
+    16.67% { color: indigo; }
+    33.33% { color: blue; }
+    50% { color: green; }
+    66.67% { color: yellow; }
+    83.33% { color: orange; }
+    100% { color: red; }
+}
+
+.rainbow-text {
+    font-family: 'Mystery Quest', sans-serif;
+    animation: rainbow 6s linear infinite;
+}
+
+.text-right {
+    text-align: right;
+}
+
+ /* Set a fixed height for the image containers */
+ .product-image-container {
+    height: 150px; /* Adjust the height as needed */
+    display: flex; /* Use flexbox layout */
+    overflow: hidden;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.image-container-checkout {
+    height: 50px; /* Adjust the height as needed */
+    overflow: hidden;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    object-fit: cover; 
+}
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */

@@ -13,10 +13,41 @@
 {% block content %}
     <div class="overlay"></div>
     <div class="container mb-2">
-        <div class="row">
+        <div class="row text-center">
             <div class="col">
                 <hr>
-                <h2 class="logo-font mb-4">Shopping Bag</h2>
+                <h2 class="logo-font mb-4 text-center">Shopping Bag</h2>
+                <tr>
+                    <td colspan="5" class="pt-5 text-right mystery_box">
+                        <!-- Determine the mystery box tier based on the total -->
+                        {% if total >= 500 %}
+                            <h5 class="mystery_box rainbow-text"><strong> Mystery Box Tier:  </strong> <strong>4</strong> <i class="fa-solid fa-gift "></i> </h5>
+                        {% elif total >= 250 %}
+                            <h5 class="mystery_box rainbow-text"><strong> Mystery Box Tier:  </strong> <strong>3</strong> <i class="fa-solid fa-gift "></i></h5>
+                        {% elif total >= 150 %}
+                            <h5 class="mystery_box rainbow-text"><strong> Mystery Box Tier:  </strong> <strong>2</strong> <i class="fa-solid fa-gift "></i></h5>
+                        {% elif total >= 50 %}
+                            <h5 class="mystery_box rainbow-text"><strong> Mystery Box Tier:  </strong> <strong>1</strong> <i class="fa-solid fa-gift "></i></h5>
+                        {% endif %}
+                        <h4 class="mt-4"><strong>Grand Total: ${{ grand_total|floatformat:2 }}</strong></h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="text-right">
+                        <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                            <span class="icon">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="text-uppercase">Keep Shopping</span>
+                        </a>
+                        <a href="{% url 'checkout' %}" class="btn btn-black rounded-0 btn-lg">
+                            <span class="text-uppercase">Secure Checkout</span>
+                            <span class="icon">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </a>
+                    </td>
+                </tr>
                 <hr>
             </div>
         </div>
@@ -40,7 +71,9 @@
                                 {% for item in bag_items %}
                                     <tr>
                                         <td class="p-3 w-25">
-                                            <img class="img-fluid rounded" src="{{ item.product.image.url }}">
+                                            <div class="product-image-container"> 
+                                                <img class="img-fluid rounded" src="{{ item.product.image.url }}">
+                                            </div>
                                         </td>
                                         <td class="py-3">
                                             <p class="my-0"><strong>{{ item.product.name }}</strong></p>
@@ -130,6 +163,7 @@
                             </tbody>
                         </table>
                     </div>
+                    
                 {% else %}
                     <p class="lead mb-5">Your bag is empty.</p>
                     <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
