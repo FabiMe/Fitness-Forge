@@ -412,7 +412,7 @@ body {
     top: 72px;
     right: 15px;
     z-index: 99999999999;
-    background-color: greenyellow;
+    background-color: silver;
     border-radius: 10px; /* Rounded corners for a softer look */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
     padding: 15px; /* Add some padding for space around content */
