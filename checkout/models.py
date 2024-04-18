@@ -1,11 +1,16 @@
 import uuid
-
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
-
 from products.models import Product
 
+# Define Mystery Box Tiers and their price thresholds
+MYSTERY_BOX_TIERS = {
+    'Tier 1': 50,
+    'Tier 2': 100,
+    'Tier 3': 250,
+    'Tier 4': 500
+}
 
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
@@ -21,6 +26,7 @@ class Order(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
+    mystery_box_tier = models.CharField(max_length=50, null=True, blank=True)
 
     def _generate_order_number(self):
         """
@@ -28,13 +34,26 @@ class Order(models.Model):
         """
         return uuid.uuid4().hex.upper()
 
+    def _calculate_mystery_box_tier(self):
+        """
+        Calculate the mystery box tier based on the order total
+        """
+        for tier, threshold in MYSTERY_BOX_TIERS.items():
+            if self.grand_total >= threshold:
+                return tier
+        return None
+
     def save(self, *args, **kwargs):
         """
         Override the original save method to set the order number
-        if it hasn't been set already.
+        if it hasn't been set already, and calculate the mystery box tier.
         """
         if not self.order_number:
             self.order_number = self._generate_order_number()
+
+        # Calculate the mystery box tier based on the order total
+        self.mystery_box_tier = self._calculate_mystery_box_tier()
+
         super().save(*args, **kwargs)
 
     def __str__(self):
