@@ -59,6 +59,16 @@ class Order(models.Model):
     def __str__(self):
         return self.order_number
 
+    def update_total(self):
+        """
+        Update the total value of the order
+        """
+        # Calculate the total value of the order based on its line items
+        total = sum(item.lineitem_total for item in self.lineitems.all())
+        self.order_total = total
+        self.grand_total = total
+        self.save()
+
 
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
