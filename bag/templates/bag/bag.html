@@ -11,46 +11,45 @@
 {% endblock %}
 
 {% block content %}
-    <div class="overlay"></div>
-    <div class="container mb-2">
-        <div class="row text-center">
-            <div class="col">
-                <hr>
-                <h2 class="logo-font mb-4 text-center">Shopping Bag</h2>
-                <tr>
-                    <td colspan="5" class="pt-5 text-right mystery_box">
-                        <!-- Determine the mystery box tier based on the total -->
-                        {% if total >= 500 %}
-                            <h5 class="mystery_box rainbow-text"><strong> Mystery Box Tier:  </strong> <strong>4</strong> <i class="fa-solid fa-gift "></i> </h5>
-                        {% elif total >= 250 %}
-                            <h5 class="mystery_box rainbow-text"><strong> Mystery Box Tier:  </strong> <strong>3</strong> <i class="fa-solid fa-gift "></i></h5>
-                        {% elif total >= 150 %}
-                            <h5 class="mystery_box rainbow-text"><strong> Mystery Box Tier:  </strong> <strong>2</strong> <i class="fa-solid fa-gift "></i></h5>
-                        {% elif total >= 50 %}
-                            <h5 class="mystery_box rainbow-text"><strong> Mystery Box Tier:  </strong> <strong>1</strong> <i class="fa-solid fa-gift "></i></h5>
-                        {% endif %}
-                        <h4 class="mt-4"><strong>Grand Total: ${{ grand_total|floatformat:2 }}</strong></h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="5" class="text-right">
-                        <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="text-uppercase">Keep Shopping</span>
-                        </a>
-                        <a href="{% url 'checkout' %}" class="btn btn-black rounded-0 btn-lg">
-                            <span class="text-uppercase">Secure Checkout</span>
-                            <span class="icon">
-                                <i class="fas fa-lock"></i>
-                            </span>
-                        </a>
-                    </td>
-                </tr>
-                <hr>
+<div class="overlay"></div>
+<div class="container mb-2">
+    <div class="row">
+        <div class="col text-center">
+            <hr>
+            <h2 class="logo-font mb-4">Shopping Bag</h2>
+            <div class="d-flex justify-content-between align-items-center">
+                <!-- Keep Shopping Button -->
+                <div>
+                    <a href="{% url 'products' %}" class="btn btn-outline-secondary">
+                        <i class="fas fa-chevron-left"></i> Keep Shopping
+                    </a>
+                </div>
+
+                <!-- Mystery Box and Total Display -->
+                <div>
+                    {% if total >= 500 %}
+                        <h5 class="mystery_box rainbow-text"><strong>Mystery Box Tier: 4</strong> <i class="fa-solid fa-gift"></i></h5>
+                    {% elif total >= 250 %}
+                        <h5 class="mystery_box rainbow-text"><strong>Mystery Box Tier: 3</strong> <i class="fa-solid fa-gift"></i></h5>
+                    {% elif total >= 150 %}
+                        <h5 class="mystery_box rainbow-text"><strong>Mystery Box Tier: 2</strong> <i class="fa-solid fa-gift"></i></h5>
+                    {% elif total >= 50 %}
+                        <h5 class="mystery_box rainbow-text"><strong>Mystery Box Tier: 1</strong> <i class="fa-solid fa-gift"></i></h5>
+                    {% endif %}
+                    <h4><strong>Grand Total: ${{ grand_total|floatformat:2 }}</strong></h4>
+                </div>
+
+                <!-- Secure Checkout Button -->
+                <div>
+                    <a href="{% url 'checkout' %}" class="btn btn-primary">
+                        Secure Checkout <i class="fas fa-lock"></i>
+                    </a>
+                </div>
             </div>
+            <hr>
         </div>
+    </div>
+
 
         <div class="row">
             <div class="col">
@@ -60,7 +59,6 @@
                             <thead class="text-black">
                                 <tr>
                                     <th scope="col">Product Info</th>
-                                    <th scope="col"></th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Subtotal</th>
@@ -69,7 +67,7 @@
                             </thead>
                             <tbody>
                                 {% for item in bag_items %}
-                                    <tr>
+                                    <tr data-item-id="{{ item.item_id }}"> <!-- Add data-item-id attribute here -->
                                         <td class="p-3 w-25">
                                             <div class="product-image-container"> 
                                                 <img class="img-fluid rounded" src="{{ item.product.image.url }}">
@@ -119,43 +117,30 @@
                                         <td class="py-3">
                                             <p class="my-0">${{ item.product.price | calc_subtotal:item.quantity }}</p>
                                         </td>
-                                        <td class="py-3">
-                                            <!-- Button to Show Customization Options -->
-                                            <button class="btn btn-outline-primary rounded-0 btn-sm customize-button">
-                                                <span class="icon">
-                                                    <i class="fas fa-cog"></i>
-                                                </span>
-                                                <span class="text-uppercase w-25">Customize</span>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <!-- Customization Options Row -->
-                                    <tr class="customize-options-row" style="display:none;">
                                         <td colspan="6">
-                                            <!-- Customization Options Form -->
-                                            <form class="customize-options-form">
-                                                <!-- Voucher Type Selection -->
-                                                <div class="form-group">
-                                                    <label for="voucher-type">How do you want to get your voucher?</label>
-                                                    <select class="form-control" name="voucher_type">
-                                                        <option value="selfprint">Selfprint</option>
-                                                        <option value="hardticket">Hardticket</option>
-                                                        <option value="giftcard">Giftcard</option>
-                                                    </select>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <form id="customizationForm_{{ item.item_id }}" class="customize-options-form">
+                                                        <div class="form-group">
+                                                            <label for="voucher-type_{{ item.item_id }}">How do you want to get your voucher?</label>
+                                                            <select class="form-control" name="voucher_type" id="voucher-type_{{ item.item_id }}">
+                                                                <option value="selfprint" {% if request.session.customization_data.voucher_type == 'selfprint' %}selected{% endif %}>Selfprint</option>
+                                                                <option value="hardticket" {% if request.session.customization_data.voucher_type == 'hardticket' %}selected{% endif %}>Hardticket</option>
+                                                                <option value="giftcard" {% if request.session.customization_data.voucher_type == 'giftcard' %}selected{% endif %}>Giftcard</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="first-name_{{ item.item_id }}">First Name:</label>
+                                                            <input type="text" class="form-control" name="first_name" id="first-name_{{ item.item_id }}" placeholder="John" value="{{ request.session.customization_data.first_name|default:'' }}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="last-name_{{ item.item_id }}">Last Name:</label>
+                                                            <input type="text" class="form-control" name="last_name" id="last-name_{{ item.item_id }}" placeholder="Doe" value="{{ request.session.customization_data.last_name|default:'' }}">
+                                                        </div>
+                                                        <button type="button" class="btn btn-primary saveCustomization" data-item-id="{{ item.item_id }}">Save</button>
+                                                    </form>
                                                 </div>
-                                                <!-- Participant Name -->
-                                                    <div class="form-group">
-                                                        <label for="first-name">First Name:</label>
-                                                        <input type="text" class="form-control" name="first_name" placeholder="John">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="last-name">Last Name:</label>
-                                                        <input type="text" class="form-control" name="last_name" placeholder="Doe">
-                                                    </div>
-                                                <!-- Submit Button -->
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                            </form>
-                                            <!-- End Customization Options Form -->
+                                            </div>
                                         </td>
                                     </tr>
                                     <!-- End Customization Options Row -->
@@ -187,56 +172,38 @@
     $('.toast').toast('show');
 </script>
 
-<script>
-    // JavaScript to toggle display of customization options row
+<script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function() {
-        const customizeButtons = document.querySelectorAll('.customize-button');
-        customizeButtons.forEach(button => {
+        const saveButtons = document.querySelectorAll('.saveCustomization');
+
+        saveButtons.forEach(button => {
             button.addEventListener('click', function() {
-                const optionsRow = this.closest('tr').nextElementSibling;
-                optionsRow.style.display = optionsRow.style.display === 'none' ? 'table-row' : 'none';
-            });
-        });
+                const itemId = this.dataset.itemId;
+                const firstName = document.getElementById('first-name_' + itemId).value.trim();
+                const lastName = document.getElementById('last-name_' + itemId).value.trim();
+                const voucherType = document.getElementById('voucher-type_' + itemId).value;
 
-        // JavaScript to handle customization form submission
-        const customizeForms = document.querySelectorAll('.customize-options-form');
-        customizeForms.forEach(form => {
-            form.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent the default form submission
-                const formData = new FormData(this); // Get the form data
-                const firstName = formData.get('first_name');
-                const lastName = formData.get('last_name');
-                const voucherType = formData.get('voucher_type');
-                const customizationInfo = `Participant: ${firstName} ${lastName}, Voucher Type: ${voucherType}`;
-
-                const optionsRow = this.closest('tr');
-                const productRow = optionsRow.previousElementSibling;
-                const customizationCell = productRow.lastElementChild;
-                customizationCell.innerHTML = customizationInfo; // Update the customization cell with the submitted data
-                optionsRow.style.display = 'none'; // Hide the customization options row
+                $.ajax({
+                    url: "{% url 'save_customization' %}",
+                    method: "POST",
+                    data: {
+                        csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
+                        item_id: itemId,
+                        first_name: firstName,
+                        last_name: lastName,
+                        voucher_type: voucherType
+                    },
+                    success: function() {
+                        alert('Customization saved!');
+                        location.reload(); // Reload the page to update the UI
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Failed to save customization: ' + error);
+                    }
+                });
             });
         });
     });
 </script>
 
-<script type="text/javascript">
-    // Update quantity on click
-    $('.update-link').click(function(e) {
-        var form = $(this).prev('.update-form');
-        form.submit();
-    })
-
-    // Remove item and reload on click
-    $('.remove-item').click(function(e) {
-        var csrfToken = "{{ csrf_token }}";
-        var itemId = $(this).attr('id').split('remove_')[1];
-        var url = `/bag/remove/${itemId}/`;
-        var data = {'csrfmiddlewaretoken': csrfToken};
-
-        $.post(url, data)
-         .done(function() {
-             location.reload();
-         });
-    })
-</script>
 {% endblock %}

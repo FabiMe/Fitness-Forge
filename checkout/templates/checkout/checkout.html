@@ -25,9 +25,24 @@
             </div>
         </div>
 
+        <!-- Mystery Tier Box Display -->
+        <div class="row">
+            <div class="col text-center">
+                {% if grand_total >= 500 %}
+                    <h5 class="mystery_box rainbow-text"><strong>Mystery Box Tier: 4</strong> <i class="fa-solid fa-gift"></i></h5>
+                {% elif grand_total >= 250 %}
+                    <h5 class="mystery_box rainbow-text"><strong>Mystery Box Tier: 3</strong> <i class="fa-solid fa-gift"></i></h5>
+                {% elif grand_total >= 150 %}
+                    <h5 class="mystery_box rainbow-text"><strong>Mystery Box Tier: 2</strong> <i class="fa-solid fa-gift"></i></h5>
+                {% elif grand_total >= 50 %}
+                    <h5 class="mystery_box rainbow-text"><strong>Mystery Box Tier: 1</strong> <i class="fa-solid fa-gift"></i></h5>
+                {% endif %}
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-12 col-lg-6 order-lg-last mb-5">
-                <p class="text-muted">Order Summary ({{ product_count }})</p>
+                <p class="text-muted">Order Summary ({{ product_count }} items)</p>
                 <div class="row">
                     <div class="col-7 offset-2">
                         <p class="mb-1 mt-0 small text-muted">Item</p>
@@ -37,29 +52,33 @@
                     </div>
                 </div>
                 {% for item in bag_items %}
-                    <div class="row">
-                        <div class="col-2 mb-1">
-                            <a href="{% url 'product_detail' item.product.id %}">
-                                {% if item.product.image %}
-                                    <img class="w-100 image-container-checkout" src="{{ item.product.image.url }}" alt="{{ product.name }}">
-                                {% else %}
-                                    <img class="w-100 image-container-checkout" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                                {% endif %}
-                            </a>
-                        </div>
-                        <div class="col-7">
-                            <p class="my-0"><strong>{{ item.product.name }}</strong></p>
-                            <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
-                        </div>
-                        <div class="col-3 text-right">
-                            <p class="my-0 small text-muted">${{ item.product.price | calc_subtotal:item.quantity }}</p>
-                        </div>
+                <div class="row">
+                    <div class="col-2 mb-1">
+                        <a href="{% url 'product_detail' item.product.id %}">
+                            {% if item.product.image %}
+                                <img class="w-100" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                            {% else %}
+                                <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                            {% endif %}
+                        </a>
                     </div>
+                    <div class="col-7">
+                        <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                        <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
+                        <!-- Display customization data if available -->
+                        <p class="my-0 small text-muted">Voucher Type: {{ item.customization.voucher_type|default:"N/A" }}</p>
+                        <p class="my-0 small text-muted">Custom Name: {{ item.customization.first_name|default:"" }} {{ item.customization.last_name|default:"" }}</p>
+                    </div>
+                    <div class="col-3 text-right">
+                        <p class="my-0 small text-muted">${{ item.product.price | calc_subtotal:item.quantity }}</p>
+                    </div>
+                </div>
                 {% endfor %}
                 <hr class="my-0">
                 <div class="row text-black text-right">
                     <div class="col-7 offset-2">
                         <p class="my-0">Order Total:</p>
+                        <p class="my-0">Delivery:</p>
                         <p class="my-0">Grand Total:</p>
                     </div>
                     <div class="col-3">
@@ -69,6 +88,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-12 col-lg-6">
                 <p class="text-muted">Please fill out the form below to complete your order</p>
                 <form action="{% url 'checkout' %}" method="POST" id="payment-form">
@@ -131,6 +151,13 @@
                 </form>
             </div>
         </div>
+    </div>
+    <div id="loading-overlay">
+        <h1 class="text-light logo-font loading-spinner">
+            <span class="icon">
+                <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+            </span>
+        </h1>
     </div>
 {% endblock %}
 

@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.conf import settings
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
@@ -105,3 +107,17 @@ def checkout_success(request, order_number):
     }
 
     return render(request, template, context)
+
+    # checkout/views.py
+
+
+@require_POST
+def save_customization(request):
+    item_id = request.POST.get('item_id')
+    customization = {
+        'first_name': request.POST.get('first_name'),
+        'last_name': request.POST.get('last_name'),
+        'voucher_type': request.POST.get('voucher_type'),
+    }
+    request.session[f'customization_{item_id}'] = customization
+    return JsonResponse({'status': 'success'})
