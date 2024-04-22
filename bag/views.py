@@ -5,65 +5,75 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 
 
+from .contexts import bag_contents
 from products.models import Product
 
 
+
 def view_bag(request):
-    """ A view that renders the bag contents page """
-    return render(request, 'bag/bag.html')
+    """ A view that renders the bag contents page with items and pricing details """
+    context = bag_contents(request)  # Get the context from bag_contents function
+    return render(request, 'bag/bag.html', context)
 
 
+@require_POST
 def add_to_bag(request, item_id):
-    """ Add a quantity of the specified product to the shopping bag """
-
     product = get_object_or_404(Product, pk=item_id)
-    quantity = int(request.POST.get('quantity'))
-    redirect_url = request.POST.get('redirect_url')
-    bag = request.session.get('bag', {})
-    customization_data = request.POST.get('customization_data')  # Get customization data from the form
+    quantity = int(request.POST.get('quantity', 1))
+    redirect_url = request.POST.get('redirect_url', '/products/')  # default redirect to products page
 
-    if item_id in bag:
-        bag[item_id]['quantity'] += quantity
-        messages.success(request, f'Updated {product.name} quantity to {bag[item_id]["quantity"]}')
-    else:
-        bag[item_id] = {'quantity': quantity, 'customization_data': customization_data}
-        messages.success(request, f'Added {product.name} to your bag')
+    bag = request.session.get('bag', {})
+
+    # Process each item as a unique entry if customizations differ
+    for i in range(quantity):
+        customization_key = f"{item_id}_{i}"  # unique key for each customized product
+        customization = {
+            'first_name': request.POST.get(f'first_name_{i}', '').strip(),
+            'last_name': request.POST.get(f'last_name_{i}', '').strip(),
+            'voucher_type': request.POST.get(f'voucher_type_{i}', '').strip()
+        }
+
+        if not all(customization.values()):
+            messages.error(request, "Please fill in all customization fields.")
+            return redirect(redirect_url)
+
+        bag[customization_key] = {
+            'quantity': 1,  # since each is treated as unique
+            'customization': customization
+        }
 
     request.session['bag'] = bag
+    messages.success(request, "Product added to your bag successfully!")
     return redirect(redirect_url)
-
+    
 def adjust_bag(request, item_id):
-    """Adjust the quantity of the specified product to the specified amount"""
-
     product = get_object_or_404(Product, pk=item_id)
-    quantity = int(request.POST.get('quantity'))
+    quantity = int(request.POST.get('quantity', 0))
     bag = request.session.get('bag', {})
-
-    if item_id in bag:
-        if quantity > 0:
-            bag[item_id] = quantity
-            messages.success(request, f'Updated {product.name} quantity to {bag[item_id]}')
+    
+    if quantity > 0:
+        if item_id in bag:
+            bag[item_id]['quantity'] = quantity
+            messages.success(request, f"Updated {product.name}'s quantity to {bag[item_id]['quantity']}.")
         else:
-            bag.pop(item_id)
-            messages.success(request, f'Removed {product.name} from your bag')
-
+            messages.error(request, "The product isn't in your bag.")
+    else:
+        bag.pop(item_id, None)
+        messages.success(request, f"Removed {product.name} from your bag.")
+    
     request.session['bag'] = bag
     return redirect(reverse('view_bag'))
 
 def remove_from_bag(request, item_id):
-    """Remove the item from the shopping bag"""
-
     try:
-        product = get_object_or_404(Product, pk=item_id)
         bag = request.session.get('bag', {})
-
         if item_id in bag:
             bag.pop(item_id)
-            messages.success(request, f'Removed {product.name} from your bag')
-
-        request.session['bag'] = bag
-        return HttpResponse(status=200)
-
+            request.session['bag'] = bag
+            messages.success(request, "Item removed from your bag.")
+        else:
+            messages.error(request, "Item wasn't found in your bag.")
+        return redirect(reverse('view_bag'))
     except Exception as e:
         messages.error(request, f'Error removing item: {e}')
         return HttpResponse(status=500)
@@ -71,9 +81,17 @@ def remove_from_bag(request, item_id):
 @require_POST
 def save_customization(request):
     item_id = request.POST.get('item_id')
+    first_name = request.POST.get('first_name', '').strip()
+    last_name = request.POST.get('last_name', '').strip()
+    voucher_type = request.POST.get('voucher_type', '').strip()
+    
+    if not all([item_id, first_name, last_name, voucher_type]):
+        return JsonResponse({'status': 'failed', 'error': 'Incomplete data provided.'})
+    
     request.session[f'customization_{item_id}'] = {
-        'first_name': request.POST.get('first_name', ''),
-        'last_name': request.POST.get('last_name', ''),
-        'voucher_type': request.POST.get('voucher_type', '')
+        'first_name': first_name,
+        'last_name': last_name,
+        'voucher_type': voucher_type
     }
+    request.session.modified = True
     return JsonResponse({'status': 'success'})

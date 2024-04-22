@@ -6,3 +6,18 @@ register = template.Library()
 @register.filter(name='calc_subtotal')
 def calc_subtotal(price, quantity):
     return price * quantity
+
+@register.filter
+def get_customization(session, item_id):
+    return session.get(f'customization_{item_id}', {'voucher_type': 'N/A', 'first_name': 'N/A', 'last_name': 'N/A'})
+
+@register.filter(name='multiply')
+def multiply(value, arg):
+    """Multiplies the value by the arg."""
+    try:
+        return value * arg
+    except (ValueError, TypeError):
+        try:
+            return int(value) * int(arg)
+        except (ValueError, TypeError):
+            return ''

@@ -3,11 +3,11 @@
 {% load bag_tools %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -18,192 +18,105 @@
             <hr>
             <h2 class="logo-font mb-4">Shopping Bag</h2>
             <div class="d-flex justify-content-between align-items-center">
-                <!-- Keep Shopping Button -->
+                <a href="{% url 'products' %}" class="btn btn-outline-secondary"><i class="fas fa-chevron-left"></i> Keep Shopping</a>
                 <div>
-                    <a href="{% url 'products' %}" class="btn btn-outline-secondary">
-                        <i class="fas fa-chevron-left"></i> Keep Shopping
-                    </a>
-                </div>
-
-                <!-- Mystery Box and Total Display -->
-                <div>
-                    {% if total >= 500 %}
-                        <h5 class="mystery_box rainbow-text"><strong>Mystery Box Tier: 4</strong> <i class="fa-solid fa-gift"></i></h5>
-                    {% elif total >= 250 %}
-                        <h5 class="mystery_box rainbow-text"><strong>Mystery Box Tier: 3</strong> <i class="fa-solid fa-gift"></i></h5>
-                    {% elif total >= 150 %}
-                        <h5 class="mystery_box rainbow-text"><strong>Mystery Box Tier: 2</strong> <i class="fa-solid fa-gift"></i></h5>
-                    {% elif total >= 50 %}
-                        <h5 class="mystery_box rainbow-text"><strong>Mystery Box Tier: 1</strong> <i class="fa-solid fa-gift"></i></h5>
-                    {% endif %}
+                    <h5 class="mystery_box rainbow-text"><strong>You qualify for a Mystery Box Tier: {{ mystery_box_tier }}</strong> <i class="fa-solid fa-gift"></i></h5>
                     <h4><strong>Grand Total: ${{ grand_total|floatformat:2 }}</strong></h4>
                 </div>
-
-                <!-- Secure Checkout Button -->
-                <div>
-                    <a href="{% url 'checkout' %}" class="btn btn-primary">
-                        Secure Checkout <i class="fas fa-lock"></i>
-                    </a>
-                </div>
+                <a href="{% url 'checkout' %}" class="btn btn-primary">Secure Checkout <i class="fas fa-lock"></i></a>
             </div>
             <hr>
         </div>
     </div>
 
-
-        <div class="row">
-            <div class="col">
-                {% if bag_items %}
-                    <div class="table-responsive rounded">
-                        <table class="table table-sm table-borderless">
-                            <thead class="text-black">
-                                <tr>
-                                    <th scope="col">Product Info</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Subtotal</th>
-                                    <th scope="col">Customize</th> <!-- New column header for customization -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for item in bag_items %}
-                                    <tr data-item-id="{{ item.item_id }}"> <!-- Add data-item-id attribute here -->
-                                        <td class="p-3 w-25">
-                                            <div class="product-image-container"> 
-                                                <img class="img-fluid rounded" src="{{ item.product.image.url }}">
-                                            </div>
-                                        </td>
-                                        <td class="py-3">
-                                            <p class="my-0"><strong>{{ item.product.name }}</strong></p>
-                                            <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
-                                        </td>
-                                        <td class="py-3">
-                                            <p class="my-0">${{ item.product.price }}</p>
-                                        </td>
-                                        <td class="py-3 w-15">
-                                            <form class="form update-form" method="POST" action="{% url 'adjust_bag' item.item_id %}">
-                                                {% csrf_token %}
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <button class="decrement-qty btn btn-sm btn-black rounded-0" 
-                                                                data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
-                                                                <span>
-                                                                    <i class="fas fa-minus fa-sm"></i>
-                                                                </span>
-                                                            </button>
-                                                        </div>
-                                                        <input class="form-control form-control-sm qty_input" type="number"
-                                                            name="quantity" value="{{ item.quantity }}" min="1" max="99"
-                                                            data-item_id="{{ item.item_id }}"
-                                                            id="id_qty_{{ item.item_id }}">
-                                                        <div class="input-group-append">
-                                                            <button class="increment-qty btn btn-sm btn-black rounded-0"
-                                                                data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
-                                                                <span>
-                                                                    <i class="fas fa-plus fa-sm"></i>
-                                                                </span>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                            <a class="update-link text-info">
-                                                <i class="fa-solid fa-arrows-rotate"></i></i></i>&nbsp;<small>Refresh Qty</small></a>
-                                            <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}">
-                                                <i class="fa-solid fa-trash"></i>&nbsp;<small>Remove</small>
-                                            </a>
-                                        </td>
-                                        <td class="py-3">
-                                            <p class="my-0">${{ item.product.price | calc_subtotal:item.quantity }}</p>
-                                        </td>
-                                        <td colspan="6">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <form id="customizationForm_{{ item.item_id }}" class="customize-options-form">
-                                                        <div class="form-group">
-                                                            <label for="voucher-type_{{ item.item_id }}">How do you want to get your voucher?</label>
-                                                            <select class="form-control" name="voucher_type" id="voucher-type_{{ item.item_id }}">
-                                                                <option value="selfprint" {% if request.session.customization_data.voucher_type == 'selfprint' %}selected{% endif %}>Selfprint</option>
-                                                                <option value="hardticket" {% if request.session.customization_data.voucher_type == 'hardticket' %}selected{% endif %}>Hardticket</option>
-                                                                <option value="giftcard" {% if request.session.customization_data.voucher_type == 'giftcard' %}selected{% endif %}>Giftcard</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="first-name_{{ item.item_id }}">First Name:</label>
-                                                            <input type="text" class="form-control" name="first_name" id="first-name_{{ item.item_id }}" placeholder="John" value="{{ request.session.customization_data.first_name|default:'' }}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="last-name_{{ item.item_id }}">Last Name:</label>
-                                                            <input type="text" class="form-control" name="last_name" id="last-name_{{ item.item_id }}" placeholder="Doe" value="{{ request.session.customization_data.last_name|default:'' }}">
-                                                        </div>
-                                                        <button type="button" class="btn btn-primary saveCustomization" data-item-id="{{ item.item_id }}">Save</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <!-- End Customization Options Row -->
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                {% else %}
-                    <p class="lead mb-5">Your bag is empty.</p>
-                    <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
-                        <span class="icon">
-                            <i class="fas fa-chevron-left"></i>
-                        </span>
-                        <span class="text-uppercase">Keep Shopping</span>
-                    </a>
-                {% endif %}
-            </div>
+    <div class="row">
+        <div class="col">
+            {% if bag_items %}
+                <div class="table-responsive rounded">
+                    <table class="table table-sm table-borderless">
+                        <thead class="text-black">
+                            <tr>
+                                <th scope="col">Product Info</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Subtotal</th>
+                                <th scope="col">Customization</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in bag_items %}
+                            <tr>
+                                <td class="p-3 w-25">
+                                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                </td>
+                                <td class="py-3">${{ item.product.price }}</td>
+                                <td class="py-3">{{ item.quantity }}</td>
+                                <td class="py-3">${{ item.product.price|calc_subtotal:item.quantity }}</td>
+                                <td class="py-3">
+                                    {% if item.customization %}
+                                        <p>Voucher Type: {{ item.customization.voucher_type|default:"N/A" }}</p>
+                                        <p>First Name: {{ item.customization.first_name|default:"N/A" }}</p>
+                                        <p>Last Name: {{ item.customization.last_name|default:"N/A" }}</p>
+                                    {% else %}
+                                        <p>Voucher Type: N/A</p>
+                                        <p>First Name: N/A</p>
+                                        <p>Last Name: N/A</p>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <p class="lead mb-5">Your bag is empty.</p>
+                <a href="{% url 'products' %}" class="btn btn-outline-black btn-lg">Keep Shopping</a>
+            {% endif %}
         </div>
     </div>
-
+</div>
 {% endblock %}
 
 {% block postloadjs %}
 {{ block.super }}
-{% include 'products/includes/quantity_input_script.html' %}
-
-<script type="text/javascript">
-    $('.toast').toast('show');
-</script>
-
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function() {
-        const saveButtons = document.querySelectorAll('.saveCustomization');
-
-        saveButtons.forEach(button => {
+        document.querySelectorAll('.saveCustomization').forEach(button => {
             button.addEventListener('click', function() {
                 const itemId = this.dataset.itemId;
-                const firstName = document.getElementById('first-name_' + itemId).value.trim();
-                const lastName = document.getElementById('last-name_' + itemId).value.trim();
-                const voucherType = document.getElementById('voucher-type_' + itemId).value;
+                const form = document.getElementById('customizationForm_' + itemId);
+                const voucherType = form.querySelector('[name="voucher_type"]').value;
+                const firstName = form.querySelector('[name="first_name"]').value;
+                const lastName = form.querySelector('[name="last_name"]').value;
 
-                $.ajax({
-                    url: "{% url 'save_customization' %}",
+                fetch("{% url 'save_customization' %}", {
                     method: "POST",
-                    data: {
-                        csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
-                        item_id: itemId,
-                        first_name: firstName,
-                        last_name: lastName,
-                        voucher_type: voucherType
+                    headers: {
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                        'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    success: function() {
+                    body: new URLSearchParams({
+                        'item_id': itemId,
+                        'first_name': firstName,
+                        'last_name': lastName,
+                        'voucher_type': voucherType
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if(data.status === 'success') {
                         alert('Customization saved!');
-                        location.reload(); // Reload the page to update the UI
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Failed to save customization: ' + error);
+                        location.reload();  // Reload the page to see updated customization
+                    } else {
+                        alert('Failed to save customization. Please try again.');
                     }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('An error occurred. Please try again.');
                 });
             });
         });
     });
 </script>
-
 {% endblock %}

@@ -71,18 +71,22 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
-    order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
-    product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
-    quantity = models.IntegerField(null=False, blank=False, default=0)
-    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='lineitems')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=0)
+    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, editable=False)
+    first_name = models.CharField(max_length=50, blank=True)
+    last_name = models.CharField(max_length=50, blank=True)
+    voucher_type = models.CharField(max_length=100, blank=True)
 
     def save(self, *args, **kwargs):
         """
         Override the original save method to set the lineitem total
-        and update the order total.
+        and update the order total on the parent order instance.
         """
         self.lineitem_total = self.product.price * self.quantity
         super().save(*args, **kwargs)
+        self.order.update_total()
 
     def __str__(self):
-        return f'SKU {self.product.sku} on order {self.order.order_number}'
+        return f'{self.product.name} x {self.quantity} on order {self.order.order_number}'

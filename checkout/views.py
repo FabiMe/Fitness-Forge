@@ -3,7 +3,6 @@ from django.contrib import messages
 from django.conf import settings
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
-
 from .forms import OrderForm
 from .models import Order, OrderLineItem
 from products.models import Product
@@ -32,32 +31,28 @@ def checkout(request):
         }
         order_form = OrderForm(form_data)
         if order_form.is_valid():
-            order = order_form.save(commit=False)  # Don't save yet, so we can add the mystery_box_tier
-            order.mystery_box_tier = order._calculate_mystery_box_tier()  # Calculate tier
-            order.save()  # Now save the order
-            for item_id, item_data in bag.items():
-                try:
-                    product = Product.objects.get(id=item_id)
-                    if isinstance(item_data, int):
-                        order_line_item = OrderLineItem(
-                            order=order,
-                            product=product,
-                            quantity=item_data,
-                        )
-                        order_line_item.save()
-                except Product.DoesNotExist:
-                    messages.error(request, (
-                        "One of the products in your bag wasn't found in our database. "
-                        "Please call us for assistance!")
-                    )
-                    order.delete()
-                    return redirect(reverse('view_bag'))
+            order = order_form.save(commit=False)
+            order.save()
+            
+            for item_id, quantity in bag.items():
+                product = get_object_or_404(Product, id=item_id)
+                customization = request.session.get(f'customization_{item_id}', {
+                    'first_name': '', 'last_name': '', 'voucher_type': ''
+                })
+                order_line_item = OrderLineItem(
+                    order=order,
+                    product=product,
+                    quantity=quantity,
+                    first_name=customization['first_name'],
+                    last_name=customization['last_name'],
+                    voucher_type=customization['voucher_type']
+                )
+                order_line_item.save()
 
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
-            messages.error(request, 'There was an error with your form. \
-                Please double check your information.')
+            messages.error(request, 'There was an error with your form. Please double check your information.')
     else:
         bag = request.session.get('bag', {})
         if not bag:
@@ -76,14 +71,14 @@ def checkout(request):
         order_form = OrderForm()
 
     if not stripe_public_key:
-        messages.warning(request, 'Stripe public key is missing. \
-            Did you forget to set it in your environment?')
+        messages.warning(request, 'Stripe public key is missing. Did you forget to set it in your environment?')
 
     template = 'checkout/checkout.html'
     context = {
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
+        'bag_items': current_bag['bag_items']  # Ensure this is included correctly from bag_contents
     }
 
     return render(request, template, context)
@@ -97,7 +92,6 @@ def checkout_success(request, order_number):
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')
 
-    # Optionally, you can clear the session after successful checkout
     if 'bag' in request.session:
         del request.session['bag']
 
@@ -107,17 +101,3 @@ def checkout_success(request, order_number):
     }
 
     return render(request, template, context)
-
-    # checkout/views.py
-
-
-@require_POST
-def save_customization(request):
-    item_id = request.POST.get('item_id')
-    customization = {
-        'first_name': request.POST.get('first_name'),
-        'last_name': request.POST.get('last_name'),
-        'voucher_type': request.POST.get('voucher_type'),
-    }
-    request.session[f'customization_{item_id}'] = customization
-    return JsonResponse({'status': 'success'})
