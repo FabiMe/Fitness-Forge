@@ -9,15 +9,13 @@ from .models import Product, Category
 # Create your views here.
 
 def all_products(request):
-    """ A view to show all products, including sorting and search queries """
+    """ A view to show all products, including sorting and search queries, excluding mystery boxes """
 
-    products = Product.objects.all()
+    products = Product.objects.filter(is_mystery_box=False)  # Excludes mystery boxes from product listings
     query = None
     categories = None
     sort = None
     direction = None
-
-    
 
     if request.GET:
         if 'sort' in request.GET:
@@ -33,7 +31,7 @@ def all_products(request):
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
             products = products.order_by(sortkey)
-            
+
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             products = products.filter(category__name__in=categories)
@@ -44,7 +42,7 @@ def all_products(request):
             if not query:
                 messages.error(request, "You didn't enter any search criteria!")
                 return redirect(reverse('products'))
-            
+
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
 
@@ -61,9 +59,9 @@ def all_products(request):
 
 
 def product_detail(request, product_id):
-    """ A view to show individual product details """
+    """ A view to show individual product details, exclude mystery boxes """
 
-    product = get_object_or_404(Product, pk=product_id)
+    product = get_object_or_404(Product, pk=product_id, is_mystery_box=False)  # Prevent direct access to mystery boxes
 
     context = {
         'product': product,

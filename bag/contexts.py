@@ -1,20 +1,21 @@
 from decimal import Decimal
-from django.shortcuts import get_object_or_404, Http404
+from django.shortcuts import get_object_or_404
 from products.models import Product
 
 # Define mystery box tiers
 MYSTERY_BOX_TIERS = {
-    'Tier 1': 50,
-    'Tier 2': 150,
-    'Tier 3': 250,
-    'Tier 4': 500
+    'Tier 1': {'threshold': 50, 'sku': 'MB001'},
+    'Tier 2': {'threshold': 150, 'sku': 'MB002'},
+    'Tier 3': {'threshold': 250, 'sku': 'MB003'},
+    'Tier 4': {'threshold': 500, 'sku': 'MB004'}
 }
 
 def get_mystery_box_tier(total):
-    for tier_name, threshold in sorted(MYSTERY_BOX_TIERS.items(), key=lambda x: x[1], reverse=True):
-        if total >= threshold:
-            return tier_name
-    return "No tier"  # Default if no tier reached
+    for tier, details in sorted(MYSTERY_BOX_TIERS.items(), key=lambda x: x[1]['threshold'], reverse=True):
+        if total >= details['threshold']:
+            return details
+    return None
+
 
 def bag_contents(request):
     bag_items = []
@@ -23,30 +24,34 @@ def bag_contents(request):
     bag = request.session.get('bag', {})
 
     for item_key, item_data in bag.items():
-        product_id = item_key.split('_')[0]  # Assuming item_key is like 'productid_index'
-        product = get_object_or_404(Product, pk=product_id)
+        product = get_object_or_404(Product, pk=item_key.split('_')[0])
         quantity = item_data['quantity']
-        subtotal = Decimal(item_data['quantity']) * product.price
+        subtotal = quantity * product.price
         total += subtotal
         product_count += quantity
-
-        customization = item_data.get('customization', {'first_name': 'N/A', 'last_name': 'N/A', 'voucher_type': 'N/A'})
 
         bag_items.append({
             'product': product,
             'quantity': quantity,
             'subtotal': subtotal,
-            'customization': customization
+            'customization': item_data.get('customization', {})
         })
 
-    mystery_box_tier = get_mystery_box_tier(total)  # Call to determine the mystery box tier
+    mystery_box_details = get_mystery_box_tier(total)
+    if mystery_box_details:
+        mystery_box = get_object_or_404(Product, sku=mystery_box_details['sku'])
+        bag_items.append({
+            'product': mystery_box,
+            'quantity': 1,
+            'subtotal': Decimal('0.00'),
+            'customization': {}
+        })
 
-    return {
+    context = {
         'bag_items': bag_items,
         'total': total,
-        'grand_total': total,  # Modify as necessary for additional fees or discounts
-        'product_count': product_count,
-        'mystery_box_tier': mystery_box_tier
+        'grand_total': total,  # Adjust as necessary
+        'product_count': product_count
     }
 
     return context

@@ -1,3 +1,4 @@
+/* Base Styles */
 html {
     height: 100%;
 }
@@ -5,178 +6,60 @@ html {
 body {
     background: url('media/heroimage.jpeg') no-repeat center top fixed;
     background-size: cover;
-    padding-top: 0; /* Add padding to the top to accommodate the header */
+    padding-top: 0; /* Add padding to accommodate the header */
     color: #555;
     font-family: 'Lato';
 }
 
-/* from Bulma */
-.icon {
-    align-items: center;
-    display: inline-flex;
-    justify-content: center;
-    height: 1.5rem;
-    width: 1.5rem;
+/* Logo and Branding Styles */
+.logo {
+    position: absolute;
+    top: 1vw;
+    right: 1vw;
+    z-index: 999;
+    height: auto;
+    width: auto;
+    max-height: 33%;
+    max-width: 33%;
 }
 
 .logo-font {
-    font-family: 'Roboto', sans-serif; /* or 'Montserrat', or any other font you prefer */
-    font-size: 48px; /* Adjust font size as needed */
-    font-weight: bold; /* You can adjust the font weight if necessary */
-    color: #ffffff; /* White color for text to stand out on dark background */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds a subtle shadow to the text */
-    letter-spacing: 1px; /* Adjust letter spacing for better readability */
-  }
-
-.main-logo-link {
-    width: fit-content;
+    font-family: 'Roboto', sans-serif;
+    font-size: 48px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
 }
 
-.shop-now-button {
-    background: #ff6b6b; /* Red background color for contrast */
-    color: #fff; /* White text color */
-    min-width: 200px; /* Adjusted minimum width */
-    padding: 15px 30px; /* Add padding for better visual appearance */
-    border: none; /* Remove button border */
-    border-radius: 5px; /* Add some rounded corners for a softer look */
-    font-size: 16px; /* Adjust font size for readability */
-    font-weight: bold; /* Make text bold for emphasis */ 
-    cursor: pointer; /* Change cursor to pointer to indicate interactivity */
-    transition: background 0.3s ease; /* Add transition effect for smoother hover effect */
-}
-
-.shop-now-button:hover {
-    background: #ff4d4d; /* Darker red background color on hover for emphasis */
-}
-
-.btn-black {
-    background: black;
-    color: white;
-}
-
-.btn-outline-black {
-    background: white;
-    color: black !important; /* use important to override link colors for <a> elements */
-    border: 1px solid black;
-}
-
-.btn-outline-black:hover,
-.btn-outline-black:active,
-.btn-outline-black:focus {
-    background: black;
-    color: white !important;
-}
-
-.shop-now-button:hover,
-.shop-now-button:active,
-.shop-now-button:focus,
-.btn-black:hover,
-.btn-black:active,
-.btn-black:focus {
-    background: #222;
-    color: white;
-}
-
-.text-black {
-    color: #000 !important;
-}
-
-.border-black {
-    border: 1px solid black !important;
-}
-
+/* Navigation Styles */
 .nav-item.dropdown:hover .dropdown-menu {
     display: block;
     animation: fadeIn 0.5s forwards;
 }
 
-.overlay {
-	height: 100%;
-	width: 100%;
-	top: 0;
-	left: 0;
-	position: fixed;
-	background: linear-gradient(to right, white, lightgrey);
-	z-index: -1;
-}
-
-.zoom-on-hover:hover {
-    transform: scale(1.05); /* adjust the scale factor as needed */
-    transition: transform 0.3s ease; /* adjust the transition duration as needed */
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+.navbar-font {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.25vw;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.02em;
 }
 
 .navbar-nav {
     position: relative;
 }
 
-.navbar-font {
-    font-family: 'Roboto', sans-serif; 
-    font-size: 1.25vw;
-    font-weight: bold; 
-    color: #ffffff; 
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
-    letter-spacing: 0.02em; 
-}
-
 .navbar-nav .nav-item {
-    margin-right: 15px; /* Adjust the right margin between navbar items */
+    margin-right: 15px;
 }
 
 .navbar-nav .nav-item:last-child {
-    margin-right: 0; /* Remove margin from the last navbar item to avoid extra spacing */
+    margin-right: 0;
 }
 
-.logo {
-    position: absolute;
-    top: 1vw; /* Adjust the top position of the logo */
-    right: 1vw; /* Adjust the right position of the logo */
-    z-index: 999; /* Ensure the logo appears above other content */
-    height: auto; /* Allow the logo to scale proportionally */
-    width: auto; /* Allow the logo to scale proportionally */
-    max-height: 33%; /* Ensure the logo doesn't exceed the height of the parent element */
-    max-width: 33%; /* Ensure the logo doesn't exceed the width of the parent element */
-}
-
-.banner {
-    position: relative;
-    width: 100%;
-    height: 2vw; 
-    overflow: hidden;
-    background-color: #1e1e1e; /* Black background */
-    color: #fff; /* Text color */
-    text-align: center; 
-}
-
-.banner-text {
-    position: relative;
-    right: 0; /* Adjusted to start from the right side */
-    transform: translateY(-50%);
-    width: 100%;
-    margin: auto;
-    height: auto;
-    white-space: nowrap; /* Prevent text from wrapping */
-    animation: slide 15s linear forwards; /* Adjust the animation duration and timing function */
-    animation-delay: -5s;
-}
-
-@keyframes slide {
-    0% {
-        transform: translateX(100%); /* Start from the right side of the screen */
-    }
-    100% {
-        transform: translateX(0); /* Stop when the text reaches the left side of the screen */
-    }
-}
-
+/* Dropdown Menu Styles */
 .dropdown-menu {
     display: none;
     position: absolute;
@@ -201,12 +84,109 @@ body {
     background-color: #f5f5f5;
 }
 
-/* Style for form group */
+/* Button Styles */
+.shop-now-button,
+.btn-black,
+.btn-outline-black {
+    min-width: 200px;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.shop-now-button {
+    background: #ff6b6b;
+    color: #fff;
+    border: none;
+}
+
+.shop-now-button:hover,
+.btn-black:hover,
+.btn-outline-black:hover {
+    background: #222;
+    color: white;
+}
+
+.btn-outline-black {
+    background: white;
+    color: black !important;
+    border: 1px solid black;
+}
+
+.btn-outline-black:hover,
+.btn-outline-black:active,
+.btn-outline-black:focus {
+    background: black;
+    color: white !important;
+}
+
+/* Overlay Styles */
+.overlay {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: linear-gradient(to right, white, lightgrey);
+    z-index: -1;
+}
+
+/* Animation and Transition Styles */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Common Utility Classes */
+.text-black {
+    color: #000 !important;
+}
+
+.border-black {
+    border: 1px solid black !important;
+}
+
+.zoom-on-hover:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+/* Banner Styles */
+.banner {
+    position: relative;
+    width: 100%;
+    height: 2vw;
+    overflow: hidden;
+    background-color: #1e1e1e;
+    color: #fff;
+    text-align: center;
+}
+
+.banner-text {
+    position: relative;
+    right: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    margin: auto;
+    height: auto;
+    white-space: nowrap;
+    animation: slide 15s linear forwards;
+    animation-delay: -5s;
+}
+
+@keyframes slide {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(0); }
+}
+
+/* Form Styles */
 .form-group {
     margin-bottom: 1.5rem;
 }
 
-/* Style for input group */
 .input-group {
     position: relative;
     display: flex;
@@ -215,7 +195,6 @@ body {
     width: 100%;
 }
 
-/* Style for input field */
 .form-control {
     display: block;
     width: 100%;
@@ -230,335 +209,47 @@ body {
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.btt-button {
-    position: fixed;
-    bottom: 20px; /* Adjust this value as needed */
-    right: 20px;
-    z-index: 1000;
+/* Adjust the card container to have a consistent height, making the layout uniform */
+.card {
+    height: 100%; /* Full height to ensure alignment at the bottom */
+    display: flex;
+    flex-direction: column; /* Ensures the footer aligns at the bottom */
 }
 
-.btt-link,
-.update-link,
-.remove-item {
-    cursor: pointer;
-}
-
-.back-to-products a {
-    font-family: Arial, sans-serif; /* Use a different font */
-    color: #333; /* Set the color */
-    text-decoration: none; /* Remove underline */
-    transition: color 0.3s; /* Add transition effect */
-}
-
-.back-to-products a:hover {
-    color: #666; /* Change color on hover */
-}
-
-/* Product Name */
-.product-name {
-    font-size: 1.25rem; /* Adjust font size as needed */
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-}
-
-.highlight {
-    font-size: 200%;
-    padding: 0.25rem; /* Adjust padding as needed */
-    border-radius: 3px; /* Rounded corners */
-    font-weight: bold; /* Bold text */
-}
-
-/* Product Price */
-.product-price {
-    font-size: 1.1rem; /* Adjust font size as needed */
-    color: #1e1e1e; /* Adjust color as needed */
-    margin-bottom: 0.5rem;
-}
-
-/* Product Rating */
-.product-rating {
-    font-size: 1rem; /* Adjust font size as needed */
-    color: #ffc107; /* Adjust color as needed */
-    margin-bottom: 0.5rem;
-}
-
-/* Product Description */
-.product-description p {
-    font-size: 1rem; /* Adjust font size as needed */
-    line-height: 1.5; /* Adjust line height as needed */
-    margin-top: 1rem;
-}
-
+/* Style for the image container to handle various image sizes */
 .card-img-top {
-    height: 40vh; /* Adjust the height as needed */
-    object-fit: cover; /* Ensures the image covers the entire space */
+    width: 100%; /* Full width of the card */
+    height: 500px; /* Fixed height for all images */
+    object-fit: cover; /* Covers the dimension, might crop the image */
 }
 
-/* Product Detail Page Styling */
-
-/* Image Container */
-.image-container {
-    text-align: center; /* Center the image */
+/* Ensures the card body grows to fill available space, pushing the footer down */
+.card-body {
+    flex-grow: 1; /* Allows the body to expand and fill the available space */
 }
 
-/* Product Details Container */
-.product-details-container {
-    padding: 0 1rem; /* Add padding to the sides */
+/* Adjust footer to not have any unexpected spacing issues */
+.card-footer {
+    background: white;
+    border-top: none; /* Removes the border if not needed */
 }
 
-/* Header Container */
-.header-container {
-    margin-top: 3rem; /* Adjust margin as needed */
-    margin-bottom: 100px; /* Adjust this value as needed */
-}
-
+/* Flex container setup for the main content wrapper */
 .flex-container {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Set the minimum height of the flex container to 100% of the viewport height */
+    min-height: 100vh; /* Use full viewport height */
 }
 
 .footer {
-    margin-top: auto; /* Push the footer to the bottom of the flex container */
+    margin-top: auto; /* Pushes the footer to the bottom */
 }
 
-/* Custom styling for sorting dropdown */
-#sort-selector {
-    width: 100%;
-    padding: 0.5rem 2rem 0.5rem 0.75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    background-color: #fff;
-    background-image: none;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    appearance: none; /* Remove default styling */
-}
-
-/* Style for selected option */
-#sort-selector option:checked {
-    background-color: #333;
-    color: #fff;
-}
-
-/* Style for dropdown container */
-.sort-select-wrapper {
-    position: relative;
-    width: 100%;
-    overflow: hidden; /* Hide overflow */
-}
-
-/* Hover effect */
-.sort-select-wrapper:hover #sort-selector {
-    border-color: #6c757d;
-}
-
-/* Focus effect */
-.sort-select-wrapper #sort-selector:focus {
-    outline: none;
-    border-color: #333;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-
-.customize-options-row {
-    display: none;
-}
-
-.customize-options-form {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    text-align: center; /* Align text to center */
-}
-
-.customize-options-form .form-group {
-    margin-bottom: 15px;
-    text-align: left; /* Align text inside form group to left */
-}
-
-.customize-options-form label {
-    font-weight: bold;
-}
-
-.customize-options-form select,
-.customize-options-form input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box; /* Ensure padding and border are included in the width */
-}
-
-.customize-options-form button[type="submit"] {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.customize-options-form button[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
-/* ------------------------------- bootstrap toasts */
-
-.message-container {
-    position: fixed;
-    top: 72px;
-    right: 15px;
-    z-index: 99999999999;
-    background-color: silver;
-    border-radius: 10px; /* Rounded corners for a softer look */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
-    padding: 15px; /* Add some padding for space around content */
-    color: black; /* Text color to contrast with the background */
-    font-family: Arial, sans-serif; /* Choose a readable font */
-}
-
-.custom-toast {
-    overflow: visible;
-    opacity: 1 !important;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Add smooth transition */
-}
-
-.toast-capper {
-    height: 2px;
-    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent separator line */
-    margin-bottom: 10px; /* Space between toast content and separator */
-}
-
-/* from CSS-tricks.com: https://css-tricks.com/snippets/css/css-triangle/ */
-.arrow-up {
-    width: 0; 
-    height: 0; 
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent; 
-    border-bottom: 10px solid black;
-    position: absolute;
-    top: -10px;
-    right: 36px;
-}
-
-/* Convenience classes - colors copied from Bootstrap */
-.arrow-primary {
-    border-bottom-color: #007bff !important;
-}
-
-.arrow-secondary {
-    border-bottom-color: #6c757d !important;
-}
-
-.arrow-success {
-    border-bottom-color: #28a745 !important;
-}
-
-.arrow-danger {
-    border-bottom-color: #dc3545 !important;
-}
-
-.arrow-warning {
-    border-bottom-color: #ffc107 !important;
-}
-
-.arrow-info {
-    border-bottom-color: #17a2b8 !important;
-}
-
-.arrow-light {
-    border-bottom-color: #f8f9fa !important;
-}
-
-.arrow-dark {
-    border-bottom-color: #343a40 !important;
-}
-
-/* Keyframes for the slide-in animation */
-@keyframes slideIn {
-    from {
-        transform: translateY(-20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.icon-center {
-    text-align: center;
-}
-
-.spinning {
-    animation: spin 1s linear forwards;
-}
-
-@keyframes spin {
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-.mystery_box {
-    font-family: 'Mystery Quest', sans-serif;
-    letter-spacing: 2px;
-    background: linear-gradient(90deg, violet, indigo, blue, green, yellow, orange, red);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-@keyframes rainbow {
-    0% { color: violet; }
-    16.67% { color: indigo; }
-    33.33% { color: blue; }
-    50% { color: green; }
-    66.67% { color: yellow; }
-    83.33% { color: orange; }
-    100% { color: red; }
-}
-
-.rainbow-text {
-    font-family: 'Mystery Quest', sans-serif;
-    animation: rainbow 6s linear infinite;
-}
-
-.text-right {
-    text-align: right;
-}
-
- /* Set a fixed height for the image containers */
- .product-image-container {
-    height: 150px; /* Adjust the height as needed */
-    display: flex; /* Use flexbox layout */
-    overflow: hidden;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-}
-
-.image-container-checkout {
-    height: 50px; /* Adjust the height as needed */
-    overflow: hidden;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    object-fit: cover; 
-}
-
-
-/* -------------------------------- Media Queries */
-
-/* Slightly larger container on xl screens */
+/* Media Queries */
 @media (min-width: 1200px) {
-  .container {
-    max-width: 80%;
-  }
+    .container { max-width: 80%; }
 }
 
-/* fixed top navbar only on medium and up */
 @media (min-width: 992px) {
     .fixed-top-desktop-only {
         position: fixed;
@@ -568,17 +259,10 @@ body {
         z-index: 1030;
     }
 
-    .header-container {
-        padding-top: 164px;
-    }
+    .header-container { padding-top: 164px; }
 }
 
 @media screen and (max-width: 768px) {
-    .banner {
-        height: auto; /* Reset height for smaller screens */
-    }
-    
-    .banner-text {
-        font-size: 2.5vw; /* Adjust font size for smaller screens */
-    }
+    .banner { height: auto; }
+    .banner-text { font-size: 2.5vw; }
 }

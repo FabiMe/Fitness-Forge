@@ -64,7 +64,7 @@
                                     </a>
                                 {% else %}
                                     <a href="{% url 'product_detail' product.id %}">
-                                        <img class="card-img-top img-fluid zoom-on-hover" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                                        <img class="card-img-top img-fluid zoom-on-hover" src="{% static 'no-image.png' %}" alt="No image available">
                                     </a>
                                 {% endif %}
                                 <div class="card-body pb-0">

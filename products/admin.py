@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import Product, Category
 
-# Register your models here.
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
@@ -9,12 +8,15 @@ class ProductAdmin(admin.ModelAdmin):
         'name',
         'category',
         'price',
+        'is_mystery_box',
         'rating',
         'image',
     )
-
+    list_filter = ('is_mystery_box', 'category',)
+    search_fields = ('name', 'description', 'sku')
+    list_editable = ('is_mystery_box', 'price', 'rating')  # Allow direct editing of these fields
     ordering = ('sku',)
-
+    
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
         'friendly_name',

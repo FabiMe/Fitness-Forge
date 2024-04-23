@@ -18,12 +18,19 @@
             <hr>
             <h2 class="logo-font mb-4">Shopping Bag</h2>
             <div class="d-flex justify-content-between align-items-center">
-                <a href="{% url 'products' %}" class="btn btn-outline-secondary"><i class="fas fa-chevron-left"></i> Keep Shopping</a>
+                <a href="{% url 'products' %}" class="btn btn-outline-secondary">
+                    <i class="fas fa-chevron-left"></i> Keep Shopping
+                </a>
                 <div>
-                    <h5 class="mystery_box rainbow-text"><strong>You qualify for a Mystery Box Tier: {{ mystery_box_tier }}</strong> <i class="fa-solid fa-gift"></i></h5>
+                    <h5 class="mystery_box rainbow-text">
+                        <strong>Mystery Box Tier: {{ mystery_box_tier }}</strong>
+                        <i class="fa-solid fa-gift"></i>
+                    </h5>
                     <h4><strong>Grand Total: ${{ grand_total|floatformat:2 }}</strong></h4>
                 </div>
-                <a href="{% url 'checkout' %}" class="btn btn-primary">Secure Checkout <i class="fas fa-lock"></i></a>
+                <a href="{% url 'checkout' %}" class="btn btn-primary">
+                    Secure Checkout <i class="fas fa-lock"></i>
+                </a>
             </div>
             <hr>
         </div>
@@ -32,45 +39,47 @@
     <div class="row">
         <div class="col">
             {% if bag_items %}
-                <div class="table-responsive rounded">
-                    <table class="table table-sm table-borderless">
-                        <thead class="text-black">
-                            <tr>
-                                <th scope="col">Product Info</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Subtotal</th>
-                                <th scope="col">Customization</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for item in bag_items %}
-                            <tr>
-                                <td class="p-3 w-25">
-                                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
-                                </td>
-                                <td class="py-3">${{ item.product.price }}</td>
-                                <td class="py-3">{{ item.quantity }}</td>
-                                <td class="py-3">${{ item.product.price|calc_subtotal:item.quantity }}</td>
-                                <td class="py-3">
-                                    {% if item.customization %}
-                                        <p>Voucher Type: {{ item.customization.voucher_type|default:"N/A" }}</p>
-                                        <p>First Name: {{ item.customization.first_name|default:"N/A" }}</p>
-                                        <p>Last Name: {{ item.customization.last_name|default:"N/A" }}</p>
-                                    {% else %}
-                                        <p>Voucher Type: N/A</p>
-                                        <p>First Name: N/A</p>
-                                        <p>Last Name: N/A</p>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+            <div class="table-responsive rounded">
+                <table class="table table-sm table-borderless">
+                    <thead class="text-black">
+                        <tr>
+                            <th scope="col">Product Info</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Subtotal</th>
+                            <th scope="col">Customization</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in bag_items %}
+                        <tr>
+                            <td class="p-3 w-25">
+                                <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                            </td>
+                            <td class="py-3">
+                                <div style="max-height: 60px; overflow-y: auto;">{{ item.product.description|linebreaks }}</div>
+                            </td>
+                            <td class="py-3">${{ item.product.price }}</td>
+                            <td class="py-3">{{ item.quantity }}</td>
+                            <td class="py-3">${{ item.product.price|calc_subtotal:item.quantity }}</td>
+                            <td class="py-3">
+                                {% if item.customization %}
+                                <p>Voucher Type: {{ item.customization.voucher_type|default:"N/A" }}</p>
+                                <p>First Name: {{ item.customization.first_name|default:"N/A" }}</p>
+                                <p>Last Name: {{ item.customization.last_name|default:"N/A" }}</p>
+                                {% else %}
+                                <p>No customization provided.</p>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
             {% else %}
-                <p class="lead mb-5">Your bag is empty.</p>
-                <a href="{% url 'products' %}" class="btn btn-outline-black btn-lg">Keep Shopping</a>
+            <p class="lead mb-5">Your bag is empty.</p>
+            <a href="{% url 'products' %}" class="btn btn-outline-black btn-lg">Keep Shopping</a>
             {% endif %}
         </div>
     </div>
@@ -106,7 +115,7 @@
                 .then(data => {
                     if(data.status === 'success') {
                         alert('Customization saved!');
-                        location.reload();  // Reload the page to see updated customization
+                        location.reload();  // Reload the page to update customization
                     } else {
                         alert('Failed to save customization. Please try again.');
                     }
