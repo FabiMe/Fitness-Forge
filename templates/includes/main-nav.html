@@ -1,47 +1,62 @@
-<div class="collapse navbar-collapse" id="main-nav">
-    <ul class="navbar-nav w-auto mx-auto">
-        <li class="nav-item dropdown">
-            <a class="navbar-font nav-link text-black mr-5" href="#" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                All Products
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
-                <a href="{% url 'products' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
-                <a href="{% url 'products' %}?sort=rating&direction=desc" class="dropdown-item ">By Rating</a>
-                <a href="{% url 'products' %}?sort=category&direction=asc" class="dropdown-item ">By Category</a>
-                <a href="{% url 'products' %}" class="dropdown-item">All Products</a>
-            </div>
-        </li>
-        
-        <li class="nav-item dropdown">
-            <a class="navbar-font nav-link text-black mr-5" href="#" id="adventures-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Adventures
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="adventures-link">
-                <a href="{% url 'products' %}?category=hiking_trails" class="dropdown-item">Hiking Trails</a>
-                <a href="{% url 'products' %}?category=water_adventures" class="dropdown-item">Water Adventures</a>
-                <a href="{% url 'products' %}?category=camping_spots" class="dropdown-item">Camping Spots</a>
-            </div>
-        </li>
+<nav class="main-nav navbar-expand-lg">
+    <div class="container-fluid">
+        <!-- Toggle button for mobile view -->
+        <a class="navbar-brand d-lg-none" href="#">Check Our Categories</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <li class="nav-item dropdown">
-            <a class="navbar-font nav-link text-black mr-5" href="#" id="sportsevents-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Sports Events
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="sportsevents-link">
-                <a href="{% url 'products' %}?category=try_out_session" class="dropdown-item">Try-Out Sessions</a>
-                <a href="{% url 'products' %}?category=amateur_tournaments" class="dropdown-item">Amateur Tournaments</a>
-                <a href="{% url 'products' %}?category=health_and_fitness_classes" class="dropdown-item">Health and Fitness Classes</a>
-            </div>
-        </li>
+        <!-- Navbar content -->
+        <div class="collapse navbar-collapse" id="main-nav">
+            <ul class="navbar-nav mx-auto">
+                <!-- All Products dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="all-products-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        All Products
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="all-products-link">
+                        <li><a class="dropdown-item" href="{% url 'products' %}?sort=price&direction=asc">By Price</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?sort=rating&direction=desc">By Rating</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?sort=category&direction=asc">By Category</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}">All Products</a></li>
+                    </ul>
+                </li>
+                
+                <!-- Adventures dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="adventures-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Adventures
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="adventures-link">
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=hiking_trails">Hiking Trails</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=water_adventures">Water Adventures</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=camping_spots">Camping Spots</a></li>
+                    </ul>
+                </li>
 
-        <li class="nav-item dropdown">
-            <a class="navbar-font nav-link text-black" href="#" id="specials-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Special Offers
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="specials-link">
-                <a href="{% url 'products' %}?category=adventure_packages" class="dropdown-item">Adventure Packages</a>
-                <a href="{% url 'products' %}?category=sports_gear_discounts" class="dropdown-item">Sports Gear Discounts</a>
-            </div>
-        </li>
-    </ul>
-</div>
+                <!-- Sports Events dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="sportsevents-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sports Events
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="sportsevents-link">
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=try_out_session">Try-Out Sessions</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=amateur_tournaments">Amateur Tournaments</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=health_and_fitness_classes">Health and Fitness Classes</a></li>
+                    </ul>
+                </li>
+
+                <!-- Special Offers dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="specials-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Special Offers
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="specials-link">
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=adventure_packages">Adventure Packages</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=sports_gear_discounts">Sports Gear Discounts</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

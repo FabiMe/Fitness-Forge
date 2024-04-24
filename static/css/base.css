@@ -4,8 +4,9 @@ html {
 }
 
 body {
-    background: url('media/heroimage.jpeg') no-repeat center top fixed;
+    background: url('media/bike.jpg') no-repeat center top fixed;
     background-size: cover;
+    background-position: center -200px; /* Shifts the image 50 pixels up */
     padding-top: 0; /* Add padding to accommodate the header */
     color: #555;
     font-family: 'Lato';
@@ -30,58 +31,205 @@ body {
     color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     letter-spacing: 1px;
+    margin-right: 20px; /* Space between logo and search bar */
 }
 
-/* Navigation Styles */
-.nav-item.dropdown:hover .dropdown-menu {
-    display: block;
-    animation: fadeIn 0.5s forwards;
+/* Main Navigation Container Styles */
+.main-nav {
+    background-color: #ffffff;
+    padding: 1rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px auto;
+    width: auto; /* Adjusts width to fit content */
 }
 
-.navbar-font {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.25vw;
-    font-weight: bold;
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    letter-spacing: 0.02em;
+/* Styles for the search input field */
+.search-field {
+    background-color: #ffffff;
+    padding: 0.5rem 1rem; /* Adjusted padding for balance */
+    border-radius: 15px 0 0 15px; /* Rounded on the left side only */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none; /* Remove border if any */
+    display: flex;
+    align-items: center;
+    margin: 5px 0; /* Remove auto margin to close gaps */
+    width: auto; /* Adjusts width to fit content */
 }
 
-.navbar-nav {
-    position: relative;
+/* Styles for the search button */
+.search-btn {
+    background-color: #ffffff;
+    padding: 0.5rem 1rem; /* Matching padding for visual symmetry */
+    border-radius: 0 15px 15px 0; /* Rounded on the right side only */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none; /* Remove border if any */
+    display: flex;
+    align-items: center;
+    margin: 5px 0; /* Remove auto margin to close gaps */
+    width: auto; /* Adjusts width to fit content */
 }
 
-.navbar-nav .nav-item {
-    margin-right: 15px;
+/* Additional styling to ensure no gaps if using input-group */
+.input-group {
+    display: flex; /* Ensures items in the group are aligned properly */
+    border-radius: 15px; /* Ensures container has rounded edges */
+    overflow: hidden; /* Prevents children from overflowing the rounded corners */
 }
 
-.navbar-nav .nav-item:last-child {
-    margin-right: 0;
+.input-group-append {
+    margin-left: -1px; /* Overlaps the border between input and button */
+}
+
+/* Ensure borders of the elements inside input-group connect seamlessly */
+.search-field, .search-btn {
+    border: 1px solid #ccc; /* Consistent border for connection */
+}
+
+.search-field:focus, .search-btn:focus {
+    outline: none; /* Removes outline to keep design clean */
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); /* Focus shadow */
+}
+
+.main-nav .navbar-nav {
+    list-style: none; /* Removes default list styling */
+    display: flex; /* Ensures items are inline */
+    padding: 0; /* Removes default padding */
+}
+
+.main-nav .nav-item {
+    margin: 0 12px; /* Horizontal margin for separation between items */
+}
+
+.main-nav .nav-link {
+    font-family: ;
+    color: #333; /* Dark color for better readability */
+    text-decoration: none; /* No underline to keep the design clean */
+    letter-spacing: 1px;
+    font-weight: 800; /* Medium weight for readability */
+    padding: 0.75rem 1.5rem; /* Sufficient padding for easy interaction */
+    border-radius: 8px; /* Rounded edges for links */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for interaction feedback */
+}
+
+.main-nav .nav-link:hover,
+.main-nav .nav-link:focus {
+    background-color: #f8f9fa; /* Light background on hover for visual feedback */
+    color: #1a73e8; /* Blue color on hover for visual emphasis */
+}
+
+.main-nav .dropdown-menu {
+    background-color: #ffffff; /* Maintains a clean and consistent look */
+    border-radius: 8px; /* Rounded corners for dropdown to match the main nav style */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Deeper shadow for dropdown for focus */
+    position: absolute;
+    width: auto; /* Auto width based on content size */
+    top: 100%;
+    left: 0;
+    display: none; /* Hidden by default */
+    z-index: 1050; /* Ensures dropdown is above other content */
+}
+
+.main-nav .nav-item.dropdown:hover .dropdown-menu {
+    display: block; /* Display dropdown on hover */
+}
+
+
+/* General and Navbar Specific Styles */
+.navbar {
+    background: linear-gradient(to right, grey, #444);;
+    padding: 0.5rem 2rem; /* Adjusted padding for better spacing */
+    color: black;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5); /* Lighter border for toggler */
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: black;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link:focus {
+    color: #1a73e8; /* Bright blue for hover/focus */
+    background-color: transparent;
 }
 
 /* Dropdown Menu Styles */
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block; /* Shows dropdown on hover */
+}
+
 .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 999;
+    margin-top: 0;
+    border: none; /* Removes border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for dropdown */
+    background-color: #444; /* Slightly lighter than navbar for contrast */
 }
 
 .dropdown-item {
-    color: #333;
-    padding: 8px 12px;
-    display: block;
-    text-decoration: none;
+    color: #fff;
+    padding: 0.75rem 1.5rem; /* More spacious padding for dropdown items */
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    color: #000;
+    background-color: #f8f9fa; /* Light background on hover/focus for dropdown items */
+}
+
+/* Enhancing other elements to fit the modern theme */
+.nav-link {
+    font-size: 1rem; /* Standard font size for navigation links */
+    font-weight: 500; /* Slightly bolder font for better readability */
+}
+
+/* Add transition for smoother background-color change in hover state */
+.nav-item a:hover, .nav-item a:focus {
     transition: background-color 0.3s ease;
 }
 
-.dropdown-item:hover {
-    background-color: #f5f5f5;
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    top: 100%;
+    left: 0;
+    border-radius: 0.25rem;
+    z-index: 1000;
+    width: auto;
+    padding: 0.5rem 0;
+}
+
+.dropdown-menu a {
+    color: #333;
+    padding: 0.5rem 1.5rem;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out forwards;
+}
+.modern-header {
+    background: linear-gradient(to right, grey, #444);;
+}
+
+/* Keyframes for fadeIn animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Button Styles */
@@ -140,11 +288,6 @@ body {
     to { opacity: 1; }
 }
 
-/* Common Utility Classes */
-.text-black {
-    color: #000 !important;
-}
-
 .border-black {
     border: 1px solid black !important;
 }
@@ -156,13 +299,19 @@ body {
 
 /* Banner Styles */
 .banner {
-    position: relative;
     width: 100%;
-    height: 2vw;
     overflow: hidden;
-    background-color: #1e1e1e;
+    background-color: #aed6f1;
     color: #fff;
     text-align: center;
+    margin-bottom: 15px;
+}
+
+.banner p {
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+    vertical-align: middle;
 }
 
 .banner-text {
@@ -170,7 +319,7 @@ body {
     right: 0;
     transform: translateY(-50%);
     width: 100%;
-    margin: auto;
+    margin: 0;
     height: auto;
     white-space: nowrap;
     animation: slide 15s linear forwards;
@@ -185,6 +334,12 @@ body {
 /* Form Styles */
 .form-group {
     margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.form-inline {
+    display: flex;
+    align-items: center;
 }
 
 .input-group {
@@ -228,12 +383,6 @@ body {
     flex-grow: 1; /* Allows the body to expand and fill the available space */
 }
 
-/* Adjust footer to not have any unexpected spacing issues */
-.card-footer {
-    background: white;
-    border-top: none; /* Removes the border if not needed */
-}
-
 /* Flex container setup for the main content wrapper */
 .flex-container {
     display: flex;
@@ -242,7 +391,72 @@ body {
 }
 
 .footer {
-    margin-top: auto; /* Pushes the footer to the bottom */
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+    background-color: #444; /* Example background color */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer .container {
+    display: flex;
+    flex-direction: row; /* Changed from column to row */
+    justify-content: space-around; /* Adjusts space between elements */
+    align-items: center;
+    flex-wrap: wrap; /* Allows items to wrap on small screens */
+}
+
+.footer-text,
+.footer-policy,
+.social-icons {
+    flex: 1 1 20%; /* Each takes up at least 20% of the container */
+    text-align: center;
+    margin: 5px; /* Small margin to ensure spacing */
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    list-style: none; /* Removes list bullet points */
+}
+
+.social-icons li {
+    padding: 0 10px; /* Space between icons */
+}
+
+
+.social-icons {
+    padding: 0; /* Remove default padding */
+}
+
+.social-icons li {
+    margin: 0 5px; /* Adjust spacing around icons */
+}
+
+.input-group .form-control {
+    border-radius: 30px 0 0 30px; /* rounded left edges */
+    border: 1px solid #ccc;
+}
+
+.input-group .btn {
+    border-radius: 0 30px 30px 0; /* rounded right edges */
+    border-color: #ccc;
+    background-color: white;
+}
+
+.form-control:focus, .btn:focus {
+    box-shadow: 0 0 5px #aed6f1;
+}
+
+.icon-text-group {
+    text-align: center !important;
+    color:#aed6f1;
+}
+
+.navbar-brand a {
+    color: black;
 }
 
 /* Media Queries */
@@ -265,4 +479,53 @@ body {
 @media screen and (max-width: 768px) {
     .banner { height: auto; }
     .banner-text { font-size: 2.5vw; }
+}
+
+/* Responsive typography and spacing */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .nav-item {
+        margin: 0.5rem 0;
+    }
+
+    .navbar-font {
+        font-size: 16px;
+    }
+    .navbar-toggler {
+        background-image: url('icons/menu.svg'); /* Custom icon for mobile menu */
+    }
+
+    .navbar-nav {
+        margin-top: 1rem;
+    }
+}
+
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .footer .container {
+        flex-direction: column; /* Stacks elements vertically */
+    }
+
+    .footer-text,
+    .footer-policy,
+    .social-icons {
+        flex: 1 1 100%; /* Each takes full width */
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .navbar {
+        padding: 0.5rem 1rem; /* Smaller padding on smaller screens */
+    }
+
+    .dropdown-menu {
+        position: static; /* Dropdowns become full width */
+        float: none;
+    }
 }
