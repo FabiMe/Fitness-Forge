@@ -21,6 +21,7 @@ AquaVista Resort https://www.pexels.com/de-de/foto/buckelwale-unter-wasser-46667
  soccer https://www.pexels.com/de-de/foto/himmel-sonnenuntergang-feld-sonnenaufgang-114296/
  Tennis try out https://www.pexels.com/de-de/foto/gesund-mann-draussen-verwischen-5067813/
  healthy food https://www.pexels.com/de-de/foto/vielzahl-von-gerichten-1640771/
-
+ summit& Surf https://www.pexels.com/de-de/foto/meer-natur-felsen-kuste-19074622/
+skate trip https://www.pexels.com/de-de/foto/mann-der-einen-skateboard-trick-tut-1769553/
 
  banner für topnav https://www.pexels.com/de-de/foto/braune-holzplatte-139309/
