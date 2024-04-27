@@ -11,6 +11,9 @@ from bag.contexts import bag_contents
 import stripe
 
 
+def get_numeric_id(combined_id):
+    return int(combined_id.split('_')[0])
+
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
@@ -34,18 +37,20 @@ def checkout(request):
             order = order_form.save(commit=False)
             order.save()
             
-            for item_id, quantity in bag.items():
-                product = get_object_or_404(Product, id=item_id)
-                customization = request.session.get(f'customization_{item_id}', {
+            for item_id, item_data in bag.items():
+                numeric_id = get_numeric_id(item_id)  # Extract numeric ID
+                product = get_object_or_404(Product, pk=numeric_id)  # Use the numeric ID to fetch the product
+                quantity = item_data['quantity']
+                customization = request.session.get(f'customization_{numeric_id}', {
                     'first_name': '', 'last_name': '', 'voucher_type': ''
                 })
                 order_line_item = OrderLineItem(
                     order=order,
                     product=product,
                     quantity=quantity,
-                    first_name=customization['first_name'],
-                    last_name=customization['last_name'],
-                    voucher_type=customization['voucher_type']
+                    first_name=customization.get('first_name', ''),
+                    last_name=customization.get('last_name', ''),
+                    voucher_type=customization.get('voucher_type', '')
                 )
                 order_line_item.save()
 

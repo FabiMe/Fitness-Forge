@@ -1,6 +1,8 @@
 from decimal import Decimal
 from django.shortcuts import get_object_or_404
 from products.models import Product
+import hashlib
+import json
 
 # Define mystery box tiers
 MYSTERY_BOX_TIERS = {
@@ -17,14 +19,21 @@ def get_mystery_box_tier(total):
     return None
 
 
+def generate_custom_id(item_id, customization):
+    # Create a consistent JSON string from the customization dictionary
+    customization_str = json.dumps(customization, sort_keys=True)
+    # Generate a hash of this string
+    return hashlib.md5((str(item_id) + customization_str).encode()).hexdigest()
+
 def bag_contents(request):
     bag_items = []
     total = Decimal('0.00')
     product_count = 0
     bag = request.session.get('bag', {})
 
-    for item_key, item_data in bag.items():
-        product = get_object_or_404(Product, pk=item_key.split('_')[0])
+    for bag_key, item_data in bag.items():
+        actual_product_id = bag_key.split('_')[0]  # Now this is always the numeric product ID
+        product = get_object_or_404(Product, pk=int(actual_product_id))  # Safely convert to int
         quantity = item_data['quantity']
         subtotal = quantity * product.price
         total += subtotal
@@ -34,7 +43,7 @@ def bag_contents(request):
             'product': product,
             'quantity': quantity,
             'subtotal': subtotal,
-            'customization': item_data.get('customization', {})
+            'customization': item_data['customization']
         })
 
     mystery_box_details = get_mystery_box_tier(total)

@@ -58,19 +58,24 @@
                                 <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
                             </td>
                             <td class="py-3">
-                                <div style="max-height: 60px; overflow-y: auto;">{{ item.product.description|linebreaks }}</div>
+                                <div style="max-height: 150px; overflow-y: auto;">{{ item.product.description|linebreaks }}</div>
                             </td>
                             <td class="py-3">${{ item.product.price }}</td>
                             <td class="py-3">{{ item.quantity }}</td>
                             <td class="py-3">${{ item.product.price|calc_subtotal:item.quantity }}</td>
                             <td class="py-3">
-                                {% if item.customization %}
-                                <p>Voucher Type: {{ item.customization.voucher_type|default:"N/A" }}</p>
-                                <p>First Name: {{ item.customization.first_name|default:"N/A" }}</p>
-                                <p>Last Name: {{ item.customization.last_name|default:"N/A" }}</p>
+                                {% if item.customization_key %}
+                                    <button type="button" class="remove-item-btn btn btn-danger" data-key="{{ item.customization_key }}">Remove from Bag</button>
                                 {% else %}
-                                <p>No customization provided.</p>
+                                    <button disabled class="btn btn-secondary">Remove Unavailable</button>
                                 {% endif %}
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                <p class="lead mb-5">Your bag is empty.</p>
+                                <a href="{% url 'products' %}" class="btn btn-outline-black btn-lg">Keep Shopping</a>
                             </td>
                         </tr>
                         {% endfor %}
@@ -127,5 +132,26 @@
             });
         });
     });
+</script>
+
+<script>
+$(document).on('click', '.remove-item-btn', function() {
+    var key = $(this).data('key');
+    $.ajax({
+        url: '/bag/remove/' + key + '/', // Adjust the URL format as needed based on your URL configurations
+        type: 'POST',
+        data: {
+            'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
+            'customization_key': key
+        },
+        success: function() {
+            alert('Item removed successfully!');
+            location.reload(); // Reload the page to update the bag
+        },
+        error: function() {
+            alert('Error removing item. Please try again.');
+        }
+    });
+});
 </script>
 {% endblock %}

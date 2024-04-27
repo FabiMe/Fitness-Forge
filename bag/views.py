@@ -6,7 +6,9 @@ from django.contrib.auth.decorators import login_required
 
 
 from .contexts import bag_contents
+from .contexts import generate_custom_id
 from products.models import Product
+import hashlib
 
 
 
@@ -15,18 +17,14 @@ def view_bag(request):
     context = bag_contents(request)  # Get the context from bag_contents function
     return render(request, 'bag/bag.html', context)
 
-
 @require_POST
 def add_to_bag(request, item_id):
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity', 1))
-    redirect_url = request.POST.get('redirect_url', '/products/')  # default redirect to products page
-
+    redirect_url = request.POST.get('redirect_url', '/products/')
     bag = request.session.get('bag', {})
 
-    # Process each item as a unique entry if customizations differ
     for i in range(quantity):
-        customization_key = f"{item_id}_{i}"  # unique key for each customized product
         customization = {
             'first_name': request.POST.get(f'first_name_{i}', '').strip(),
             'last_name': request.POST.get(f'last_name_{i}', '').strip(),
@@ -37,10 +35,17 @@ def add_to_bag(request, item_id):
             messages.error(request, "Please fill in all customization fields.")
             return redirect(redirect_url)
 
-        bag[customization_key] = {
-            'quantity': 1,  # since each is treated as unique
-            'customization': customization
-        }
+        unique_product_id = generate_custom_id(item_id, customization)
+
+        bag_key = f"{item_id}_{unique_product_id}"  # Combining both ID and hash
+
+        if bag_key not in bag:
+            bag[bag_key] = {
+                'quantity': 1,
+                'customization': customization
+            }
+        else:
+            bag[bag_key]['quantity'] += 1
 
     request.session['bag'] = bag
     messages.success(request, "Product added to your bag successfully!")
@@ -64,20 +69,18 @@ def adjust_bag(request, item_id):
     request.session['bag'] = bag
     return redirect(reverse('view_bag'))
 
-def remove_from_bag(request, item_id):
-    try:
-        bag = request.session.get('bag', {})
-        if item_id in bag:
-            bag.pop(item_id)
-            request.session['bag'] = bag
-            messages.success(request, "Item removed from your bag.")
-        else:
-            messages.error(request, "Item wasn't found in your bag.")
-        return redirect(reverse('view_bag'))
-    except Exception as e:
-        messages.error(request, f'Error removing item: {e}')
-        return HttpResponse(status=500)
+def remove_from_bag(request, customization_key):
+    bag = request.session.get('bag', {})
 
+    if customization_key in bag:
+        del bag[customization_key]
+        request.session['bag'] = bag  # Save the modified bag back to the session
+        messages.success(request, "Item removed successfully.")
+    else:
+        messages.error(request, "Item not found in your bag.")
+
+    return redirect(request.POST.get('redirect_url', '/bag/'))
+    
 @require_POST
 def save_customization(request):
     item_id = request.POST.get('item_id')
