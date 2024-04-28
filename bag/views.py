@@ -69,17 +69,26 @@ def adjust_bag(request, item_id):
     request.session['bag'] = bag
     return redirect(reverse('view_bag'))
 
-def remove_from_bag(request, customization_key):
+@require_POST
+def remove_from_bag(request, key):
     bag = request.session.get('bag', {})
 
-    if customization_key in bag:
-        del bag[customization_key]
+    if key in bag:
+        del bag[key]
         request.session['bag'] = bag  # Save the modified bag back to the session
         messages.success(request, "Item removed successfully.")
+        
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            return JsonResponse({'status': 'success', 'message': 'Item removed successfully.'}, status=200)
+        else:
+            return redirect(reverse('view_bag'))
     else:
         messages.error(request, "Item not found in your bag.")
 
-    return redirect(request.POST.get('redirect_url', '/bag/'))
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            return JsonResponse({'status': 'error', 'message': 'Item not found in your bag.'}, status=404)
+        else:
+            return redirect(reverse('view_bag'))
     
 @require_POST
 def save_customization(request):

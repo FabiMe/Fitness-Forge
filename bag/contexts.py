@@ -32,8 +32,8 @@ def bag_contents(request):
     bag = request.session.get('bag', {})
 
     for bag_key, item_data in bag.items():
-        actual_product_id = bag_key.split('_')[0]  # Now this is always the numeric product ID
-        product = get_object_or_404(Product, pk=int(actual_product_id))  # Safely convert to int
+        actual_product_id, custom_key = bag_key.split('_')
+        product = get_object_or_404(Product, pk=int(actual_product_id))
         quantity = item_data['quantity']
         subtotal = quantity * product.price
         total += subtotal
@@ -43,7 +43,8 @@ def bag_contents(request):
             'product': product,
             'quantity': quantity,
             'subtotal': subtotal,
-            'customization': item_data['customization']
+            'customization': item_data['customization'],
+            'customization_key': bag_key  # Include the full bag key
         })
 
     mystery_box_details = get_mystery_box_tier(total)
@@ -57,10 +58,10 @@ def bag_contents(request):
         })
 
     context = {
-        'bag_items': bag_items,
-        'total': total,
-        'grand_total': total,  # Adjust as necessary
-        'product_count': product_count
-    }
+            'bag_items': bag_items,
+            'total': total,
+            'grand_total': total,
+            'product_count': product_count
+        }
 
     return context

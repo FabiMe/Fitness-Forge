@@ -48,7 +48,8 @@
                             <th scope="col">Price</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Subtotal</th>
-                            <th scope="col">Customization</th>
+                            <th scope="col">Customization Details</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,16 +65,24 @@
                             <td class="py-3">{{ item.quantity }}</td>
                             <td class="py-3">${{ item.product.price|calc_subtotal:item.quantity }}</td>
                             <td class="py-3">
-                                {% if item.customization_key %}
-                                    <button type="button" class="remove-item-btn btn btn-danger" data-key="{{ item.customization_key }}">Remove from Bag</button>
+                                {% if item.customization %}
+                                    {% for key, value in item.customization.items %}
+                                        <strong>{{ key|capfirst }}:</strong> {{ value }}
+                <br>
+                                    {% endfor %}
                                 {% else %}
-                                    <button disabled class="btn btn-secondary">Remove Unavailable</button>
+                                    No customization
                                 {% endif %}
+                            </td>
+                            <td class="py-3">
+                                <button type="button" class="remove-item-btn btn btn-danger" data-key="{{ item.customization_key }}">
+                                    Remove Product
+                                </button>
                             </td>
                         </tr>
                         {% empty %}
                         <tr>
-                            <td colspan="6" class="text-center">
+                            <td colspan="7" class="text-center">
                                 <p class="lead mb-5">Your bag is empty.</p>
                                 <a href="{% url 'products' %}" class="btn btn-outline-black btn-lg">Keep Shopping</a>
                             </td>
@@ -134,23 +143,39 @@
     });
 </script>
 
-<script>
-$(document).on('click', '.remove-item-btn', function() {
-    var key = $(this).data('key');
-    $.ajax({
-        url: '/bag/remove/' + key + '/', // Adjust the URL format as needed based on your URL configurations
-        type: 'POST',
-        data: {
-            'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
-            'customization_key': key
-        },
-        success: function() {
-            alert('Item removed successfully!');
-            location.reload(); // Reload the page to update the bag
-        },
-        error: function() {
-            alert('Error removing item. Please try again.');
+<script type="text/javascript">
+    // Using jQuery
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+            }
         }
+    });
+</script>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll('.remove-item-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            var key = $(this).data('key');
+            var url = '{% url "remove_from_bag" "999" %}'.replace('999', key);
+            
+            $.ajax({
+                url: url,
+                type: 'POST',
+                headers: {
+                    'X-CSRFToken': $('input[name="csrfmiddlewaretoken"]').val()
+                },
+                success: function() {
+                    alert('Product removed successfully!');
+                    location.reload(); // Reload the page to update the bag
+                },
+                error: function() {
+                    alert('Error removing product. Please try again.');
+                }
+            });
+        });
     });
 });
 </script>
