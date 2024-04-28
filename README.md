@@ -40,71 +40,78 @@
 
 ## UI/UX
 ### Agile
-Fitness Forge was developed using Agile methodologies, with two-week sprints followed by reviews and planning sessions. This allowed for continuous evaluation and incorporation of feedback into the development process.
+The project follows Agile SCRUM methodology. Regular sprint planning, daily stand-ups, sprint reviews, and retrospectives were conducted. Each sprint lasted two weeks, focusing on delivering a potentially shippable product increment. Trello boards were utilized to manage backlogs and track sprint progress.
 
 ### Wireframes
-Wireframes for Fitness Forge were created using Adobe XD and are accessible [here](https://example.com/wireframes).
+https://www.figma.com/file/QoQR6UBFHRPp7QnKICRWo0/Low-fi-Wireframe-Template-(Community)?type=design&node-id=576%3A1879&mode=dev&t=7Yd8G1LpaSzCgQu2-1
 
 ### Site Goals
-The primary goal of Fitness Forge is to provide a platform where fitness enthusiasts can purchase fitness-related products, sign up for events, and access various fitness services. The site aims to enhance user engagement and streamline the shopping experience.
+Fitness Forge aims to:
+- Provide a seamless shopping experience for fitness adventures.
+- Enable users to register for fitness events seamlessly.
+- Offer a platform where users can access personalized fitness advice and community support.
 
 ### 5 Planes of UX
-- **Strategy:** Address the needs of fitness enthusiasts for quality gear and reliable fitness advice.
-- **Scope:** Functional specifications include e-commerce capabilities, user profiles, and event registrations.
-- **Structure:** Information is structured logically with an intuitive navigation system.
-- **Skeleton:** Wireframes were used to layout the user interface elements efficiently.
-- **Surface:** A modern, clean design with interactive elements enhances user experience.
+- **Strategy Plane:** Identified the need for a community-driven, e-commerce platform targeting fitness enthusiasts.
+- **Scope Plane:** Functional requirements included a dynamic product catalog, user accounts, an event registration system, and blog functionality.
+- **Structure Plane:** Information architecture was designed to ensure ease of navigation and logical flow of content.
+- **Skeleton Plane:** Interface elements were laid out to optimize the user experience and improve accessibility.
+- **Surface Plane:** High-fidelity prototypes were designed to finalize the look and feel, emphasizing mobile-first design.
 
 ### Visual Design Choices
-The design uses a minimalistic approach with a color palette of blue, gray, and white to promote a sense of calm and professionalism. Fonts like 'Lato' for body text and 'Roboto' for headings are used to ensure readability and aesthetic appeal.
+The UI uses a monochromatic theme with vibrant accents to invoke energy and action, suitable for a fitness brand. Typography involves a combination of Sans Serif for readability and bold, motivational call-to-actions. Responsive design practices ensure usability across devices.
 
 ### SEO and Marketing
-SEO strategies include the use of structured data, optimized meta tags, and keyword-rich content. Social media campaigns and regular blog posts are used for marketing.
+A comprehensive SEO strategy focusing on high-traffic keywords related to fitness products was implemented. Google AdWords and Facebook marketing campaigns were initiated to drive traffic and conversion. A monthly newsletter provides value through fitness tips and product updates to subscribed users.
 
 ## Features
 ### Existing Features
-- **Product Listing:** Users can browse products categorized by type, price, and rating.
-- **User Authentication:** Secure login and registration system for users.
-- **Shopping Cart and Checkout:** Integrated with Stripe for payment processing.
-- **User Profiles:** Users can view and edit their profiles, and access their order history.
+- **Product Browsing:** Users can filter products by categories such as "New Arrivals", "Most Popular", and "Sale Items".
+- **User Reviews:** Users can submit reviews for products they have purchased.
+- **Event Booking:** Users can sign up for upcoming fitness events directly through the site.
+- **Admin Panel:** A Django admin panel customized for product and user management.
 
 ### Future Features
-- **Loyalty Program:** Implementation of a points system to reward frequent shoppers.
-- **Live Chat Support:** Real-time assistance for customers navigating the site.
+- **Virtual Try-On:** Integrate AR technology to allow users to visualize products.
+- **Mobile App:** Develop a mobile app to enhance access and push notifications.
 
 ## Database Design
 ### Database Model
-The application uses a PostgreSQL database with models for Users, Products, Orders, and Events.
+Uses Django's ORM with PostgreSQL. Models include:
+- `User`: Stores user profiles.
+- `Product`: Stores product details.
+- `Order`: Manages sales transactions.
+- `Event`: For managing event details.
 
 ### Custom Model
-A custom model `ProductReview` allows users to post reviews on products they have purchased.
+`UserProfile` extends Django's built-in User model to include additional fields like user bio and fitness preferences.
 
 ### CRUD
-- **Create:** Users can register, add products to the cart, and place orders.
-- **Read:** Products, reviews, and user profiles are displayed.
-- **Update:** Users can update their profiles and modify their cart.
-- **Delete:** Users can remove products from their cart or delete their accounts.
+- **Create:** Users can create accounts, add products to their cart, and register for events.
+- **Read:** Users can browse products and read other users' reviews.
+- **Update:** Users can update their profiles and modify orders.
+- **Delete:** Admins can remove outdated products or user accounts.
 
 ## Technologies Used
 ### Work Environments and Hosting
-The site is hosted on Heroku, with separate staging and production environments to manage deployments.
+Developed using PyCharm, deployed on Heroku with Amazon S3 for static and media files.
 
 ### Python Libraries
-- **Django:** Main framework for web development.
-- **Pillow:** For image processing capabilities in Django.
+- `Django`: The web framework for building the website.
+- `Pillow`: For image processing in Django.
 
 ### Django Libraries
-- **Django Allauth:** For handling user authentication.
-- **Django Crispy Forms:** To render forms based on Bootstrap.
+- `django-allauth`: For authentication, registration, and account management.
+- `django-crispy-forms`: To render Django forms in Bootstrap layout.
 
 ### Payment processing
-Stripe API is integrated for secure online payments.
+Integrated with Stripe and PayPal for handling secure credit card transactions.
 
 ### Emails/Newsletter
-Utilizes SendGrid for transactional emails and Mailchimp for newsletter distribution.
+Configured Django to use SendGrid for transactional emails and newsletters through Mailchimp integration.
 
 ### SEO/Marketing
-Google Analytics for tracking visitor data and insights.
+Implemented with Google Analytics for traffic analysis and Yoast for on-page SEO optimization.
 
 ## Testing
 ### Test Guide

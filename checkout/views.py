@@ -3,30 +3,50 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 from django.http import JsonResponse
-from django.views.decorators.http import require_POST
+from django.http import HttpResponse
+
 from .forms import OrderForm
 from .models import Order, OrderLineItem
 from products.models import Product
 from bag.contexts import bag_contents
 
 import stripe
+import json
+
+
+
+
+
+
 
 
 @require_POST
 def cache_checkout_data(request):
     try:
+        # Extract payment intent ID from client secret
         pid = request.POST.get('client_secret').split('_secret')[0]
+        
+        # Set the Stripe API key from settings
         stripe.api_key = settings.STRIPE_SECRET_KEY
+        
+        # Modify the payment intent with additional metadata
         stripe.PaymentIntent.modify(pid, metadata={
             'bag': json.dumps(request.session.get('bag', {})),
             'save_info': request.POST.get('save_info'),
-            'username': request.user,
+            'username': request.user.username if request.user.is_authenticated else 'Anonymous'
         })
+        
+        # Return a successful HTTP response
         return HttpResponse(status=200)
     except Exception as e:
-        messages.error(request, 'Sorry, your payment cannot be \
-            processed right now. Please try again later.')
-        return HttpResponse(content=e, status=400)
+        # Log the error for server-side debugging
+        print(f"Error processing payment: {e}")
+        
+        # Inform the user of the failure
+        messages.error(request, 'Sorry, your payment cannot be processed right now. Please try again later.')
+        
+        # Return an error response with the exception message
+        return HttpResponse(content=str(e), content_type='text/plain', status=400)
 
 
 def get_numeric_id(combined_id):

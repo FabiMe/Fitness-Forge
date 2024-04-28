@@ -112,8 +112,29 @@ form.addEventListener('submit', function(ev) {
                 }
             }
         });
-    }).fail(function () {
-        // just reload the page, the error will be in django messages
-        location.reload();
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        // Log error to the console for debugging
+        console.error('AJAX request failed:', textStatus, errorThrown, jqXHR.responseText);
+    
+        // Alert user with a more detailed message
+        alert('Failed to process the payment. Error: ' + textStatus + ' ' + errorThrown);
+    
+        // Optionally parse and display a more specific error message if the server provides it in response
+        var responseJson;
+        try {
+            responseJson = JSON.parse(jqXHR.responseText);
+            if (responseJson && responseJson.error) {
+                console.error('Detailed error:', responseJson.error);
+                alert('Detailed error: ' + responseJson.error);
+            }
+        } catch (e) {
+            console.error('Error parsing JSON response:', e);
+        }
+    
+        // Toggle visibility and re-enable form elements
+        $('#payment-form').fadeToggle(100);
+        $('#loading-overlay').fadeToggle(100);
+        card.update({ 'disabled': false });
+        $('#submit-button').attr('disabled', false);
     })
 });
