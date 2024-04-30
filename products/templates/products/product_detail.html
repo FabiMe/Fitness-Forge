@@ -53,23 +53,45 @@
 
 <script>
 function updateCustomizationForms() {
-    const quantity = document.getElementById('id_quantity').value;
+    const quantity = parseInt(document.getElementById('id_quantity').value, 10);
     const container = document.getElementById('customizationContainer');
     container.innerHTML = '';  // Clear existing forms
+    
     for (let i = 0; i < quantity; i++) {
-        container.innerHTML += `
-            <div class="customization-form mb-3">
-                <h5>Customization for item ${i+1}</h5>
-                <input type="text" name="first_name_${i}" placeholder="First Name" class="form-control mb-2" required>
-                <input type="text" name="last_name_${i}" placeholder="Last Name" class="form-control mb-2" required>
-                <select name="voucher_type_${i}" class="form-control mb-2" required>
-                    <option value="">Select Voucher Type</option>
-                    <option value="selfprint">Selfprint</option>
-                    <option value="hardticket">Hardticket</option>
-                    <option value="giftcard">Giftcard</option>
-                </select>
-            </div>
+        const formDiv = document.createElement('div');
+        formDiv.className = 'customization-form mb-3';
+        formDiv.innerHTML = `<h5>Customization for item ${i + 1}</h5>`;
+
+        const firstNameInput = document.createElement('input');
+        firstNameInput.setAttribute('type', 'text');
+        firstNameInput.setAttribute('name', `first_name_${i}`);
+        firstNameInput.placeholder = 'First Name';
+        firstNameInput.className = 'form-control mb-2';
+        firstNameInput.required = true;
+
+        const lastNameInput = document.createElement('input');
+        lastNameInput.setAttribute('type', 'text');
+        lastNameInput.setAttribute('name', `last_name_${i}`);
+        lastNameInput.placeholder = 'Last Name';
+        lastNameInput.className = 'form-control mb-2';
+        lastNameInput.required = true;
+
+        const select = document.createElement('select');
+        select.setAttribute('name', `voucher_type_${i}`);
+        select.className = 'form-control mb-2';
+        select.required = true;
+        select.innerHTML = `
+            <option value="">Select Voucher Type</option>
+            <option value="selfprint">Selfprint</option>
+            <option value="hardticket">Hardticket</option>
+            <option value="giftcard">Giftcard</option>
         `;
+
+        formDiv.appendChild(firstNameInput);
+        formDiv.appendChild(lastNameInput);
+        formDiv.appendChild(select);
+
+        container.appendChild(formDiv);
     }
 }
 // Call updateCustomizationForms initially to set up the form correctly when the page loads

@@ -52,14 +52,14 @@ Fitness Forge aims to:
 - Offer a platform where users can access personalized fitness advice and community support.
 
 ### 5 Planes of UX
-- **Strategy Plane:** Identified the need for a community-driven, e-commerce platform targeting fitness enthusiasts.
+- **Strategy Plane:** Identified the need for a e-commerce platform targeting fitness enthusiasts.
 - **Scope Plane:** Functional requirements included a dynamic product catalog, user accounts, an event registration system, and blog functionality.
 - **Structure Plane:** Information architecture was designed to ensure ease of navigation and logical flow of content.
 - **Skeleton Plane:** Interface elements were laid out to optimize the user experience and improve accessibility.
 - **Surface Plane:** High-fidelity prototypes were designed to finalize the look and feel, emphasizing mobile-first design.
 
 ### Visual Design Choices
-The UI uses a monochromatic theme with vibrant accents to invoke energy and action, suitable for a fitness brand. Typography involves a combination of Sans Serif for readability and bold, motivational call-to-actions. Responsive design practices ensure usability across devices.
+The UI uses a monochromatic theme with vibrant accents to invoke energy and action, suitable for a fitness brand. Typography involves a combination of Lato for readability and bold, motivational call-to-actions. Responsive design practices ensure usability across devices.
 
 ### SEO and Marketing
 A comprehensive SEO strategy focusing on high-traffic keywords related to fitness products was implemented. Google AdWords and Facebook marketing campaigns were initiated to drive traffic and conversion. A monthly newsletter provides value through fitness tips and product updates to subscribed users.

@@ -1,32 +1,25 @@
 from django import forms
-from django_countries.fields import CountryField
-from django_countries.widgets import CountrySelectWidget
 from .models import UserProfile
+
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('default_phone_number', 'default_country', 'default_postcode',
-                  'default_town_or_city', 'default_street_address1', 
-                  'default_street_address2', 'default_county')
-        
-        widgets = {
-            'default_country': CountrySelectWidget()
-        }
+        exclude = ('user',)
 
     def __init__(self, *args, **kwargs):
         """
         Add placeholders and classes, remove auto-generated
         labels and set autofocus on first field
         """
-        super(UserProfileForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         placeholders = {
             'default_phone_number': 'Phone Number',
             'default_postcode': 'Postal Code',
             'default_town_or_city': 'Town or City',
             'default_street_address1': 'Street Address 1',
             'default_street_address2': 'Street Address 2',
-            'default_county': 'County',
+            'default_county': 'County, State or Locality',
         }
 
         self.fields['default_phone_number'].widget.attrs['autofocus'] = True
@@ -37,5 +30,5 @@ class UserProfileForm(forms.ModelForm):
                 else:
                     placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'profile-form-input'
+            self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
             self.fields[field].label = False

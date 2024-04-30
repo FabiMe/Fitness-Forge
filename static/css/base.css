@@ -233,6 +233,7 @@ body {
 }
 .modern-header {
     background: linear-gradient(to right, grey, #444);    
+
 }
 
 /* Keyframes for fadeIn animation */
@@ -492,74 +493,113 @@ ul.list-inline {
 
 .header-container {
     margin-top: 5vh;
-}
-/* Media Queries */
-@media (min-width: 1200px) {
-    .container { max-width: 80%; }
+    background-color: transparent;
 }
 
-@media (min-width: 992px) {
-    .fixed-top-desktop-only {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1030;
+ /* Custom CSS for Profile Section */
+ .profile-section {
+    background-color: white !important;
+    text-align: center;
+    padding: 30px; /* Add some padding for better spacing */
+    border-radius: 10px; /* Add border radius for a nicer look */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+    margin: auto; /* Center align the profile section */
+    max-width: 600px; /* Limit width for better readability */
+}
+
+.profile-section h3 {
+    color: #333; /* Set heading color */
+}
+
+.profile-section p {
+    color: #666; /* Set paragraph color */
+}
+
+.profile-section button {
+    margin-top: 15px; /* Add some margin to buttons */
+}
+
+/* Improved header responsiveness */
+@media (max-width: 992px) {
+    .header-container {
+        padding-top: 80px; /* Adjust padding for smaller screens */
     }
 
-    .header-container { padding-top: 164px; }
-}
-
-@media screen and (max-width: 768px) {
-    .banner { height: auto; }
-    .banner-text { font-size: 2.5vw; }
-}
-
-/* Responsive typography and spacing */
-@media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .nav-item {
-        margin: 0.5rem 0;
+        padding: 0.5rem 1rem; /* Consistent padding */
     }
 
-    .navbar-font {
-        font-size: 16px;
+    .navbar-brand a {
+        font-size: 20px; /* Smaller font size for logo on mobile */
     }
+}
+
+@media (max-width: 768px) {
     .navbar-toggler {
-        background-image: url('icons/menu.svg'); /* Custom icon for mobile menu */
+        display: block; /* Ensure visibility of menu toggle on mobile */
     }
 
     .navbar-nav {
-        margin-top: 1rem;
+        display: block; /* Stack navbar links vertically on smaller screens */
+    }
+
+    .nav-item {
+        margin: 8px 0; /* Increase space between items for easier navigation */
+    }
+
+    .nav-link {
+        padding: 0.75rem 1rem; /* Increase tap target size */
     }
 }
 
+/* Main section responsiveness */
+@media (max-width: 992px) {
+    .flex-container {
+        padding: 10px; /* Reduce padding on smaller screens */
+    }
 
-/* Media query for smaller screens */
+    .card {
+        margin-bottom: 20px; /* Add margin to separate stacked cards */
+    }
+
+    .card-img-top {
+        height: auto; /* Make image height responsive */
+    }
+}
+
 @media (max-width: 768px) {
+    .hero-section {
+        padding: 10px; /* Adjust padding for smaller displays */
+        margin-top: 20px; /* Adjust top margin */
+    }
+
+    .banner-text {
+        font-size: 18px; /* Adjust font size for readability */
+    }
+}
+
+/* Footer responsiveness */
+@media (max-width: 992px) {
+    .footer {
+        padding: 20px 10px; /* Adjust padding */
+    }
+
     .footer .container {
-        flex-direction: column; /* Stacks elements vertically */
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center; /* Center-align the content */
     }
 
     .footer-text,
     .footer-policy,
     .social-icons {
-        flex: 1 1 100%; /* Each takes full width */
+        margin-bottom: 10px; /* Add space between stacked items */
+        width: 100%; /* Full width for better control */
+        text-align: center; /* Center text for aesthetics */
     }
 }
 
-/* Responsive Adjustments */
-@media (max-width: 992px) {
-    .navbar {
-        padding: 0.5rem 1rem; /* Smaller padding on smaller screens */
-    }
-
-    .dropdown-menu {
-        position: static; /* Dropdowns become full width */
-        float: none;
+@media (max-width: 768px) {
+    .social-icons li {
+        padding: 0 5px; /* Reduce padding between icons */
     }
 }

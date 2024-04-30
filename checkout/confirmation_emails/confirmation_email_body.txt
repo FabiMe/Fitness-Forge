@@ -1,0 +1,31 @@
+{% autoescape off %}
+Hello {{ order.full_name }},
+
+Thank you for choosing our adventure services! We are thrilled to confirm your order and are excited to prepare everything for your upcoming adventure.
+
+**Order Details:**
+Order Number: {{ order.order_number }}
+Order Date: {{ order.date | date:"Y-m-d" }}
+
+**Billing Information:**
+- Full Name: {{ order.full_name }}
+- Email: {{ order.email }}
+- Phone Number: {{ order.phone_number }}
+- Address: {{ order.street_address1 }} {% if order.street_address2 %}{{ order.street_address2 }}{% endif %}, {{ order.town_or_city }}, {{ order.county }}, {{ order.postcode }}, {{ order.country }}
+
+**Order Summary:**
+- Order Total: ${{ order.order_total }}
+- Grand Total: ${{ order.grand_total }}
+- Mystery Box Tier: {% if order.mystery_box_tier %}{{ order.mystery_box_tier }}{% else %}Not eligible{% endif %}
+
+**Payment Information:**
+- Stripe Payment ID: {{ order.stripe_pid }}
+
+Please check your details and contact us immediately if any information is incorrect. We are looking forward to delivering an exceptional adventure experience.
+
+Warm regards,
+
+
+[Fitness-Forge]
+[Find us at Fitness-Forge.herokuapp.com]
+{% endautoescape %}
