@@ -490,6 +490,9 @@ ul.list-inline {
     border-radius: 15px; /* Rounded on the right side only */
 }
 
+.header-container {
+    margin-top: 5vh;
+}
 /* Media Queries */
 @media (min-width: 1200px) {
     .container { max-width: 80%; }
