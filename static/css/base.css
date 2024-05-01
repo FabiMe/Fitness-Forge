@@ -10,6 +10,7 @@ body {
     padding-top: 0; /* Add padding to accommodate the header */
     color: #555;
     font-family: 'Lato';
+    margin-top: 10vh;
 }
 
 /* Logo and Branding Styles */

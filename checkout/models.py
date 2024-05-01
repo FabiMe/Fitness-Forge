@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models import Sum
 from django.conf import settings
 from products.models import Product
+from django.db.models import F
 
 from django_countries.fields import CountryField
 from profiles.models import UserProfile
@@ -32,8 +33,6 @@ class Order(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
-    original_bag = models.TextField(null=False, blank=False, default='')
-    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
     mystery_box_tier = models.CharField(max_length=50, null=True, blank=True)
     billing_street_address1 = models.CharField(max_length=80, null=True, blank=True)
     billing_street_address2 = models.CharField(max_length=80, null=True, blank=True)
@@ -58,15 +57,12 @@ class Order(models.Model):
         return None
 
     def save(self, *args, **kwargs):
-        """
-        Override the original save method to set the order number
-        if it hasn't been set already, and calculate the mystery box tier.
-        """
         if not self.order_number:
             self.order_number = self._generate_order_number()
-
-        # Calculate the mystery box tier based on the order total
-        self.mystery_box_tier = self._calculate_mystery_box_tier()
+    
+    # Recalculate mystery box tier only if the grand_total has changed
+        if self.pk and self.grand_total != Order.objects.get(pk=self.pk).grand_total:
+            self.mystery_box_tier = self._calculate_mystery_box_tier()
 
         super().save(*args, **kwargs)
 
