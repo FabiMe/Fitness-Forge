@@ -10,17 +10,17 @@
 {% endblock %}
 
 {% block content %}
-<html>
+<html lang="en">
 <head>
-    <title>My Wishlist</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
 </head>
 <body>
-    <h1>My Wishlist</h1>
+    <h1>FAQ</h1>
     <ul>
-        {% for item in wishlist_items %}
-        <li>{{ item.product.name }} - <a href="{% url 'remove_from_wishlist' item.product.id %}">Remove</a></li>
-        {% empty %}
-        <li>No items in your wishlist.</li>
+        {% for faq in faqs %}
+        <li><a href="{% url 'faq_detail' faq.id %}">{{ faq.question }}</a></li>
         {% endfor %}
     </ul>
 </body>
