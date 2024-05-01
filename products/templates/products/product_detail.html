@@ -29,23 +29,13 @@
                     {% csrf_token %}
                     <label for="id_quantity">Quantity:</label>
                     <input type="number" id="id_quantity" name="quantity" value="1" min="1" max="99" class="form-control mb-3" onchange="updateCustomizationForms();">
-                    
                     <div id="customizationContainer">
-                        <!-- Initially display one set of customization fields -->
-                        <div class="customization-form mb-3">
-                            <h5>Customization for item 1</h5>
-                            <input type="text" name="first_name_0" placeholder="First Name" class="form-control mb-2" required>
-                            <input type="text" name="last_name_0" placeholder="Last Name" class="form-control mb-2" required>
-                            <select name="voucher_type_0" class="form-control mb-2" required>
-                                <option value="">Select Voucher Type</option>
-                                <option value="selfprint">Selfprint</option>
-                                <option value="hardticket">Hardticket</option>
-                                <option value="giftcard">Giftcard</option>
-                            </select>
-                        </div>
+                        <!-- Customization forms will be dynamically added here -->
                     </div>
                     <button type="submit" class="btn btn-primary mt-4">Add to Bag</button>
                 </form>
+                <!-- Separate button for Wishlist to avoid form conflicts -->
+                <button type="button" class="btn btn-secondary mt-4" onclick="addToWishlist({{ product.id }});">Add to Wishlist</button>
             </div>
         </div>
     </div>
@@ -94,7 +84,37 @@ function updateCustomizationForms() {
         container.appendChild(formDiv);
     }
 }
-// Call updateCustomizationForms initially to set up the form correctly when the page loads
+
+function addToWishlist(productId) {
+    let urlTemplate = `{% url 'add_to_wishlist' '999' %}`;
+    let url = urlTemplate.replace('999', productId);
+
+    const csrfToken = '{{ csrf_token }}';
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
+        },
+        body: JSON.stringify({ product_id: productId })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw response;  // If response is not OK, throw the response object
+        }
+        return response.json();  // Parse JSON only if the response is OK
+    })
+    .then(data => {
+        alert('Product added to wishlist!');
+    })
+    .catch(error => {
+        error.text().then(errorMessage => {
+            console.error('Error:', errorMessage);
+            alert('Failed to add to wishlist: ' + errorMessage);
+        });
+    });
+}
+
 document.addEventListener("DOMContentLoaded", updateCustomizationForms);
 </script>
 {% endblock %}

@@ -30,6 +30,4 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
     elif hasattr(instance, 'profile'):
-        # Add any specific checks if you need to update certain fields
-        if instance.profile.needs_update():
-            instance.profile.save()
+        instance.profile.save()
