@@ -299,6 +299,30 @@ body {
     z-index: -1;
 }
 
+.overlay-faq {
+    background-color: rgba(255, 255, 255, 0.8); /* Light white background for overlay */
+    padding: 2rem;
+    border-radius: 8px; /* Rounded corners for the overlay */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25); /* Subtle shadow for depth */
+    margin: auto;
+    max-width: 800px;
+    z-index: 10;
+}
+
+.faq-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+}
+
+input[type="text"]:focus, textarea:focus {
+    border-color: #007bff; /* Highlight color on focus */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Bootstrap-like focus shadow */
+}
+
 /* Animation and Transition Styles */
 @keyframes fadeIn {
     from { opacity: 0; }
@@ -519,6 +543,7 @@ ul.list-inline {
 .profile-section button {
     margin-top: 15px; /* Add some margin to buttons */
 }
+
 
 /* Improved header responsiveness */
 @media (max-width: 992px) {

@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-6t4y!e4y+8&zjxsmtgrvi0x&21)i=u8j-m#vo2imz9$j_(xk_4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-fabime-fitnessforge-jz57gwpp952.ws-eu110.gitpod.io']
+ALLOWED_HOSTS = ['8000-fabime-fitnessforge-jz57gwpp952.ws-eu112.gitpod.io']
 
 
 # Application definition
@@ -75,6 +75,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
             os.path.join(BASE_DIR, 'templates', 'allauth'),
+            os.path.join(BASE_DIR, 'faq', 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<link rel="stylesheet" href="{% static 'faq/css/faq.css' %}">
+{% endblock %}
+
+{% block title %}Add New FAQ{% endblock %}
+
+{% block content %}
+<div class="overlay-faq">
+    <h1 class="text-center">Add a New FAQ</h1>
+    <div class="faq-form">
+        <form method="post" class="form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Submit Question</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

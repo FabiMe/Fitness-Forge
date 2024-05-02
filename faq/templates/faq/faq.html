@@ -1,28 +1,35 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
-{% endblock %}
+{% block title %}FAQs{% endblock %}
 
 {% block content %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ</title>
-</head>
-<body>
-    <h1>FAQ</h1>
-    <ul>
-        {% for faq in faqs %}
-        <li><a href="{% url 'faq_detail' faq.id %}">{{ faq.question }}</a></li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+<div class="overlay-faq">
+    <h1>FAQs</h1>
+    {% if user.is_authenticated %}
+        <div class="text-right mb-3">
+            <a href="{% url 'add_faq' %}" class="btn btn-primary">Add a New Question</a>
+        </div>
+    {% endif %}
+    <div class="faq-container">
+        {% if faqs %}
+            {% for faq in faqs %}
+                <div class="faq-tile p-3 mb-3 border rounded">
+                    <h3>{{ faq.question }}</h3>
+                    {% if user.is_authenticated and not faq.answer %}
+                        <form action="{% url 'add_answer' faq.id %}" method="post">
+                            {% csrf_token %}
+                            <textarea name="answer" class="form-control mb-2" rows="3" placeholder="Add an answer"></textarea>
+                            <button type="submit" class="btn btn-success">Submit Answer</button>
+                        </form>
+                    {% elif faq.answer %}
+                        <p>{{ faq.answer|linebreaks }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No FAQs found.</p>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

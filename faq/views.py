@@ -1,12 +1,25 @@
-from django.template.response import TemplateResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import FAQ
+from .forms import FAQForm
 
 def faq_list(request):
-    faqs = FAQ.objects.all()
-    context = {'faqs': faqs}
-    return TemplateResponse(request, 'faq.html', context)
+    query = request.GET.get('q')
+    if query:
+        faqs = FAQ.objects.filter(Q(question__icontains=query) | Q(answer__icontains=query))
+    else:
+        faqs = FAQ.objects.exclude(answer='').order_by('-created_at')
+    return render(request, 'faq/faq.html', {'faqs': faqs})
 
-def faq_detail(request, faq_id):
-    faq = FAQ.objects.get(id=faq_id)
-    return render(request, 'faq_detail.html', {'faq': faq})
+@login_required
+def add_faq(request):
+    if request.method == 'POST':
+        form = FAQForm(request.POST)
+        if form.is_valid():
+            faq = form.save(commit=False)
+            faq.created_by = request.user
+            faq.save()
+            return redirect('faq_list')
+    else:
+        form = FAQForm()
+    return render(request, 'faq/add_faq.html', {'form': form})
