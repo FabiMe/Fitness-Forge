@@ -5,6 +5,8 @@ from django.db.models.functions import Lower
 
 from .models import Product, Category
 from .forms import ProductForm
+from comments.forms import CommentForm
+
 
 # Create your views here.
 
@@ -57,17 +59,34 @@ def all_products(request):
 
     return render(request, 'products/products.html', context)
 
-def product_detail(request, product_id):
-    """ A view to show individual product details """
+def product_detail(request, pk):
+    """ A view to show individual product details, and handle comments """
+    product = get_object_or_404(Product, pk=pk)
+    comments = product.comments.all()  # Retrieve all comments related to the product
+    new_comment = None
 
-    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.product = product
+            new_comment.user = request.user  # Assumes the user is logged in
+            new_comment.save()
+            messages.success(request, 'Your comment has been added.')
+            return redirect('product_detail', pk=pk)  # Correctly redirects after form submission
+        else:
+            messages.error(request, 'Error adding your comment. Please check the form.')
+    else:
+        comment_form = CommentForm()  # Provide an empty form for GET request
 
     context = {
         'product': product,
+        'comments': comments,
+        'new_comment': new_comment,
+        'comment_form': comment_form
     }
 
     return render(request, 'products/product_detail.html', context)
-
 
 def add_product(request):
     """ Add a product to the store """
@@ -88,3 +107,4 @@ def add_product(request):
     }
 
     return render(request, template, context)
+
