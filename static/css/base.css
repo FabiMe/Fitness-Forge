@@ -98,6 +98,7 @@ body {
     flex-wrap: wrap;
     align-items: stretch;
     width: 100%;
+    z-index: 0;
 }
 
 .input-group-append {
@@ -467,6 +468,7 @@ input[type="text"]:focus, textarea:focus {
     border-radius: 15px;
 }
 
+
 .footer-text,
 .footer-policy,
 .social-icons {
@@ -577,6 +579,14 @@ ul.list-inline {
 
 .comment-form label {
     font-weight: bold; /* Makes the label text bold */
+}
+
+.comment-highlight {
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 /* Additional adjustments for very small devices */
