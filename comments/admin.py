@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Comment
-from django.contrib.auth.models import User  # If User is not already imported
+
 
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'product', 'content', 'rating', 'created_at')
@@ -11,7 +11,9 @@ class CommentAdmin(admin.ModelAdmin):
     def delete_selected(self, request, queryset):
         # Custom delete logic, if needed
         queryset.delete()
-        self.message_user(request, "Selected comment(s) have been deleted successfully.")
+        self.message_user(
+            request, "Selected comment(s) have been deleted successfully."
+        )
     delete_selected.short_description = "Delete selected comments"
 
     # Optional: If you want to show a read-only page detail
@@ -27,6 +29,7 @@ class CommentAdmin(admin.ModelAdmin):
             'classes': ('collapse',),  # This will make the section collapsible
         }),
     )
+
 
 # Register the admin class with the associated model
 admin.site.register(Comment, CommentAdmin)

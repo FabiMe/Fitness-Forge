@@ -11,9 +11,10 @@ from comments.forms import CommentForm
 # Create your views here.
 
 def all_products(request):
-    """ A view to show all products, including sorting and search queries, excluding mystery boxes """
-
-    products = Product.objects.filter(is_mystery_box=False)  # Excludes mystery boxes from product listings
+    """ A view to show all products,
+    including sorting and search queries, excluding mystery boxes """
+    # Excludes mystery boxes from product listings
+    products = Product.objects.filter(is_mystery_box=False)
     query = None
     categories = None
     sort = None
@@ -42,10 +43,13 @@ def all_products(request):
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "You didn't enter any search criteria!")
+                messages.error(
+                    request, "You didn't enter any search criteria!"
+                )
                 return redirect(reverse('products'))
 
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            queries = (Q(name__icontains=query) |
+                       Q(description__icontains=query))
             products = products.filter(queries)
 
     current_sorting = f'{sort}_{direction}'
@@ -59,10 +63,12 @@ def all_products(request):
 
     return render(request, 'products/products.html', context)
 
+
 def product_detail(request, pk):
     """ A view to show individual product details, and handle comments """
     product = get_object_or_404(Product, pk=pk)
-    comments = product.comments.all()  # Retrieve all comments related to the product
+    # Retrieve all comments related to the product
+    comments = product.comments.all()
     new_comment = None
 
     if request.method == 'POST':
@@ -73,9 +79,12 @@ def product_detail(request, pk):
             new_comment.user = request.user  # Assumes the user is logged in
             new_comment.save()
             messages.success(request, 'Your comment has been added.')
-            return redirect('product_detail', pk=pk)  # Correctly redirects after form submission
+            # Correctly redirects after form submission
+            return redirect('product_detail', pk=pk)
         else:
-            messages.error(request, 'Error adding your comment. Please check the form.')
+            messages.error(
+                request, 'Error adding your comment. Please check the form.'
+            )
     else:
         comment_form = CommentForm()  # Provide an empty form for GET request
 
@@ -88,6 +97,7 @@ def product_detail(request, pk):
 
     return render(request, 'products/product_detail.html', context)
 
+
 def add_product(request):
     """ Add a product to the store """
     if request.method == 'POST':
@@ -97,14 +107,16 @@ def add_product(request):
             messages.success(request, 'Successfully added product!')
             return redirect(reverse('add_product'))
         else:
-            messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+            messages.error(
+                request, 'Failed to add product.'
+                'Please ensure the form is valid.'
+            )
     else:
         form = ProductForm()
-        
+
     template = 'products/add_product.html'
     context = {
         'form': form,
     }
 
     return render(request, template, context)
-

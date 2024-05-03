@@ -5,4 +5,5 @@ class CheckoutConfig(AppConfig):
     name = 'checkout'
 
     def ready(self):
-        import checkout.signals
+        # Importing signals to connect them, used by Django's signal framework
+        import checkout.signals  # noqa: F401

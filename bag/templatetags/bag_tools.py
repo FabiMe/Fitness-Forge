@@ -3,13 +3,17 @@ from django import template
 
 register = template.Library()
 
+
 @register.filter(name='calc_subtotal')
 def calc_subtotal(price, quantity):
     return price * quantity
 
+
 @register.filter
 def get_customization(session, item_id):
-    return session.get(f'customization_{item_id}', {'voucher_type': 'N/A', 'first_name': 'N/A', 'last_name': 'N/A'})
+    default = {'voucher_type': 'N/A', 'first_name': 'N/A', 'last_name': 'N/A'}
+    return session.get(f'customization_{item_id}', default)
+
 
 @register.filter(name='multiply')
 def multiply(value, arg):
@@ -22,9 +26,13 @@ def multiply(value, arg):
         except (ValueError, TypeError):
             return ''
 
+
 @register.filter(name='friendly_name')
 def friendly_name(value):
     """
-    Replaces underscores with spaces and capitalizes the first letter of each word.
+    Replaces underscores with spaces and capitalizes the first letter of
+    each word.
     """
-    return ' '.join(word.capitalize() for word in value.replace('_', ' ').split())
+    return ' '.join(
+        word.capitalize() for word in value.replace('_', ' ').split()
+    )

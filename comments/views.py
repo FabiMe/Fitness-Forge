@@ -1,6 +1,4 @@
-from django.shortcuts import render
-from products.views import product_detail
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Comment
 from .forms import CommentForm
@@ -13,12 +11,12 @@ def delete_comment(request, comment_id):
     # Check if the request user is an admin or the comment owner
     if request.user.is_admin or request.user == comment.user:
         comment.delete()
-        message = "Comment deleted successfully."
     else:
-        message = "You do not have permission to delete this comment."
+        # You can log the message for debugging purposes
+        print("You do not have permission to delete this comment.")
 
     # Redirect to a success page, or back to comment page with a message
-    return redirect('product_detail')  
+    return redirect('product_detail')
 
 
 def add_comment(request):

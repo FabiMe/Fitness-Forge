@@ -2,60 +2,55 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
-from django.http import JsonResponse
 from django.http import HttpResponse
 from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
-
 from .forms import OrderForm
 from .models import Order, OrderLineItem
 from products.models import Product
 from bag.contexts import bag_contents
-
 import stripe
 import json
-
 
 
 @require_POST
 def cache_checkout_data(request):
     try:
-        # Extract payment intent ID from client secret
         pid = request.POST.get('client_secret').split('_secret')[0]
-        
-        # Set the Stripe API key from settings
         stripe.api_key = settings.STRIPE_SECRET_KEY
-        
-        # Modify the payment intent with additional metadata
-        stripe.PaymentIntent.modify(pid, metadata={
-            'bag': json.dumps(request.session.get('bag', {})),
-            'save_info': request.POST.get('save_info'),
-            'username': request.user.username if request.user.is_authenticated else 'Anonymous'
-        })
-        
-        # Return a successful HTTP response
+        stripe.PaymentIntent.modify(
+            pid,
+            metadata={
+                'bag': json.dumps(request.session.get('bag', {})),
+                'save_info': request.POST.get('save_info'),
+                'username': (
+                    request.user.username if request.user.is_authenticated
+                    else 'Anonymous'
+                )
+            }
+        )
         return HttpResponse(status=200)
     except Exception as e:
-        # Log the error for server-side debugging
         print(f"Error processing payment: {e}")
-        
-        # Inform the user of the failure
-        messages.error(request, 'Sorry, your payment cannot be processed right now. Please try again later.')
-        
-        # Return an error response with the exception message
-        return HttpResponse(content=str(e), content_type='text/plain', status=400)
+        messages.error(
+            request,
+            'Sorry, your payment cannot be processed right now. '
+            'Please try again later.'
+        )
+        return HttpResponse(
+            content=str(e), content_type='text/plain', status=400
+        )
 
 
 def get_numeric_id(combined_id):
     return int(combined_id.split('_')[0])
 
+
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
-    stripe_secret_key = settings.STRIPE_SECRET_KEY
 
     if request.method == 'POST':
         bag = request.session.get('bag', {})
-
         form_data = {
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
@@ -71,14 +66,18 @@ def checkout(request):
         if order_form.is_valid():
             order = order_form.save(commit=False)
             order.save()
-            
+
             for item_id, item_data in bag.items():
-                numeric_id = get_numeric_id(item_id)  # Extract numeric ID
-                product = get_object_or_404(Product, pk=numeric_id)  # Use the numeric ID to fetch the product
+                numeric_id = get_numeric_id(item_id)
+                product = get_object_or_404(Product, pk=numeric_id)
                 quantity = item_data['quantity']
-                customization = request.session.get(f'customization_{numeric_id}', {
-                    'first_name': '', 'last_name': '', 'voucher_type': ''
-                })
+                customization = request.session.get(
+                    f'customization_{numeric_id}', {
+                        'first_name': '',
+                        'last_name': '',
+                        'voucher_type': ''
+                    }
+                )
                 order_line_item = OrderLineItem(
                     order=order,
                     product=product,
@@ -90,19 +89,27 @@ def checkout(request):
                 order_line_item.save()
 
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect('checkout_success', order_number=order.order_number)
+            return redirect(
+                'checkout_success', order_number=order.order_number
+            )
         else:
-            messages.error(request, 'There was an error with your form. Please double check your information.')
+            messages.error(
+                request,
+                'There was an error with your form.'
+                'Please double check your information.'
+            )
+
     else:
         bag = request.session.get('bag', {})
         if not bag:
-            messages.error(request, "There's nothing in your bag at the moment")
+            messages.error(
+                request, "There's nothing in your bag at the moment."
+            )
             return redirect(reverse('products'))
 
         current_bag = bag_contents(request)
         total = current_bag['grand_total']
         stripe_total = round(total * 100)
-        stripe.api_key = stripe_secret_key
         intent = stripe.PaymentIntent.create(
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
@@ -111,32 +118,32 @@ def checkout(request):
         order_form = OrderForm()
 
     if not stripe_public_key:
-        messages.warning(request, 'Stripe public key is missing. Did you forget to set it in your environment?')
+        messages.warning(
+            request,
+            'Stripe public key is missing. '
+            'Did you forget to set it in your environment?'
+        )
 
     template = 'checkout/checkout.html'
     context = {
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
-        'bag_items': current_bag['bag_items']  # Ensure this is included correctly from bag_contents
+        'bag_items': current_bag['bag_items']
     }
 
     return render(request, template, context)
-    
+
+
 def checkout_success(request, order_number):
-    """
-    Handle successful checkouts
-    """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)
-        # Attach the user's profile to the order
         order.user_profile = profile
         order.save()
 
-        # Save the user's info
         if save_info:
             profile_data = {
                 'default_phone_number': order.phone_number,
@@ -151,16 +158,15 @@ def checkout_success(request, order_number):
             if user_profile_form.is_valid():
                 user_profile_form.save()
 
-    messages.success(request, f'Order successfully processed! \
-        Your order number is {order_number}. A confirmation \
-        email will be sent to {order.email}.')
+    messages.success(
+        request,
+        'Order successfully processed! Your order number is {order_number}. '
+        'A confirmation email will be sent to {order.email}.'
+    )
 
     if 'bag' in request.session:
         del request.session['bag']
 
     template = 'checkout/checkout_success.html'
-    context = {
-        'order': order,
-    }
-
+    context = {'order': order}
     return render(request, template, context)

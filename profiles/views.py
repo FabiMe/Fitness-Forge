@@ -3,10 +3,10 @@ from django.contrib import messages
 
 from .models import UserProfile
 from .forms import UserProfileForm
-from wishlist.models import Wishlist  
-from checkout.models import Order
+from wishlist.models import Wishlist
 
 from checkout.models import Order
+
 
 def profile(request):
     """ Display the user's profile. """
@@ -18,22 +18,27 @@ def profile(request):
             form.save()
             messages.success(request, 'Profile updated successfully')
         else:
-            messages.error(request, 'Update failed. Please ensure the form is valid.')
+            messages.error(
+                request, 'Update failed. Please ensure the form is valid.'
+            )
     else:
         form = UserProfileForm(instance=profile)
-    
+
     orders = profile.orders.all()
-    wishlist_items = Wishlist.objects.filter(user_profile=profile)  # Get wishlist items
+    # Get wishlist items
+    wishlist_items = Wishlist.objects.filter(user_profile=profile)
 
     template = 'profiles/profile.html'
     context = {
         'form': form,
         'orders': orders,
-        'wishlist_items': wishlist_items,  # Include wishlist items in context
+        # Include wishlist items in context
+        'wishlist_items': wishlist_items,
         'on_profile_page': True
     }
 
     return render(request, template, context)
+
 
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)

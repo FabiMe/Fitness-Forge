@@ -447,7 +447,7 @@ input[type="text"]:focus, textarea:focus {
 .footer {
     color: #ffffff;
     text-align: center;
-    padding: 20px 0;
+    padding-bottom: 20px;
     background-color: #444; /* Example background color */
     position: fixed;
     bottom: 0;

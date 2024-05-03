@@ -12,11 +12,15 @@ MYSTERY_BOX_TIERS = {
     'Tier 4': {'threshold': 500, 'sku': 'MB004'}
 }
 
+
 def get_mystery_box_tier(total):
-    for tier, details in sorted(MYSTERY_BOX_TIERS.items(), key=lambda x: x[1]['threshold'], reverse=True):
+    for tier, details in sorted(
+        MYSTERY_BOX_TIERS.items(),
+        key=lambda x: x[1]['threshold'],
+        reverse=True
+    ):
         if total >= details['threshold']:
             return details
-    return None
 
 
 def generate_custom_id(item_id, customization):
@@ -24,6 +28,7 @@ def generate_custom_id(item_id, customization):
     customization_str = json.dumps(customization, sort_keys=True)
     # Generate a hash of this string
     return hashlib.md5((str(item_id) + customization_str).encode()).hexdigest()
+
 
 def bag_contents(request):
     bag_items = []
@@ -44,12 +49,14 @@ def bag_contents(request):
             'quantity': quantity,
             'subtotal': subtotal,
             'customization': item_data['customization'],
-            'customization_key': bag_key  # Include the full bag key
+            'customization_key': bag_key
         })
 
     mystery_box_details = get_mystery_box_tier(total)
     if mystery_box_details:
-        mystery_box = get_object_or_404(Product, sku=mystery_box_details['sku'])
+        mystery_box = get_object_or_404(
+            Product, sku=mystery_box_details['sku']
+            )
         bag_items.append({
             'product': mystery_box,
             'quantity': 1,

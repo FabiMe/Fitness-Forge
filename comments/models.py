@@ -1,8 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Comment(models.Model):
-    product = models.ForeignKey('products.Product', related_name='comments', on_delete=models.CASCADE)
+    product = models.ForeignKey(
+        'products.Product',
+        related_name='comments',
+        on_delete=models.CASCADE
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     rating = models.IntegerField(default=1)

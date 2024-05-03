@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-from decimal import Decimal
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,7 +26,7 @@ SECRET_KEY = 'django-insecure-6t4y!e4y+8&zjxsmtgrvi0x&21)i=u8j-m#vo2imz9$j_(xk_4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-fabime-fitnessforge-jz57gwpp952.ws-eu112.gitpod.io']
+ALLOWED_HOSTS = ['8000-fabime-fitnessforge-jz57gwpp952.ws-eu110.gitpod.io']
 
 
 # Application definition
@@ -82,7 +81,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request', # required by allauth
+                'django.template.context_processors.request',  # required by allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'bag.contexts.bag_contents',

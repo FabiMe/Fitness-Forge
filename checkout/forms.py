@@ -1,6 +1,7 @@
 from django import forms
 from .models import Order
 
+
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
@@ -9,7 +10,8 @@ class OrderForm(forms.ModelForm):
             'street_address1', 'street_address2',
             'town_or_city', 'county', 'postcode', 'country',
             'billing_street_address1', 'billing_street_address2',
-            'billing_town_or_city', 'billing_county', 'billing_postcode', 'billing_country',
+            'billing_town_or_city', 'billing_county',
+            'billing_postcode', 'billing_country',
         )
 
     def __init__(self, *args, **kwargs):
@@ -33,7 +35,9 @@ class OrderForm(forms.ModelForm):
 
         for field in self.fields:
             if field in placeholders:
-                placeholder = placeholders[field] + (' *' if self.fields[field].required else '')
+                placeholder = placeholders[field] + (
+                    ' *' if self.fields[field].required else ''
+                )
                 self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'stripe-style-input'
             self.fields[field].label = False

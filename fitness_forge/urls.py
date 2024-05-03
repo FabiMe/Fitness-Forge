@@ -17,8 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.views.generic import TemplateView
-from . import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,8 +26,8 @@ urlpatterns = [
     path('products/', include('products.urls')),
     path('bag/', include('bag.urls')),
     path('checkout/', include('checkout.urls')),
-    path('profile/', include ('profiles.urls')),
-    path('wishlist/', include ('wishlist.urls')),
+    path('profile/', include('profiles.urls')),
+    path('wishlist/', include('wishlist.urls')),
     path('faq/', include('faq.urls')),
     path('comments/', include('comments.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
