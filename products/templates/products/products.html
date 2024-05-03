@@ -9,12 +9,13 @@
     </div>
 {% endblock %}
 
+
 {% block content %}
     <div class="overlay"></div>
-    <div class="container-fluid">
+    <div class="container"> <!-- Changed to a regular container for consistent padding -->
         <div class="row justify-content-center">
-            <div class="col-auto">
-                <div class="category-container">
+            <div class="col-12"> <!-- Ensure full width utilization with proper spacing -->
+                <div class="category-container mt-3"> <!-- Added margin-top for spacing -->
                     {% for c in current_categories %}
                         <a class="category-badge text-decoration-none" href="{% url 'products' %}?category={{ c.name }}">
                             <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
@@ -24,9 +25,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="product-container col-10 offset-1">
+            <div class="product-container col-12 px-0"> <!-- Zero horizontal padding on the product container -->
                 <div class="row mt-1 mb-2">
-                    <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
+                    <div class="col-md-6 my-auto d-flex justify-content-center justify-content-md-end">
                         <div class="sort-select-wrapper w-50">
                             <select id="sort-selector" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
                                 <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
@@ -41,7 +42,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 order-md-first">
+                    <div class="col-md-6">
                         <p class="text-muted mt-3 text-center text-md-left">
                             {% if search_term or current_categories or current_sorting != 'None_None' %}
                                 <span class="small back-to-products"><a href="{% url 'products' %}">Back to Products</a> | </span>
@@ -54,9 +55,9 @@
                         </p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row px-3"> <!-- Padding added here to keep consistent spacing -->
                     {% for product in products %}
-                        <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
+                        <div class="col-12 col-lg-6 mb-4">
                             <div class="card h-100 border-0">
                                 {% if product.image %}
                                     <a href="{% url 'product_detail' product.id %}">

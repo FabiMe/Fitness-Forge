@@ -90,11 +90,14 @@ body {
     width: auto; /* Adjusts width to fit content */
 }
 
-/* Additional styling to ensure no gaps if using input-group */
 .input-group {
-    display: flex; /* Ensures items in the group are aligned properly */
+    position: relative;
     border-radius: 15px; /* Ensures container has rounded edges */
     overflow: hidden; /* Prevents children from overflowing the rounded corners */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
 }
 
 .input-group-append {
@@ -164,6 +167,7 @@ body {
 
 .navbar-toggler {
     border-color: rgba(255, 255, 255, 0.5); /* Lighter border for toggler */
+    color: #000 !important;
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -266,6 +270,10 @@ body {
     background: #ff6b6b;
     color: #fff;
     border: none;
+}
+
+.btn-secondary {
+    color: black;
 }
 
 .shop-now-button:hover,
@@ -390,14 +398,6 @@ input[type="text"]:focus, textarea:focus {
     align-items: center;
 }
 
-.input-group {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    width: 100%;
-}
-
 .form-control {
     display: block;
     width: 100%;
@@ -472,7 +472,6 @@ input[type="text"]:focus, textarea:focus {
 .social-icons {
     flex: 1 1 20%; /* Each takes up at least 20% of the container */
     text-align: center;
-    margin: 5px; /* Small margin to ensure spacing */
 }
 
 .social-icons {
@@ -500,7 +499,6 @@ input[type="text"]:focus, textarea:focus {
 }
 
 .input-group .btn {
-    border-radius: 0 30px 30px 0; /* rounded right edges */
     border-color: #ccc;
     background-color: white;
 }
@@ -521,7 +519,6 @@ input[type="text"]:focus, textarea:focus {
 ul.list-inline {
     display: flex;
     align-items: center; /* Center alignment for all children */
-    justify-content: flex-end;
     margin: 0;
     padding: 0;
 }
@@ -582,6 +579,40 @@ ul.list-inline {
     font-weight: bold; /* Makes the label text bold */
 }
 
+/* Additional adjustments for very small devices */
+@media (max-width: 360px) {
+    .hero-section {
+        padding: 5px; /* Further adjust padding */
+        margin-top: 15px; /* Further adjust top margin */
+    }
+
+    .banner-text {
+        font-size: 16px; /* Further reduce font size for readability */
+    }
+}
+
+/* Improved header responsiveness for smaller devices */
+@media (max-width: 576px) {
+    .header-container {
+        padding-top: 60px; /* Adjust padding for smaller screens */
+    }
+
+    .navbar-brand a {
+        font-size: 18px; /* Further reduce font size for logo on smaller screens */
+    }
+}
+
+/* Main section responsiveness for smaller devices */
+@media (max-width: 576px) {
+    .flex-container {
+        padding: 5px; /* Further reduce padding on smaller screens */
+    }
+
+    .card-img-top {
+        height: 250px; /* Adjust image height for smaller screens */
+    }
+}
+
 /* Improved header responsiveness */
 @media (max-width: 992px) {
     .header-container {
@@ -595,11 +626,31 @@ ul.list-inline {
     .navbar-brand a {
         font-size: 20px; /* Smaller font size for logo on mobile */
     }
+
+    .search-btn {
+        display: none;
+    }
+
+    .search-field {
+        display: none;
+    }
+
+    .banner p {
+        font-size: 10px; /* Smaller font size for better readability */
+        padding: 10px 5px; /* Reduced padding */
+    }
+
+    .overlay-faq {
+        margin-top: 20vh;
+    }
+
+    .overlay-profile
 }
 
 @media (max-width: 768px) {
     .navbar-toggler {
         display: block; /* Ensure visibility of menu toggle on mobile */
+        color: #000;
     }
 
     .navbar-nav {
@@ -613,24 +664,7 @@ ul.list-inline {
     .nav-link {
         padding: 0.75rem 1rem; /* Increase tap target size */
     }
-}
 
-/* Main section responsiveness */
-@media (max-width: 992px) {
-    .flex-container {
-        padding: 10px; /* Reduce padding on smaller screens */
-    }
-
-    .card {
-        margin-bottom: 20px; /* Add margin to separate stacked cards */
-    }
-
-    .card-img-top {
-        height: auto; /* Make image height responsive */
-    }
-}
-
-@media (max-width: 768px) {
     .hero-section {
         padding: 10px; /* Adjust padding for smaller displays */
         margin-top: 20px; /* Adjust top margin */
@@ -639,12 +673,24 @@ ul.list-inline {
     .banner-text {
         font-size: 18px; /* Adjust font size for readability */
     }
+
+    .social-icons li {
+        padding: 0 5px; /* Reduce padding between icons */
+    }
+
+    .card-img-top {
+        height: 300px; 
+    }
+    .card {
+        height: auto; 
+    }
 }
 
 /* Footer responsiveness */
 @media (max-width: 992px) {
     .footer {
-        padding: 20px 10px; /* Adjust padding */
+        padding: 10px 0;
+        position: static;
     }
 
     .footer .container {
@@ -655,23 +701,39 @@ ul.list-inline {
     .footer-text,
     .footer-policy,
     .social-icons {
-        margin-bottom: 10px; /* Add space between stacked items */
+        margin-bottom: 5px; /* Add space between stacked items */
         width: 100%; /* Full width for better control */
         text-align: center; /* Center text for aesthetics */
     }
 }
 
-@media (max-width: 768px) {
-    .social-icons li {
-        padding: 0 5px; /* Reduce padding between icons */
+@media (max-width: 576px) {
+
+    .footer .container {
+        padding: auto;
+        margin: 0;
+    }
+
+    .footer-text,
+    .footer-policy,
+    .social-icons {
+        margin-bottom: 3px; /* Reduce space between stacked items */
     }
 }
 
-@media (max-width: 768px) {
-    .card-img-top {
-        height: 300px; 
+@media (max-width: 991px) {
+    .list-inline {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
-    .card {
-        height: auto; 
+
+    .list-inline-item.dropdown,
+    .list-inline-item {
+        margin-right: 10px; /* Adjust margin between items */
+    }
+
+    .hero-section {
+        margin-top: 20vh;
     }
 }

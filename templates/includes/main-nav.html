@@ -1,24 +1,20 @@
 <nav class="main-nav navbar-expand-lg">
     <div class="container-fluid">
         <!-- Toggle button for mobile view -->
-        <a class="navbar-brand d-lg-none" href="#">Check Our Categories</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-brand d-lg-none" href="#" id="categories-toggle">Check Our Categories</a>
 
         <!-- Navbar content -->
         <div class="collapse navbar-collapse" id="main-nav">
             <ul class="navbar-nav mx-auto">
                 <!-- All Products dropdown -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="all-products-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="{% url 'products' %}" id="all-products-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         All Products
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="all-products-link">
                         <li><a class="dropdown-item" href="{% url 'products' %}?sort=price&direction=asc">By Price</a></li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?sort=rating&direction=desc">By Rating</a></li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?sort=category&direction=asc">By Category</a></li>
-                        <li><a class="dropdown-item" href="{% url 'products' %}">All Products</a></li>
                     </ul>
                 </li>
                 
@@ -59,3 +55,18 @@
         </div>
     </div>
 </nav>
+
+{% block postloadjs %}
+<script>
+    // Add event listener to the link
+    document.getElementById('categories-toggle').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default action of following the link
+        var dropdown = document.getElementById('main-nav'); // Get the dropdown menu
+        if (dropdown.classList.contains('show')) {
+            dropdown.classList.remove('show'); // Hide the dropdown menu
+        } else {
+            dropdown.classList.add('show'); // Show the dropdown menu
+        }
+    });
+</script>
+{% endblock %}
