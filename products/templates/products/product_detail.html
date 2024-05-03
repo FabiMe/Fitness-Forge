@@ -52,12 +52,25 @@
             </div>
         
             {% if request.user.is_authenticated %}
-                <div class="comment-form">
+                <div class="comment-form mt-5">
                     <h3>Add a Comment</h3>
-                    <form method="POST">
+                    <form method="POST" class="form-horizontal">
                         {% csrf_token %}
-                        {{ comment_form.as_p }}
-                        <button type="submit" class="btn btn-primary">Post Comment</button>
+                        <div class="form-group">
+                            <label for="{{ comment_form.content.id_for_label }}">Comment:</label>
+                            {{ comment_form.content }}
+                            {% if comment_form.content.errors %}
+                                <div class="alert alert-danger">{{ comment_form.content.errors.as_text }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ comment_form.rating.id_for_label }}">Rating:</label>
+                            {{ comment_form.rating }}
+                            {% if comment_form.rating.errors %}
+                                <div class="alert alert-danger">{{ comment_form.rating.errors.as_text }}</div>
+                            {% endif %}
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Post Comment</button>
                     </form>
                 </div>
             {% endif %}
@@ -159,4 +172,15 @@ function addToWishlist(productId) {
 
 document.addEventListener("DOMContentLoaded", updateCustomizationForms);
 </script>
+
+<script>
+    document.getElementById('productForm').addEventListener('submit', function(event) {
+        let textArea = document.getElementById('id_comment_text');
+        if (!textArea.value.trim()) {
+            alert('Please enter a comment.');
+            textArea.focus();
+            event.preventDefault(); // Prevent form from submitting
+        }
+    });
+    </script>
 {% endblock %}

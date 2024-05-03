@@ -165,3 +165,4 @@ AquaVista Resort https://www.pexels.com/de-de/foto/buckelwale-unter-wasser-46667
 skate trip https://www.pexels.com/de-de/foto/mann-der-einen-skateboard-trick-tut-1769553/
 
  banner für topnav https://www.pexels.com/de-de/foto/braune-holzplatte-139309/
+ newsletter https://www.pexels.com/de-de/foto/foto-der-person-die-auf-schotterstrasse-lauft-1821694/

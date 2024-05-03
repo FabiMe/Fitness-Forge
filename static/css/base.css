@@ -309,6 +309,13 @@ body {
     z-index: 10;
 }
 
+.overlay-profile {
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.9); /* Light white background for overlay */
+    border-radius: 15px;
+    width: auto;
+}
+
 .faq-form {
     background-color: #fff;
     padding: 20px;
@@ -405,11 +412,11 @@ input[type="text"]:focus, textarea:focus {
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-/* Adjust the card container to have a consistent height, making the layout uniform */
 .card {
-    height: 100%; /* Full height to ensure alignment at the bottom */
+    height: 500px;  
     display: flex;
-    flex-direction: column; /* Ensures the footer aligns at the bottom */
+    flex-direction: column;
+    justify-content: space-between; 
 }
 
 /* Style for the image container to handle various image sizes */
@@ -423,6 +430,11 @@ input[type="text"]:focus, textarea:focus {
 .card-body {
     flex-grow: 1; /* Allows the body to expand and fill the available space */
 }
+
+.card-body p {
+    min-height: 50px; 
+}
+
 
 /* Flex container setup for the main content wrapper */
 .flex-container {
@@ -448,6 +460,11 @@ input[type="text"]:focus, textarea:focus {
     justify-content: space-around; /* Adjusts space between elements */
     align-items: center;
     flex-wrap: wrap; /* Allows items to wrap on small screens */
+}
+
+.container{
+    margin-top: 5vh;
+    border-radius: 15px;
 }
 
 .footer-text,
@@ -544,6 +561,26 @@ ul.list-inline {
     margin-top: 15px; /* Add some margin to buttons */
 }
 
+.section-box {
+    background-color: #fff; /* Change color as needed */
+    border: 1px solid #ddd; /* Light grey border */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.comment-form textarea {
+    width: 100%; /* Ensures the textarea spans the width of its container */
+    padding: 10px; /* Adds padding inside the textarea */
+    border: 1px solid #ccc; /* Adds a subtle border to the textarea */
+    border-radius: 4px; /* Rounds the corners of the textarea */
+    height: 120px; /* Sets a fixed height for the textarea */
+}
+
+.comment-form label {
+    font-weight: bold; /* Makes the label text bold */
+}
 
 /* Improved header responsiveness */
 @media (max-width: 992px) {
@@ -627,5 +664,14 @@ ul.list-inline {
 @media (max-width: 768px) {
     .social-icons li {
         padding: 0 5px; /* Reduce padding between icons */
+    }
+}
+
+@media (max-width: 768px) {
+    .card-img-top {
+        height: 300px; 
+    }
+    .card {
+        height: auto; 
     }
 }

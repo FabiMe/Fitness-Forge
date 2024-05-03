@@ -3,6 +3,7 @@ from products.views import product_detail
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Comment
+from .forms import CommentForm
 
 
 @login_required
@@ -18,3 +19,14 @@ def delete_comment(request, comment_id):
 
     # Redirect to a success page, or back to comment page with a message
     return redirect('product_detail')  
+
+
+def add_comment(request):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('product_detail')
+    else:
+        form = CommentForm()
+    return render(request, 'product_detail.html', {'comment_form': form})
