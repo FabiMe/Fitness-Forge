@@ -1,0 +1,26 @@
+[
+    {
+        "model": "products.category",
+        "pk": 1,
+        "fields": {
+            "name": "adventures",
+            "friendly_name": "Adventures"
+        }
+    },
+    {
+        "model": "products.category",
+        "pk": 2,
+        "fields": {
+            "name": "sports_events",
+            "friendly_name": "Sports Events"
+        }
+    },
+    {
+        "model": "products.category",
+        "pk": 3,
+        "fields": {
+            "name": "special_offers",
+            "friendly_name": "Special Offers"
+        }
+    }
+]

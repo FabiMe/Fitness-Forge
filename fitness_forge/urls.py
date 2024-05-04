@@ -31,3 +31,6 @@ urlpatterns = [
     path('faq/', include('faq.urls')),
     path('comments/', include('comments.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'fitness_forge.views.handler404'
+handler500 = 'fitness_forge.views.handler500'

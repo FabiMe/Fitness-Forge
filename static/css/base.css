@@ -654,9 +654,6 @@ ul.list-inline {
         margin-top: 20vh;
     }
 
-    .overlay-profile
-}
-
 @media (max-width: 768px) {
     .navbar-toggler {
         display: block; /* Ensure visibility of menu toggle on mobile */
@@ -745,5 +742,5 @@ ul.list-inline {
 
     .hero-section {
         margin-top: 20vh;
-    }
+    }}
 }
