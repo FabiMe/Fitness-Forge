@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import FAQ
 from .forms import FAQForm
 from django.db.models import Q
+from django.contrib import messages
 
 
 def faq_list(request):
@@ -24,6 +25,7 @@ def add_faq(request):
             faq = form.save(commit=False)
             faq.created_by = request.user
             faq.save()
+            messages.success(request, 'FAQ added! Please note that the question will be displayed after approval.')
             return redirect('faq_list')
     else:
         form = FAQForm()

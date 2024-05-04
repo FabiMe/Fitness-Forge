@@ -98,6 +98,7 @@ def product_detail(request, pk):
 
     return render(request, 'products/product_detail.html', context)
 
+
 @login_required
 def add_product(request):
     """ Add a product to the store """

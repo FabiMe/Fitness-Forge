@@ -35,4 +35,5 @@ def remove_from_wishlist(request, product_id):
     Wishlist.objects.filter(
         user_profile=request.user.profile, product=product
     ).delete()
+    messages.success(request, 'Product removed from your wishlist.')
     return redirect('view_wishlist')

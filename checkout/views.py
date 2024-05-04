@@ -11,7 +11,9 @@ from products.models import Product
 from bag.contexts import bag_contents
 import stripe
 import json
+from fitness_forge import settings
 
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 @require_POST
 def cache_checkout_data(request):
@@ -47,8 +49,12 @@ def get_numeric_id(combined_id):
 
 
 def checkout(request):
+    stripe_secret_key = settings.STRIPE_SECRET_KEY
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
 
+    # Print Stripe keys to debug
+    print("Stripe Public Key:", stripe_public_key)
+    print("Stripe Secret Key:", stripe_secret_key)
     if request.method == 'POST':
         bag = request.session.get('bag', {})
         form_data = {
@@ -159,9 +165,9 @@ def checkout_success(request, order_number):
                 user_profile_form.save()
 
     messages.success(
-        request,
-        'Order successfully processed! Your order number is {order_number}. '
-        'A confirmation email will be sent to {order.email}.'
+    request,
+        f'Order successfully processed! Your order number is {order_number}. '
+        f'A confirmation email will be sent to {order.email}.'
     )
 
     if 'bag' in request.session:

@@ -7,6 +7,7 @@ from django.views.decorators.http import require_POST
 from .contexts import bag_contents
 from .contexts import generate_custom_id
 from products.models import Product
+import os
 
 
 def view_bag(request):
