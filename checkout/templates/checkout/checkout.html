@@ -178,18 +178,18 @@
     document.addEventListener("DOMContentLoaded", function() {
         const billingCheckbox = document.getElementById('billingAddressCheckbox');
         const billingFields = document.getElementById('billingAddressFields');
-    
+
         if (billingCheckbox && billingFields) {
             billingCheckbox.addEventListener('change', function() {
                 if (this.checked) {
-                    billingFields.classList.remove('hidden');
+                    billingFields.style.display = 'block'; // Show the billing fields
                 } else {
-                    billingFields.classList.add('hidden');
+                    billingFields.style.display = 'none'; // Hide the billing fields
                 }
             });
         } else {
             console.error('Billing elements not found on the page.');
         }
     });
-    </script>
+</script>
 {% endblock %}
