@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = ['https://fitness-forge-a4f5eb7ec202.herokuapp.com', '8000-fabime-fitnessforge-jz57gwpp952.ws-eu111.gitpod.io']
+ALLOWED_HOSTS = ['fitness-forge-a4f5eb7ec202.herokuapp.com']
 
 
 # Application definition
@@ -192,7 +192,7 @@ if 'USE_AWS' in os.environ:
     }
 
     # Bucket Config
-    AWS_STORAGE_BUCKET_NAME = 'fitness-forge-bucket'
+    AWS_STORAGE_BUCKET_NAME = 'fitness-forge'
     AWS_S3_REGION_NAME = 'us-east-1'
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
