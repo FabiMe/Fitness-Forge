@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-6t4y!e4y+8&zjxsmtgrvi0x&21)i=u8j-m#vo2imz9$j_(xk_4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-fabime-fitnessforge-jz57gwpp952.ws-eu111.gitpod.io']
+ALLOWED_HOSTS = ['fabime-fitnessforge.herokuapp.com', '8000-fabime-fitnessforge-jz57gwpp952.ws-eu111.gitpod.io']
 
 
 # Application definition
