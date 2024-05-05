@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+
 class Category(models.Model):
     name = models.CharField(max_length=200)
     slug = models.CharField(max_length=200)
@@ -8,6 +9,7 @@ class Category(models.Model):
 
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+
 
 class Article(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

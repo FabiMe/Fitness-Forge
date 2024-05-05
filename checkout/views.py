@@ -11,9 +11,10 @@ from products.models import Product
 from bag.contexts import bag_contents
 import stripe
 import json
-from fitness_forge import settings
+
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
 
 @require_POST
 def cache_checkout_data(request):
@@ -165,10 +166,10 @@ def checkout_success(request, order_number):
                 user_profile_form.save()
 
     messages.success(
-    request,
+        request,
         f'Order successfully processed! Your order number is {order_number}. '
         f'A confirmation email will be sent to {order.email}.'
-    )
+        )
 
     if 'bag' in request.session:
         del request.session['bag']

@@ -380,11 +380,32 @@ This section categorizes the major dependencies of the project to provide a clea
 ### Test Guide
 
 
-### Validator Testing
+### Code Style and Flake8 Exceptions
 
+In this project, we adhere to PEP 8 style guidelines as enforced by Flake8, with a few deliberate exceptions. Notably, some line length errors (`E501`) reported by Flake8 have not been corrected in certain files, specifically within the migrations and settings directories.
 
+### Rationale
+
+- **Migrations:** The auto-generated nature of migration files often leads to longer lines, especially when defining models with multiple fields. Adjusting these lines manually is not practical as it could affect the clarity and functionality of the migrations.
+
+- **Settings:** Configuration settings sometimes require long lines for clarity, especially when defining paths or URLs. Breaking these lines into smaller segments would reduce the readability and maintainability of the configuration.
+
+### Conclusion
+
+We have reviewed these Flake8 warnings and determined that in these cases, adhering to the line length rule would compromise the code's clarity and functionality without providing substantial benefits. Thus, we have chosen to exclude these files from line length checks to maintain the quality and integrity of the codebase.
+
+![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/87251406-070b-4c48-8034-3766f916936c)
+![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/389a83ab-e88f-4341-9c83-192890aabcdc)
+ 
 ### Browser Testing
+#### Performance, Accessibility, SEO, Best Practices (Lighthouse testing)
+- lighthouse mobile view 
 
+![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/8e63e163-df9c-4a0c-8d7e-2bcad20198c8)
+
+- lighthouse desktop view 
+
+![image](https://github.com/FabiMe/Fit-Hub/assets/136444209/531a6ee1-60dc-42d4-9b5a-3e6a9ff86ee7)
 
 ### Fixed Bugs
 

@@ -25,7 +25,9 @@ def add_faq(request):
             faq = form.save(commit=False)
             faq.created_by = request.user
             faq.save()
-            messages.success(request, 'FAQ added! Please note that the question will be displayed after approval.')
+            messages.success(
+                request, 'FAQ added! Please note that the question will be displayed after approval.'
+            )
             return redirect('faq_list')
     else:
         form = FAQForm()

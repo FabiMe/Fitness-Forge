@@ -3,7 +3,6 @@ from products.views import product_detail
 from .views import delete_comment
 
 
-
 urlpatterns = [
     path(
         'product/<int:pk>/',

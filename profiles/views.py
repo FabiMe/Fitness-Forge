@@ -4,6 +4,7 @@ from django.contrib import messages
 from .models import UserProfile
 from .forms import UserProfileForm
 from wishlist.models import Wishlist
+from checkout.models import Order
 
 
 @login_required
@@ -15,14 +16,17 @@ def profile(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Profile updated successfully')
-            return redirect('profile')  # Redirect to the same page to prevent re-submission
+            # Redirect to the same page to prevent re-submission
+            return redirect('profile')
         else:
-            messages.error(request, 'Update failed. Please ensure the form is valid.')
+            messages.error(
+                request, 'Update failed. Please ensure the form is valid.'
+            )
     else:
         form = UserProfileForm(instance=profile)
 
-    orders = profile.orders.all()  
-    wishlist_items = Wishlist.objects.filter(user_profile=profile)  
+    orders = profile.orders.all()
+    wishlist_items = Wishlist.objects.filter(user_profile=profile)
 
     template = 'profiles/profile.html'
     context = {

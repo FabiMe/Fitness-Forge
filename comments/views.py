@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Comment
 from .forms import CommentForm
+from products.model import Product
 
 @login_required
 def delete_comment(request, comment_id):
@@ -14,10 +15,13 @@ def delete_comment(request, comment_id):
         comment.delete()
         messages.success(request, 'Comment deleted!')
     else:
-        messages.error(request, 'You do not have permission to delete this comment.')
+        messages.error(
+            request, 'You do not have permission to delete this comment.'
+        )
 
     # Redirect to a success page, or back to comment page with a message
     return redirect('product_detail')
+
 
 @login_required
 def delete_product(request, product_id):
@@ -30,6 +34,7 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
+
 
 def add_comment(request):
     if request.method == 'POST':
