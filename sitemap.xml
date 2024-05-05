@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/products/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/products/?sort=price&amp;direction=asc</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/products/?sort=rating&amp;direction=desc</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/products/?sort=category&amp;direction=asc</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/products/?category=hiking_trails</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/products/?category=water_adventures</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/products/?category=camping_spots</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/products/?category=try_out_session</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/products/?category=amateur_tournaments</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/products/?category=health_and_fitness_classes</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/products/?category=adventure_packages</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/accounts/signup/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/accounts/login/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/bag/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/faq/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/5/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/3/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/1/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/4/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/6/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/7/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/8/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/9/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/10/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/12/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/13/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/14/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/15/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/16/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/17/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/18/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/19/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/20/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/21/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/22/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/11/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/comments/product/23/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://fitness-forge-a4f5eb7ec202.herokuapp.com/accounts/password/reset/</loc>
+  <lastmod>2024-05-05T00:16:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>

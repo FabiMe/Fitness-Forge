@@ -1,0 +1,4 @@
+user-agent: *
+Disallow: /profiles/
+Disallow: /bag/
+Sitemap: fitness-forge-a4f5eb7ec202.herokuapp.com/sitemap.xml
