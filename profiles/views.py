@@ -49,3 +49,14 @@ def order_history(request, order_number):
     }
 
     return render(request, template, context)
+
+def account_signup(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            # Optionally log the user in
+            return redirect('profile')  # Redirect to profile page or some other appropriate page
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'signup.html', {'form': form})
