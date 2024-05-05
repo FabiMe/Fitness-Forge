@@ -42,9 +42,6 @@ class UserProfile(models.Model):
 
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
-    """Signal to create or update a user profile
-    upon saving a User instance."""
     if created:
-        UserProfile.objects.create(user=instance)
-    elif hasattr(instance, 'profile'):
-        instance.profile.save()
+        UserProfile.objects.get_or_create(user=instance)  # Use get_or_create to avoid duplication
+    instance.userprofile.save()  

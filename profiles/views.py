@@ -1,15 +1,12 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
 from .models import UserProfile
 from .forms import UserProfileForm
-from wishlist.models import Wishlist
-
-from checkout.models import Order
 
 
+@login_required
 def profile(request):
-    """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
@@ -17,22 +14,19 @@ def profile(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Profile updated successfully')
+            return redirect('profile')  # Redirect to the same page to prevent re-submission
         else:
-            messages.error(
-                request, 'Update failed. Please ensure the form is valid.'
-            )
+            messages.error(request, 'Update failed. Please ensure the form is valid.')
     else:
         form = UserProfileForm(instance=profile)
 
-    orders = profile.orders.all()
-    # Get wishlist items
-    wishlist_items = Wishlist.objects.filter(user_profile=profile)
+    orders = profile.orders.all()  # Ensure 'orders' is a correctly defined related_name in models
+    wishlist_items = Wishlist.objects.filter(user_profile=profile)  # Assuming this relationship is correct
 
     template = 'profiles/profile.html'
     context = {
         'form': form,
         'orders': orders,
-        # Include wishlist items in context
         'wishlist_items': wishlist_items,
         'on_profile_page': True
     }
