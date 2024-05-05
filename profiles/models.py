@@ -43,5 +43,5 @@ class UserProfile(models.Model):
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:
-        UserProfile.objects.get_or_create(user=instance)  # Use get_or_create to avoid duplication
-    instance.userprofile.save()  
+        UserProfile.objects.get_or_create(user=instance)
+    instance.profile.save() 

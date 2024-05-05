@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import UserProfile
 from .forms import UserProfileForm
+from wishlist.models import Wishlist
 
 
 @login_required
@@ -20,8 +21,8 @@ def profile(request):
     else:
         form = UserProfileForm(instance=profile)
 
-    orders = profile.orders.all()  # Ensure 'orders' is a correctly defined related_name in models
-    wishlist_items = Wishlist.objects.filter(user_profile=profile)  # Assuming this relationship is correct
+    orders = profile.orders.all()  
+    wishlist_items = Wishlist.objects.filter(user_profile=profile)  
 
     template = 'profiles/profile.html'
     context = {

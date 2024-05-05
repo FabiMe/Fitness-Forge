@@ -26,8 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
-
-ALLOWED_HOSTS = ['fitness-forge-a4f5eb7ec202.herokuapp.com']
+ALLOWED_HOSTS = ['fitness-forge-a4f5eb7ec202.herokuapp.com', '8000-fabime-fitnessforge-jz57gwpp952.ws-eu111.gitpod.io']
 
 
 # Application definition
