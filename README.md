@@ -172,10 +172,7 @@ Implementing these SEO practices is part of our ongoing effort to enhance the ac
 
 ## Features
 ### Existing Features
-- **Product Browsing:** Users can filter products by categories such as "New Arrivals", "Most Popular", and "Sale Items".
-- **User Reviews:** Users can submit reviews for products they have purchased.
-- **Event Booking:** Users can sign up for upcoming fitness events directly through the site.
-- **Admin Panel:** A Django admin panel customized for product and user management.
+
 
 ### Future Features
 - **Virtual Try-On:** Integrate AR technology to allow users to visualize products.
