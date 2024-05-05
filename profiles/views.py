@@ -5,6 +5,27 @@ from .models import UserProfile
 from .forms import UserProfileForm
 from wishlist.models import Wishlist
 from checkout.models import Order
+from django.contrib.auth.forms import UserCreationForm  
+from django.contrib.auth import login
+from django.urls import path
+
+
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        logger.debug("Form submitted with data: %s", request.POST)
+        if form.is_valid():
+            user = form.save()
+            logger.debug("User created successfully: %s", user.username)
+            login(request, user)
+            return redirect('some_success_url')
+        else:
+            logger.debug("Form is not valid. Errors: %s", form.errors)
+    else:
+        form = UserCreationForm()
+    return render(request, '/workspace/Fitness-Forge/profiles/templates/profiles/profile.html')
 
 
 @login_required

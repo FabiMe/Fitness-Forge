@@ -409,8 +409,61 @@ We have reviewed these Flake8 warnings and determined that in these cases, adher
 
 ### Fixed Bugs
 
+#### Incorrect Handling of Product IDs for Checkout
+
+**Description:**
+The checkout feature experiences a failure when processing orders due to the use of combined product IDs and hash values (e.g., "3_82215835d1f660ae5c8de3322c05b7cf") instead of purely numeric IDs. This issue occurs because the system tries to retrieve products using these combined IDs, which are not recognized by the database.
+
+**Steps to Reproduce:**
+1. Add any product to the shopping cart and proceed to checkout.
+2. During checkout, customize the product which results in a combined ID being generated (numeric ID and hash).
+3. Attempt to complete the checkout process.
+
+**Expected Behavior:**
+The checkout process should successfully recognize and handle product IDs, even when they include customization hashes, and complete the order without errors.
+
+**Actual Behavior:**
+A `ValueError` is thrown stating that the field 'id' expected a number but got '3_82215835d1f660ae5c8de3322c05b7cf', causing the checkout process to fail.
+
+**Possible Fix:**
+The logic to extract and use product IDs during checkout processes should be corrected to split the combined ID and use only the numeric part when querying the database.
+
+**Code Snippet:**
+' ```python
+for item_id, item_data in bag.items():
+    product = get_object_or_404(Product, id=item_id) '
+
 
 ### Unfixed Bugs
+
+#### Environment
+
+- **Platform**: Django application running in Gitpod.
+- **Functionality**: Using Gmail’s SMTP server for sending emails.
+
+#### Problem
+
+Attempts to send email (such as account signup confirmations) consistently fail due to a network connectivity issue. The specific error reported is:
+
+Despite various configurations and settings adjustments, the issue persists.
+
+#### Attempts Made
+
+1. **SMTP Settings in `settings.py`**:
+   - Configured to use Gmail's SMTP with appropriate user credentials and TLS settings.
+   
+2. **Testing Email Sending Locally**:
+   - Attempts to send emails via Django shell resulted in the same network error.
+   
+3. **Network Tools**:
+   - Tried using `telnet` and `nc` to check connectivity, but faced tool availability issues in Gitpod.
+   
+4. **Reviewing and Modifying Django Configuration**:
+   - Checked for correct environment variables and configurations.
+
+#### Hypothesis for the Bug
+
+Given the persistent network error and the cloud development environment (Gitpod), the issue likely lies in network restrictions or SMTP traffic being blocked by the hosting environment. Gitpod might have strict network policies that prevent SMTP connections to external servers like Gmail.
 
 ## Deployment and Configuration
 ### Deployment on Heroku

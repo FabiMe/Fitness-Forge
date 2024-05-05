@@ -19,3 +19,12 @@
 </form>
 
 {% endblock %}
+
+{% block javascript %}
+<script>
+document.getElementById('signup_form').addEventListener('submit', function() {
+    console.log('Submitting form...');
+    console.log('Form data:', new FormData(document.getElementById('signup_form')));
+});
+</script>
+{% endblock %}

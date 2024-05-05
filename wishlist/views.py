@@ -26,7 +26,7 @@ def add_to_wishlist(request, product_id):
 @login_required
 def view_wishlist(request):
     wishlist_items = Wishlist.objects.filter(user_profile=request.user.profile)
-    return render(request, 'wishlist.html', {'wishlist_items': wishlist_items})
+    return render(request, '/workspace/Fitness-Forge/wishlist/templates/wishlist/wishlist.html', {'wishlist_items': wishlist_items})
 
 
 @login_required
