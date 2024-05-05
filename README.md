@@ -5,7 +5,7 @@ Deployed Site: https://fitness-forge-a4f5eb7ec202.herokuapp.com/
 
 This Django based fictional e-commerce application is the result of the last of five portfolio projects required for Code Institute.
 
-Fitness-Forge is an online store dedicated to adventure seekers and fitness enthusiasts. Offering a unique selection of adventures, fitness try-outs, and tournaments, Fitness-Forge sells these experiences as vouchers, perfect for gifting or personal use. A standout feature is the 'Mystery Box,' which evaluates the total value of your purchase and adds complimentary mystery boxes to your order, enhancing the excitement and value. The website includes a user-friendly comment section on each product and a comprehensive FAQ section to assist shoppers. Registered users can log in to save their data, manage orders, access a personalized wishlist, and subscribe to a newsletter for the latest updates and offers. Fitness-Forge is designed to cater to both the seasoned athlete and the casual adventurer, providing an engaging and interactive shopping experience.
+FitnessForge is an online store dedicated to adventure seekers and fitness enthusiasts. Offering a unique selection of adventures, fitness try-outs, and tournaments. FitnessForge sells these experiences as vouchers, perfect for gifting or personal use. A standout feature is the 'Mystery Box,' which evaluates the total value of your purchase and adds complimentary mystery boxes to your order, enhancing the excitement and value. The website includes a user-friendly comment section on each product and a comprehensive FAQ section to assist shoppers. Registered users can log in to save their data, manage orders, access a personalized wishlist, and subscribe to a newsletter for the latest updates and offers. FitnessForge is designed to cater to both the seasoned athlete and the casual adventurer, providing an engaging and interactive shopping experience.
 
 ## Table of Contents
 - [UI/UX](#uiux)
@@ -57,10 +57,11 @@ During the project the most commonly used views have been the “Backlog”, the
 ![image-20240504-152337](https://github.com/FabiMe/Fitness-Forge/assets/136444209/99a0196b-fb6f-458a-a0b8-7bdf4d7a7533)
 
 #### Priority board
-![image-20240504-152704](https://github.com/FabiMe/Fitness-Forge/assets/136444209/a9dc86c2-eee2-4619-b8e4-8ec3bf906411)
+![image-20240504-152545](https://github.com/FabiMe/Fitness-Forge/assets/136444209/ce9f3d84-3dd4-427f-8ad7-6ec314088606)
 
 #### My items View
-![image-20240504-152545](https://github.com/FabiMe/Fitness-Forge/assets/136444209/ce9f3d84-3dd4-427f-8ad7-6ec314088606)
+![image-20240504-152704](https://github.com/FabiMe/Fitness-Forge/assets/136444209/a9dc86c2-eee2-4619-b8e4-8ec3bf906411)
+
 
 Generally speaking the realization of the project was a continuous process of planning, prioritizing implementing and testing functionalities covered in the user stories.
 The GitHub Projects can be accessed via: https://github.com/users/FabiMe/projects/6 
@@ -345,6 +346,28 @@ This section categorizes the major dependencies of the project to provide a clea
 - **stripe==9.2.0** - Library for Stripe API interactions.
 - **typing_extensions==4.11.0** - Backported and experimental type hints for Python.
 
+## Emails & Newsletter Management
+
+- **Gmail**: Utilized for email dispatching, handling direct communications and customer service interactions.
+- **Mailchimp**: Manages newsletter subscriptions, allowing us to effectively distribute marketing materials and updates to subscribers.
+
+## SEO, Marketing & Content Creation Tools
+
+- **XML Sitemaps**: Generates sitemaps to help search engines better crawl and index our website.
+- **Privacy Policy Generator**: Used to create a compliant privacy policy that meets international standards.
+- **Wortracker**: Assists in keyword volume and competition research to optimize our SEO strategies.
+- **Chat-GPT**: Employs advanced AI for content creation, enhancing our blog posts, product descriptions, and marketing copy.
+
+## Work Environments and Hosting
+
+- **AWS (Amazon Web Services)**: Hosts static and media files using S3 storage, ensuring fast and secure access to our digital assets.
+- **Figma**: Used for creating wireframes and designing the user interface, providing a blueprint for the website’s visual and functional elements.
+- **Git**: Serves as our version control system, enabling efficient tracking of code changes and collaboration among developers.
+- **GitHub**: Acts as the repository for storing, managing, and sharing the project’s codebase.
+- **GitPod**: Provides an online VS Code editor for remote development. Optionally, VS Code was used for coding the website locally.
+- **Heroku**: Hosts the main site, offering a platform for deploying and managing the live website.
+
+
 ## Testing
 ### Test Guide
 
@@ -360,14 +383,100 @@ This section categorizes the major dependencies of the project to provide a clea
 
 ### Unfixed Bugs
 
-## Deployment
-### Development
-#### Fork
-To fork the repository, click on the 'Fork' button on the repository page on GitHub.
+## Deployment and Configuration
 
-#### Clone
-To clone the repository, use the following command:
-```bash
+### Deployment on Heroku
+This project is deployed on Heroku, utilizing the following steps and tools:
+
+1. **Installation of Necessary Libraries**:
+   - Install psycopg2 and dj_database_url for PostgreSQL connectivity:
+     ```bash
+     pip3 install dj_database_url psycopg2
+     ```
+   - Install Gunicorn, the server for running Django on Heroku:
+     ```bash
+     pip3 install django gunicorn
+     ```
+
+2. **Requirements.txt**:
+   - Generate the `requirements.txt` file to list all necessary dependencies:
+     ```bash
+     pip3 freeze > requirements.txt
+     ```
+   - Commit and push these changes to GitHub.
+
+3. **Sensitive Information**:
+   - Ensure all sensitive credentials are stored in an `env.py` file and excluded from Git tracking by including this file in `.gitignore`.
+   - Set environment variables in `env.py`:
+     ```python
+     import os
+     os.environ["DATABASE_URL"] = "<copied_database_url>"
+     os.environ["SECRET_KEY"] = "your_secret_key"
+     ```
+
+4. **Creating Heroku App**:
+   - Log into Heroku, navigate to the dashboard, create a new app with a suitable name and region.
+
+5. **Stripe Setup**:
+   - Configure Stripe keys in the `env.py` file and set up webhooks for transaction handling.
+
+### AWS Setup
+1. **S3 Bucket Configuration**:
+   - Create an S3 bucket in the AWS Management Console with appropriate settings for public access and static website hosting.
+   - Configure CORS to allow specific types of requests:
+     ```json
+     [
+       {
+         "AllowedHeaders": ["Authorization"],
+         "AllowedMethods": ["GET"],
+         "AllowedOrigins": ["*"],
+         "ExposeHeaders": []
+       }
+     ]
+     ```
+   - Set up the bucket policy and ACL for public read access and list permissions.
+
+2. **IAM Configuration**:
+   - Create a user group and define permissions policies to grant the necessary access to the S3 bucket.
+   - Create a user, attach the user to the group, and save the credentials for accessing AWS resources.
+
+### Database Configuration
+- **dbs.ci-dbs.net**:
+  - Utilize dbs.ci-dbs.net for database hosting, connecting via the URL provided during setup.
+
+
+## Repository Management
+
+This section guides you through the processes of forking, cloning, and downloading the repository from GitHub.
+
+### Forking a Repository
+Forking a repository allows you to create a personal copy of another project on GitHub without affecting the original. Here’s how to fork a repository:
+
+1. **Navigate** to the repository on GitHub.
+2. **Locate** the “Fork” button in the top-right corner of the page and click it.
+3. **Adjust** the name of the fork and add a description if necessary.
+4. **Choose** which branches you want to copy (main branch or all branches).
+5. **Click** "Create a Fork". The new repository will now appear in your GitHub account and can be cloned or modified as needed.
+
+### Cloning a Repository
+Cloning a repository creates a local copy on your machine, linked to the original repository. Changes pushed from this clone can affect the original repository if you have the necessary permissions.
+
+1. **Navigate** to the repository on GitHub.
+2. **Locate** the “Code” drop-down button above the file list.
+3. **Select** your preferred method for copying the repository URL (HTTPS, SSH, or GitHub CLI).
+4. **Open** Git Bash or your preferred terminal and navigate to the desired directory where you want the repository to be cloned.
+5. **Type** `git clone`, followed by the copied URL.
+6. **Press** “Enter” to create the local clone.
+
+### Downloading a Repository as a ZIP
+Downloading a repository as a ZIP file is useful for obtaining a snapshot of the project to run locally without git tracking.
+
+1. **Navigate** to the repository on GitHub.
+2. **Locate** the “Code” drop-down button above the file list.
+3. **Select** “Download ZIP”.
+4. **Extract** the ZIP file in your local environment to begin working with the files.
+
+Each method serves different purposes—forking for personal modifications without affecting the original, cloning for direct contributions back to the original repository, and downloading for quick access or testing without version control.
 
 
 Hero image : https://www.pexels.com/de-de/foto/mann-halt-braunes-seil-3253501/
