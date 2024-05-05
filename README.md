@@ -1,3 +1,5 @@
+![bike](https://github.com/FabiMe/Fitness-Forge/assets/136444209/c00430fc-8a23-44f9-9743-89bb8072c970)
+
 # Fitness Forge
 Developer: Fabian Meister
 
@@ -7,45 +9,16 @@ This Django based fictional e-commerce application is the result of the last of 
 
 FitnessForge is an online store dedicated to adventure seekers and fitness enthusiasts. Offering a unique selection of adventures, fitness try-outs, and tournaments. FitnessForge sells these experiences as vouchers, perfect for gifting or personal use. A standout feature is the 'Mystery Box,' which evaluates the total value of your purchase and adds complimentary mystery boxes to your order, enhancing the excitement and value. The website includes a user-friendly comment section on each product and a comprehensive FAQ section to assist shoppers. Registered users can log in to save their data, manage orders, access a personalized wishlist, and subscribe to a newsletter for the latest updates and offers. FitnessForge is designed to cater to both the seasoned athlete and the casual adventurer, providing an engaging and interactive shopping experience.
 
-## Table of Contents
-- [UI/UX](#uiux)
-  - [Agile](#agile)
-  - [Wireframes](#wireframes)
-  - [Site Goals](#site-goals)
-  - [5 Planes of UX](#5-planes-of-ux)
-  - [Visual Design Choices](#visual-design-choices)
-  - [SEO and Marketing](#seo-and-marketing)
-- [Features](#features)
-  - [Existing Features](#existing-features)
-  - [Future Features](#future-features)
-- [Database Design](#database-design)
-  - [Database Model](#database-model)
-  - [Custom Model](#custom-model)
-  - [CRUD](#crud)
-- [Technologies Used](#technologies-used)
-  - [Work Environments and Hosting](#work-environments-and-hosting)
-  - [Python Libraries](#python-libraries)
-  - [Django Libraries](#django-libraries)
-  - [Payment processing](#payment-processing)
-  - [Emails/Newsletter](#emailsnewsletter)
-  - [SEO/Marketing](#seomarketing)
-- [Testing](#testing)
-  - [Test Guide](#test-guide)
-  - [Validator Testing](#validator-testing)
-  - [Browser Testing](#browser-testing)
-  - [Fixed Bugs](#fixed-bugs)
-  - [Unfixed Bugs](#unfixed-bugs)
-- [Deployment](#deployment)
-  - [Development](#development)
-    - [Fork](#fork)
-    - [Clone](#clone)
-    - [Download ZIP](#download-zip)
-- [Source Credits](#source-credits)
-  - [References/Documentation/Tutorials](#referencesdocumentationtutorials)
-  - [Media and Styling](#media-and-styling)
-  - [Content/Data](#contentdata)
 
 ## UI/UX
+
+### Site Goals
+The Fitness Forge Website aims to provide a seamless shopping experience for fitness adventures. It enables users to register for fitness events easily and offers a platform where users can plan future fitness adventures for themselves and others. Fitness Forge aims to maintain and improve general health and physical fitness and to elevate the customers skills.
+
+Users can select adventures and events from the categories Adventures, Sports Events and Special Offers
+
+Once the user selects a specific adventure or event, he/she can adjust the quantity and personalize each adventure's attendees individually. The possibility to purchase adventures for multiple attendees makes the website to an ideal place to search for gifts and presents.
+
 ### Agile Methodology - User Stories
 The realization of this project has been accomplished with the use of agile methodology. In order to visualize user stories and tasks as well as overall project progress, GitHub Projects has been used. GitHub Projects sees itself as “an adaptable, flexible tool for planning and tracking work on GitHub”.
 
@@ -63,8 +36,9 @@ During the project the most commonly used views have been the “Backlog”, the
 ![image-20240504-152704](https://github.com/FabiMe/Fitness-Forge/assets/136444209/a9dc86c2-eee2-4619-b8e4-8ec3bf906411)
 
 
-Generally speaking the realization of the project was a continuous process of planning, prioritizing implementing and testing functionalities covered in the user stories.
+Generally speaking the realization of the project was a continuous process of planning, prioritizing, implementing and testing functionalities covered in the user stories.
 The GitHub Projects can be accessed via: https://github.com/users/FabiMe/projects/6 
+
 
 ### Wireframes
 Wireframes are simplified, rough sketches of the basic structure of the website. Wireframes are created in an early state and should but might not cover all crucial functionalities and structures of the websites pages.  To create the wireframes of this project Figma has been used: 
@@ -80,13 +54,6 @@ https://www.figma.com/file/QoQR6UBFHRPp7QnKICRWo0/Low-fi-Wireframe-Template-(Com
 * Login/Register
 * FAQ
 
-### Site Goals
-The Fitness Forge Website aims to provide a seamless shopping experience for fitness adventures. It enables users to register for fitness events easily and offers a platform where users can plan future fitness adventures for themselves and others. Fitness Forge aims to maintain and improve general health and physical fitness and to elevate the customers skills.
-
-Users can select adventures and events from the categories CATEGORIES
-
-Once the user selects a specific adventure or event, he/she can adjust the quantity and personalize each adventure's attendees individually. The possibility to purchase adventures for multiple attendees makes the website to an ideal place to search for gifts and presents.
-
 ### 5 Planes of UX
 - **Strategy Plane:** The project identified a clear need to create an e-commerce platform specifically for fitness enthusiasts. This insight guided the development process, ensuring the platform would attract and meet the demands of its target demographic.
 - **Scope Plane:** The project’s functional requirements were clearly defined to include a dynamic product catalog that allows for regular updates and additions, comprehensive user account functionalities, a robust event registration system to handle various fitness activities, and interactive comment features enabling community engagement.
@@ -94,7 +61,7 @@ Once the user selects a specific adventure or event, he/she can adjust the quant
 - **Skeleton Plane:**  In designing the interface, attention was paid to the arrangement of interface elements to optimize the overall user experience. This included thoughtful placement of navigation bars, product listings, and interactive elements to ensure high usability and easy access for all users, particularly considering diverse accessibility needs.
 - **Surface Plane:**  To finalize the platform's design, high-fidelity prototypes were crafted, focusing on a sleek, user-friendly interface that appeals to the modern consumer. These prototypes were instrumental in refining both the visual appeal and the functional layout, with a particular emphasis on ensuring a responsive, mobile-first design that performs well across various devices and screen sizes.
 
-### Visual Design Choices
+### Overall Design and Color Scheme
 Based on the nature of the products and the target group, the overall design and the color scheme aim to reflect a modern and clean approach. The imposing, high quality product images are used to attract the target audience over visual input rather than an information overload.
 
 The color scheme uses a monochromatic theme (different shades of grey) with vibrant accents (green, light blue) to invoke energy and action. It relates to the “outdoor nature” of the product and the target group. For action components, green, blue and light blue accents pick up on a modern approach and additionally attract a young and active target group.
@@ -105,7 +72,7 @@ Typography involves a combination of Lato - the main font used - for readability
 
 Responsive design practices ensure usability across devices.
 
-### SEO and Marketing
+## SEO and Marketing
 
 Initial Brainstorming of General Categories and short-termed and long-termed Keywords
 
@@ -129,7 +96,8 @@ Initial Brainstorming of General Categories and short-termed and long-termed Key
 |                        | Discover sport           |                       |
 |                        | Forge your path with us  |                       |
 
-## Research of initial keyword collection in Google Search
+
+### Research of initial keyword collection in Google Search
 - After an extensive research using Google Search’s built-in functionalities such as autocomplete proposals, the “People also ask” and the “Related Searches” section, the following keywords have been identified to be most relevant and promising in terms of SEO:
 
 | Sport                  | Adventures               | Health                   |
@@ -142,33 +110,75 @@ Initial Brainstorming of General Categories and short-termed and long-termed Key
 | Elevate your Performance| Adrenaline Rush         |                          |
 |                        | Ride the Wind            |                          |
 
-## Determination of keyword volume and competition
+### Determination of keyword volume and competition
 - Using www.wordtracker.com keyword volume and competition have been determined for some of the refined keyword ideas:
 ![image-20240504-181130](https://github.com/FabiMe/Fitness-Forge/assets/136444209/005e9cff-5a88-4968-a4f0-d6896d8356ba)
 ![image-20240504-181632](https://github.com/FabiMe/Fitness-Forge/assets/136444209/5e18e49b-7442-4cd1-9bad-d5474e965759)
 ![image-20240504-181849](https://github.com/FabiMe/Fitness-Forge/assets/136444209/89dfef34-2aa3-459a-9967-536c710fa2db)
 ![image-20240504-181456](https://github.com/FabiMe/Fitness-Forge/assets/136444209/1f547870-f001-4d98-b1a3-93eca333b2fc)
 
-## SEO Implementations in HTML
+### SEO Implementations
 
 Effective Search Engine Optimization (SEO) is critical for improving visibility and ensuring that your content reaches its intended audience. Below are the key SEO strategies implemented within the HTML structure of the website.
 
-### Use of Semantic HTML Elements
+#### Use of Semantic HTML Elements
 - On both the homepage and product detail pages, we've strategically placed relevant keywords within headings and emphasized them using `<strong>` or `<em>` tags, carefully avoiding the practice of "keyword-stuffing."
 
-### Images
+#### Images
 - Image SEO has been enhanced by enriching the `alt` attributes of `<img>` tags with relevant keywords, which are crucial for search engines. Additionally, image file names have been renamed to include these keywords to further optimize searchability.
 
-### Descriptive Meta Tags
+#### Descriptive Meta Tags
 - Within the `<head>` section of `base.html`, descriptive meta tags including `<meta name="description">` and `<meta name="keywords">` have been added. These tags provide search engines with a concise summary of the page's content and associated keywords.
 
-### XML Sitemap
+#### XML Sitemap
 - An XML sitemap has been created to list important URLs within the website, aiding search engines in understanding the site's structure. This sitemap ensures that all relevant pages are crawled and content is easily discovered. It was generated using an online sitemap generator and is located at the root level of the project.
 
-### Robots.txt
+#### Robots.txt
 - The `robots.txt` file at the root of the project directory plays a vital role in managing search engine access. It allows search engines to crawl the website freely while specifying directories or files that should not be indexed. This not only helps in managing crawl traffic but also signals the website's quality, potentially improving search rankings.
 
 Implementing these SEO practices is part of our ongoing effort to enhance the accessibility and visibility of our website, ensuring that our content reaches its target audience efficiently.
+
+## Marketing Strategy Research
+
+### Who are my users?
+- **Age Range:** 20-50 years old
+- **Environment:** Urban
+- **Interests:** Outdoor activities, thrill-seeking
+- **Lifestyle:** Focus on health and fitness
+
+### Where can I find my users online?
+- **Platforms:** Facebook, Instagram, TikTok
+  - These platforms support individual content creation and are popular among our target demographic.
+
+### User Needs and Business Goals
+- **Objective:** Provide a seamless shopping experience and easy registration for fitness events.
+- **Focus:** Support health improvement, physical fitness, and skill elevation.
+- **Functionality:** Platform for planning and inspiration for fitness adventures and adventure-related gifts.
+
+### Marketing Strategy to Meet Goals
+- **Online Channels:** Prioritize to increase website traffic and enhance user engagement.
+
+### Sales and Discounts
+- **Offer:** "Mystery Boxes" as a reward for larger orders with four possible tiers.
+- **Notification Method:** Users are currently notified via the FAQs and potentially through Facebook posts.
+
+### Budget for Advertising
+- **Strategy:** Initially focus on free or low-cost options like a strong social media presence.
+- **Tools:** MailChimp for newsletters, free up to 500 users, to inform about new events and adventures.
+
+### Newsletter Sign-up
+- **Method:** Available post-checkout to increase long-term subscriber numbers.
+- **Efficiency:** Aim to use the free service limit effectively by capturing only interested users.
+
+### Additional Marketing Tools
+- **Facebook:** A dedicated business page for promoting products and establishing customer interaction.
+
+![image-20240505-044136](https://github.com/FabiMe/Fitness-Forge/assets/136444209/8c66c9fe-08cd-499f-8320-a5f1dbff74f0)
+
+
+### Conclusion
+Forge Fitness is committed to providing valuable experiences and products to fitness enthusiasts, leveraging effective marketing strategies to connect with and expand our user base.
+
 
 ## Features
 ### Existing Features
@@ -183,9 +193,10 @@ Implementing these SEO practices is part of our ongoing effort to enhance the ac
 
 ![fitness_forge_models (1)](https://github.com/FabiMe/Fitness-Forge/assets/136444209/8fe31ed1-c421-4e26-b61f-7b4939f8ba3d)
 
-- to create a Automatically Generated ERD Model are following steps crucial.
+- To create an automatically generated ERD Model the following steps are crucial:
 
 - Uses Django's ORM with PostgreSQL. Models include:
+
 ![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/722508d2-8890-47cf-91c3-ca3d77275d05)
 
 - This will create the bellow files and directories.
@@ -196,15 +207,15 @@ Implementing these SEO practices is part of our ongoing effort to enhance the ac
 
 ![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/e4a67d91-5ef6-4cbd-b449-4a478b81a0bf)
 
-- install Django
+- Install Django
 
 ![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/6822922e-6758-40b7-a0c3-de2383178b84)
 
-- in blog/models.py 
+- In blog/models.py 
 
 ![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/9eced74b-9261-4679-a4c5-6da9f4775541)
 
-- in mysite/settings.py
+- In mysite/settings.py
 
 ![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/1d81af87-8c66-4e4d-a954-0f7e83e071db)
 
@@ -212,7 +223,7 @@ Implementing these SEO practices is part of our ongoing effort to enhance the ac
 
 ![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/b61c960f-f4e6-49dd-ad18-d445d32b06e4)
 
-- install django-extensions 
+- Install django-extensions 
 
 ![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/28514a57-5779-4805-85df-042cbdd95753)
 
@@ -225,26 +236,26 @@ Implementing these SEO practices is part of our ongoing effort to enhance the ac
 ![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/fefc1cc8-80c8-4355-bb55-a4050780b991)
 
 
-## Custom Models
+### Custom Models
 
 This section describes the three custom models implemented in the platform, each designed to enhance user interactivity and provide essential features to both users and admins. The models are segmented into individual apps with their own URLs and views to maintain clarity and modularity.
 
-### 1. Comment Model
+#### 1. Comment Model
 
 - **Purpose:** Allows users to leave comments on product detail pages, fostering a community-driven environment where users can share opinions and feedback.
 - **Functionality:** Users can submit comments directly on a product’s detail page. Each comment is stored and displayed after submission, pending visibility settings or moderation if needed.
 
-### 2. FAQ Model
+#### 2. FAQ Model
 
 - **Purpose:** Provides a section for frequently asked questions where users can seek answers and submit their own questions.
 - **Functionality:** Users can submit questions to the FAQ section. Submitted questions are not immediately visible; they require admin approval before being displayed publicly. This ensures that all information in the FAQ is accurate and relevant.
 
-### 3. Wishlist Model
+#### 3. Wishlist Model
 
 - **Purpose:** Enables users to add products to a wishlist, allowing them to save their favorite items for later purchase or review.
 - **Functionality:** Users can add products to their wishlist from the product details page. This wishlist is accessible via the user’s profile, where they can view, edit, or remove items as desired.
 
-### Architecture
+#### Architecture
 
 Each of these models is housed in its own dedicated app within the Django project structure, including separate `models.py`, `views.py`, and `urls.py` files. This design approach:
 
@@ -254,11 +265,11 @@ Each of these models is housed in its own dedicated app within the Django projec
 
 By using this modular architecture, the platform ensures that it remains both flexible and robust, catering to the evolving needs of its users while maintaining a clear organizational structure.
 
-## CRUD Operations
+### CRUD Operations
 
 This section outlines the Create, Read, Update, and Delete (CRUD) capabilities for both regular users and administrators within the platform.
 
-### Create
+#### Create
 
 - **Users:**
   - Can create accounts to personalize their experience.
@@ -268,7 +279,7 @@ This section outlines the Create, Read, Update, and Delete (CRUD) capabilities f
 - **Admins:**
   - Have the ability to create new products to keep the catalogue up-to-date.
 
-### Read
+#### Read
 
 - **Users:**
   - Can browse all available products.
@@ -277,7 +288,7 @@ This section outlines the Create, Read, Update, and Delete (CRUD) capabilities f
 - **Admins:**
   - Can view all existing products, overseeing the complete range of offerings.
 
-### Update
+#### Update
 
 - **Users:**
   - Can update their profile information to keep their personal data current.
@@ -286,7 +297,7 @@ This section outlines the Create, Read, Update, and Delete (CRUD) capabilities f
 - **Admins:**
   - Can update product details to reflect changes such as pricing adjustments, descriptions, or stock levels.
 
-### Delete
+#### Delete
 
 - **Admins:**
   - Can remove outdated products to maintain a fresh and relevant product line.
@@ -343,19 +354,19 @@ This section categorizes the major dependencies of the project to provide a clea
 - **stripe==9.2.0** - Library for Stripe API interactions.
 - **typing_extensions==4.11.0** - Backported and experimental type hints for Python.
 
-## Emails & Newsletter Management
+### Emails & Newsletter Management
 
 - **Gmail**: Utilized for email dispatching, handling direct communications and customer service interactions.
 - **Mailchimp**: Manages newsletter subscriptions, allowing us to effectively distribute marketing materials and updates to subscribers.
 
-## SEO, Marketing & Content Creation Tools
+### SEO, Marketing & Content Creation Tools
 
 - **XML Sitemaps**: Generates sitemaps to help search engines better crawl and index our website.
 - **Privacy Policy Generator**: Used to create a compliant privacy policy that meets international standards.
 - **Wortracker**: Assists in keyword volume and competition research to optimize our SEO strategies.
 - **Chat-GPT**: Employs advanced AI for content creation, enhancing our blog posts, product descriptions, and marketing copy.
 
-## Work Environments and Hosting
+### Work Environments and Hosting
 
 - **AWS (Amazon Web Services)**: Hosts static and media files using S3 storage, ensuring fast and secure access to our digital assets.
 - **Figma**: Used for creating wireframes and designing the user interface, providing a blueprint for the website’s visual and functional elements.
@@ -381,7 +392,6 @@ This section categorizes the major dependencies of the project to provide a clea
 ### Unfixed Bugs
 
 ## Deployment and Configuration
-
 ### Deployment on Heroku
 This project is deployed on Heroku, utilizing the following steps and tools:
 
@@ -475,33 +485,67 @@ Downloading a repository as a ZIP file is useful for obtaining a snapshot of the
 
 Each method serves different purposes—forking for personal modifications without affecting the original, cloning for direct contributions back to the original repository, and downloading for quick access or testing without version control.
 
+## Credits
 
-Hero image : https://www.pexels.com/de-de/foto/mann-halt-braunes-seil-3253501/
-Pine Ridge https://www.pexels.com/de-de/foto/weisser-schneeberg-nahe-grasfeld-733848/
-Yosemite National Park https://www.pexels.com/de-de/foto/wald-in-der-nahe-von-gewassern-533881/
-Blue Horizon Resort! https://www.pexels.com/de-de/foto/zwei-leute-die-einen-jet-ski-fahren-1430676/
-AquaVista Resort https://www.pexels.com/de-de/foto/buckelwale-unter-wasser-4666753/
- Kitesurfing https://www.pexels.com/de-de/foto/man-kite-surfen-1604869/
- Wildwood heaven https://www.pexels.com/de-de/foto/landschaft-natur-sonnig-ferien-4268158/
- Aurora https://www.pexels.com/de-de/foto/person-auf-weissem-schneefeld-1693085/
- Basketball https://www.pexels.com/de-de/foto/mann-der-sprungschuss-tut-1905009/
- Rock climbing https://www.pexels.com/de-de/foto/person-klettern-3077882/
- Judo https://www.pexels.com/de-de/foto/stehen-sportler-kampfer-meister-6253307/
- Tennis https://www.pexels.com/de-de/foto/tennisball-auf-tennisschlager-auf-dem-boden-209977/
- Table tennis https://www.pexels.com/de-de/foto/selektives-fokusfoto-von-tischtennisball-und-tischtennisschlager-976873/
- mma https://www.pexels.com/de-de/foto/sport-stehen-ausbildung-boxen-8612504/
- bootcamp https://www.pexels.com/de-de/foto/manner-sport-fahrrader-gruppe-8766378/
- wellness https://www.pexels.com/de-de/foto/frau-meditiert-mit-kerzen-und-weihrauch-3822864/
- health and fitness https://www.pexels.com/de-de/foto/foto-des-gemusesalats-in-schalen-1640770/
- survival package https://www.pexels.com/de-de/foto/mann-der-lagerfeuer-am-wald-pruft-207324/
- deals https://www.pexels.com/de-de/foto/graustufenfotografie-von-verschiedenen-kleidungsstucken-auf-regalregal-1884581/
- Diving https://www.pexels.com/de-de/foto/mann-der-kurzes-tauchen-der-weissen-und-roten-tafel-von-der-felsformation-tragt-1378406/
- soccer https://www.pexels.com/de-de/foto/himmel-sonnenuntergang-feld-sonnenaufgang-114296/
- Tennis try out https://www.pexels.com/de-de/foto/gesund-mann-draussen-verwischen-5067813/
- healthy food https://www.pexels.com/de-de/foto/vielzahl-von-gerichten-1640771/
- summit& Surf https://www.pexels.com/de-de/foto/meer-natur-felsen-kuste-19074622/
-skate trip https://www.pexels.com/de-de/foto/mann-der-einen-skateboard-trick-tut-1769553/
+### References/Documentation/Tutorials
+- **Official Django Documentation**: Extensively used for general development.
+- **Boutique Ado CI Walkthrough**: Foundation for the project structure.
 
- banner für topnav https://www.pexels.com/de-de/foto/braune-holzplatte-139309/
- newsletter https://www.pexels.com/de-de/foto/foto-der-person-die-auf-schotterstrasse-lauft-1821694/
- sumit&surf https://www.pexels.com/de-de/foto/person-surfen-416676/
+### Basket Features
+- **Django Docs**: Guidance on creating custom template tags.
+- **FeelFreeToCode tutorial**: Syntax for displaying items in the shopping basket.
+
+### User Interaction
+- **Django Message Framework**: Implemented for live feedback messages (toasts).
+- **Bootstrap 5**: Used for rendering alert pop-up frames.
+
+### Custom Pages
+- **Cryce Truly tutorial**: Followed for implementing custom error pages in Django.
+
+### Forum Functionality
+- **StackOverflow**: Solutions for issues with form submissions in forum/views.py.
+
+### Testing and Inspiration
+- **ChatGPT**: Used for copywriting and template inspiration.
+- **BookHeaven**: Guidance on README and testing templates.
+
+### Media & Look and Feel
+- **Pexels**: All images used are sourced from here with specific credits for hero and product images listed below.
+
+### Product Images
+- [Hero Image](https://www.pexels.com/de-de/foto/mann-halt-braunes-seil-3253501/)
+- [Pine Ridge](https://www.pexels.com/de-de/foto/weisser-schneeberg-nahe-grasfeld-733848/)
+- [Yosemite National Park](https://www.pexels.com/de-de/foto/wald-in-der-nahe-von-gewassern-533881/)
+- [Blue Horizon Resort](https://www.pexels.com/de-de/foto/zwei-leute-die-einen-jet-ski-fahren-1430676/)
+- [AquaVista Resort](https://www.pexels.com/de-de/foto/buckelwale-unter-wasser-4666753/)
+- [Kitesurfing](https://www.pexels.com/de-de/foto/man-kite-surfen-1604869/)
+- [Wildwood Heaven](https://www.pexels.com/de-de/foto/landschaft-natur-sonnig-ferien-4268158/)
+- [Aurora](https://www.pexels.com/de-de/foto/person-auf-weissem-schneefeld-1693085/)
+- [Basketball](https://www.pexels.com/de-de/foto/mann-der-sprungschuss-tut-1905009/)
+- [Rock Climbing](https://www.pexels.com/de-de/foto/person-klettern-3077882/)
+- [Judo](https://www.pexels.com/de-de/foto/stehen-sportler-kampfer-meister-6253307/)
+- [Tennis](https://www.pexels.com/de-de/foto/tennisball-auf-tennisschlager-auf-dem-boden-209977/)
+- [Table Tennis](https://www.pexels.com/de-de/foto/selektives-fokusfoto-von-tischtennisball-und-tischtennisschlager-976873/)
+- [MMA](https://www.pexels.com/de-de/foto/sport-stehen-ausbildung-boxen-8612504/)
+- [Bootcamp](https://www.pexels.com/de-de/foto/manner-sport-fahrrader-gruppe-8766378/)
+- [Wellness](https://www.pexels.com/de-de/foto/frau-meditiert-mit-kerzen-und-weihrauch-3822864/)
+- [Health and Fitness](https://www.pexels.com/de-de/foto/foto-des-gemusesalats-in-schalen-1640770/)
+- [Survival Package](https://www.pexels.com/de-de/foto/mann-der-lagerfeuer-am-wald-pruft-207324/)
+- [Deals](https://www.pexels.com/de-de/foto/graustufenfotografie-von-verschiedenen-kleidungsstucken-auf-regalregal-1884581/)
+- [Diving](https://www.pexels.com/de-de/foto/mann-der-kurzes-tauchen-der-weissen-und-roten-tafel-von-der-felsformation-tragt-1378406/)
+- [Soccer](https://www.pexels.com/de-de/foto/himmel-sonnenuntergang-feld-sonnenaufgang-114296/)
+- [Tennis Try Out](https://www.pexels.com/de-de/foto/gesund-mann-draussen-verwischen-5067813/)
+- [Healthy Food](https://www.pexels.com/de-de/foto/vielzahl-von-gerichten-1640771/)
+- [Summit & Surf](https://www.pexels.com/de-de/foto/meer-natur-felsen-kuste-19074622/)
+- [Skate Trip](https://www.pexels.com/de-de/foto/mann-der-einen-skateboard-trick-tut-1769553/)
+
+### Additional Resources
+- **Local Stripe Webhook Testing**
+- **Bootstrap Templates**
+- **Basic Automated Tests**
+- **Client Testing**
+- **Custom Template Tags**
+
+### Fonts and Icons
+- **Google Fonts**: Specifically the 'Lato' font designed by Łukasz Dziedzic.
+- **Iconify**: Source for all icons used including animated loading spinner.
