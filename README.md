@@ -1,9 +1,9 @@
-![bike](https://github.com/FabiMe/Fitness-Forge/assets/136444209/c00430fc-8a23-44f9-9743-89bb8072c970)
-
 # Fitness Forge
 Developer: Fabian Meister
 
 Deployed Site: https://fitness-forge-a4f5eb7ec202.herokuapp.com/ 
+
+![bike](https://github.com/FabiMe/Fitness-Forge/assets/136444209/c00430fc-8a23-44f9-9743-89bb8072c970)
 
 This Django based fictional e-commerce application is the result of the last of five portfolio projects required for Code Institute.
 
@@ -45,14 +45,11 @@ Wireframes are simplified, rough sketches of the basic structure of the website.
 https://www.figma.com/file/QoQR6UBFHRPp7QnKICRWo0/Low-fi-Wireframe-Template-(Community)?type=design&node-id=576%3A1879&mode=dev&t=7Yd8G1LpaSzCgQu2-1
 
 * Home
-* Products Page
+![Home](https://github.com/FabiMe/Fit-Hub/assets/136444209/4c8a011c-b151-4f59-84c1-74ee7f940b28)
+* All Products Page
+![All Products Page](https://github.com/FabiMe/Fit-Hub/assets/136444209/428bf196-af4e-4f1a-a24d-a9d33b898796)
 * Product Details Page
-* Shopping Bag
-* Checkout
-* Order History
-* Account/Profile
-* Login/Register
-* FAQ
+![Product Details Page](https://github.com/FabiMe/Fit-Hub/assets/136444209/66080ed5-ecca-4d2e-81af-fc23eaa7662f)
 
 ### 5 Planes of UX
 - **Strategy Plane:** The project identified a clear need to create an e-commerce platform specifically for fitness enthusiasts. This insight guided the development process, ensuring the platform would attract and meet the demands of its target demographic.
@@ -72,7 +69,7 @@ Typography involves a combination of Lato - the main font used - for readability
 
 Responsive design practices ensure usability across devices.
 
-## SEO and Marketing
+## SEO
 
 Initial Brainstorming of General Categories and short-termed and long-termed Keywords
 
@@ -98,7 +95,7 @@ Initial Brainstorming of General Categories and short-termed and long-termed Key
 
 
 ### Research of initial keyword collection in Google Search
-- After an extensive research using Google Search’s built-in functionalities such as autocomplete proposals, the “People also ask” and the “Related Searches” section, the following keywords have been identified to be most relevant and promising in terms of SEO:
+After an extensive research using Google Search’s built-in functionalities such as autocomplete proposals, the “People also ask” and the “Related Searches” section, the following keywords have been identified to be most relevant and promising in terms of SEO:
 
 | Sport                  | Adventures               | Health                   |
 |------------------------|--------------------------|--------------------------|
@@ -111,7 +108,7 @@ Initial Brainstorming of General Categories and short-termed and long-termed Key
 |                        | Ride the Wind            |                          |
 
 ### Determination of keyword volume and competition
-- Using www.wordtracker.com keyword volume and competition have been determined for some of the refined keyword ideas:
+Using www.wordtracker.com keyword volume and competition have been determined for some of the refined keyword ideas:
 ![image-20240504-181130](https://github.com/FabiMe/Fitness-Forge/assets/136444209/005e9cff-5a88-4968-a4f0-d6896d8356ba)
 ![image-20240504-181632](https://github.com/FabiMe/Fitness-Forge/assets/136444209/5e18e49b-7442-4cd1-9bad-d5474e965759)
 ![image-20240504-181849](https://github.com/FabiMe/Fitness-Forge/assets/136444209/89dfef34-2aa3-459a-9967-536c710fa2db)
@@ -138,57 +135,182 @@ Effective Search Engine Optimization (SEO) is critical for improving visibility 
 
 Implementing these SEO practices is part of our ongoing effort to enhance the accessibility and visibility of our website, ensuring that our content reaches its target audience efficiently.
 
-## Marketing Strategy Research
+## Marketing
 
-### Who are my users?
-- **Age Range:** 20-50 years old
-- **Environment:** Urban
-- **Interests:** Outdoor activities, thrill-seeking
-- **Lifestyle:** Focus on health and fitness
+### Research of similar businesses
 
-### Where can I find my users online?
-- **Platforms:** Facebook, Instagram, TikTok
-  - These platforms support individual content creation and are popular among our target demographic.
+Main inspiration for the “Forge Fitness” business idea was Jochen Schweizer.
 
-### User Needs and Business Goals
-- **Objective:** Provide a seamless shopping experience and easy registration for fitness events.
-- **Focus:** Support health improvement, physical fitness, and skill elevation.
-- **Functionality:** Platform for planning and inspiration for fitness adventures and adventure-related gifts.
+### Marketing Strategies
 
-### Marketing Strategy to Meet Goals
-- **Online Channels:** Prioritize to increase website traffic and enhance user engagement.
+In order to obtain reasonable and effective marketing strategies, the following questions have been answered:
 
-### Sales and Discounts
-- **Offer:** "Mystery Boxes" as a reward for larger orders with four possible tiers.
-- **Notification Method:** Users are currently notified via the FAQs and potentially through Facebook posts.
+#### Who are my users?
+- young to middle aged (aged 20-50)
+- urban
+- outdoor-savvy
+- thrill-seekers
+- with a focus on a healthy lifestyle.
 
-### Budget for Advertising
-- **Strategy:** Initially focus on free or low-cost options like a strong social media presence.
-- **Tools:** MailChimp for newsletters, free up to 500 users, to inform about new events and adventures.
+#### Which online platforms including social media platforms would I find lots of my users on?
+- My users can be found on platforms for individual content creation such as Facebook, Instagram and TikTok..
 
-### Newsletter Sign-up
-- **Method:** Available post-checkout to increase long-term subscriber numbers.
-- **Efficiency:** Aim to use the free service limit effectively by capturing only interested users.
+#### What do my users need? What are the goals of my business? Which marketing strategies would offer the best ways to meet those goals?
+The objective of my business is to provide a seamless shopping experience for fitness enthusiasts and facilitate an easy way to register for fitness events. A main focus should be to support users' interests in maintaining and improving their general health and physical fitness, as well as elevating their skills. A platform where users can plan future fitness adventures for themselves and others will serve as an inspiration for new adventures, as well as a source for adventure-related gifts.
 
-### Additional Marketing Tools
-- **Facebook:** A dedicated business page for promoting products and establishing customer interaction.
+→ The marketing strategy will prioritize online channels to increase website traffic and enhance user engagement.
+
+#### Would your business run sales or offer discounts? How do you think your users would most like to hear about these offers?
+My users will receive “Mystery Boxes” as an reward for larger orders. There will be four possible “Mystery Box Tiers” depending on the volume of the order. At the moment users are notified in the FAQs. For a paid business it would be a valid option to inform users via posts on the Business' Facebook Page.
+
+#### Would your business run sales or offer discounts? How do you think your users would most like to hear about these offers?
+As for most businesses, free marketing options such as building a strong presence on social media platforms to connect with the target user group will be crucial in the beginning.
+
+Complementing users can sign up for an optional newsletter in order to be informed about new events and adventures. MailChimp provides this functionality for free for up to 500 users and is therefore a suitable tool at an early stage of business development. The sign-up form is presented to customers after a successful check-out in order to increase the number of long-term subscribers. Like this, only users that retained the initial interest in the website's content will be on the mailing list, using the 500 free users most efficiently.
+
+Additionally a dedicated business page on Facebook can be beneficial for promoting products and establishing customer interaction.
 
 ![image-20240505-044136](https://github.com/FabiMe/Fitness-Forge/assets/136444209/8c66c9fe-08cd-499f-8320-a5f1dbff74f0)
 
+## Existing Features
 
-### Conclusion
-Forge Fitness is committed to providing valuable experiences and products to fitness enthusiasts, leveraging effective marketing strategies to connect with and expand our user base.
+### Global and Home
 
+#### Navigation
+* Responsive Navigation Bar
+* Site logo as default home link
+* Left side focuses on search
+* Middle section with Categor drop-downs
+* Right side focuses on account/shopping bag
 
-## Features
-### Existing Features
+![Navigation Header](https://github.com/FabiMe/Fit-Hub/assets/136444209/0949b9f4-0ffe-4553-aff3-eb94561f37c5)
 
+#### Footer
+* Footer containing social media links and copyright
+* Provides link to privacy policy
+* Access to FAQs
 
-### Future Features
+![Footer](https://github.com/FabiMe/Fit-Hub/assets/136444209/267cb576-194a-4c90-b2ad-b847e3a99e81)
+
+#### Home Page
+* Home page with banner image
+* All Products button ("Give it a try")
+
+![Home Page](https://github.com/FabiMe/Fit-Hub/assets/136444209/8a1391d7-4e8d-4d16-a219-fc2b85c26bf8)
+
+#### Search Bar
+* Search by category, title, and description
+
+![Search Bar](https://github.com/FabiMe/Fit-Hub/assets/136444209/2883340e-becd-4879-a8c0-535066bbc92f)
+
+#### Privacy Policy
+* Link contained in footer
+* Generated by external technology
+* GDPR compliant
+* Excerpt only
+
+![Privacy Policy](https://github.com/FabiMe/Fit-Hub/assets/136444209/26fc893a-9c85-4ece-91b7-aa46fb16bc52)
+
+#### 404 Error page
+* Indicate wrong request
+* Redirect user to home page
+
+#### User feedback
+* Notification messages
+* For CRUD operations
+
+![Alert Message](https://github.com/FabiMe/Fit-Hub/assets/136444209/f6742496-443f-4328-8930-f41bd11948f5)
+![Success Message](https://github.com/FabiMe/Fit-Hub/assets/136444209/12531f85-2a55-4336-b314-99ee0dcf8347)
+
+### User Authentication
+
+#### Sign Up
+* Input form to allow account creation
+* Sign in link for existing users at the top
+* Followed by confirmation mail including confirmation link and redirect to home page
+
+![Sign Up](https://github.com/FabiMe/Fit-Hub/assets/136444209/e9a7d51a-115d-43af-83e7-b799706eb056)
+
+#### Sign In / Login
+* Input form to allow existing users to access account
+* Remember Me checkbox to retain sesssion
+* Forgot Password Option at the bottom
+* Sign up link for non-registered users at the top
+
+![Sign In](https://github.com/FabiMe/Fit-Hub/assets/136444209/8633edf5-3283-497d-b31e-f3d5184010c9)
+
+#### Logout
+* Secure Logout
+
+#### Reset Password
+* Used to request a password reset link via email
+
+![Reset Password](https://github.com/FabiMe/Fit-Hub/assets/136444209/f983ef2c-ebd2-45f5-ba32-c87071ce8b42)
+
+### Products
+
+#### All Products Page
+* Product card previews including basic description, product picture, price, category and rating
+* Refineable via sorting system based on categories, price, name, and rating
+
+![All Products](https://github.com/FabiMe/Fit-Hub/assets/136444209/6da6e9d1-1bce-4407-b3b8-1f6b1698b37a)
+
+#### Products Page - Category
+* Products listed by selected category
+* Refineable via sorting system based on price, name, and rating
+
+![All Products - Category](https://github.com/FabiMe/Fit-Hub/assets/136444209/658f949c-e0f4-4ff8-ae1b-2b9fcf08ccaa)
+
+#### Product Details Page
+* Product detail view including name and detailed description
+* Including quantity selection
+* Attendee customization option
+* Add to bag button
+* Add to wishlist button for registered users
+
+![Product Details Page](https://github.com/FabiMe/Fit-Hub/assets/136444209/fcd27c9b-779f-4ec5-b3bf-f580cc30450d)
+
+### Shopping Bag
+
+#### Shopping Bag Icon
+* Displaying shopping bag total
+
+![Shopping Bag Icon](https://github.com/FabiMe/Fit-Hub/assets/136444209/6217af66-6afa-4d3c-98d7-d9bcb141a9b2)
+
+#### Shopping Bag Success Message
+* Displaying selected products and shopping bag total
+* Link to secure checkout
+
+![Shopping Bag Pop-Up](https://github.com/FabiMe/Fit-Hub/assets/136444209/abafe29c-7fa9-4552-80c7-2b973f2a1651)
+
+#### Shopping Bag Table View
+* Tabular view displaying selected products and shopping bag total
+* Remove product option for each product
+* Including product quantity, subtotal, attendee details
+* Keep shopping button
+* Secure checkout button
+
+![Shopping Bag Table View](https://github.com/FabiMe/Fit-Hub/assets/136444209/ea12956b-40a7-4dec-8c32-2db52b7ffccf)
+
+### Checkout
+
+#### Checkout Page
+* Checkout form providing sections for customer details, delivery address, payment deatils and order summary
+* Optional checkbox for different billing address
+* Adjust Bag button and Complete order button at the bottom
+
+![Checkout](https://github.com/FabiMe/Fit-Hub/assets/136444209/1da97f07-9841-4daa-a3ed-f3e802c93e8f)
+
+#### Checkout Success Page / Order Confirmation Page
+
+![Ceckout Success](https://github.com/FabiMe/Fit-Hub/assets/136444209/a01a675f-4ad2-4368-bd29-d4d8d68c3fc8)
+
+## Future Features
 - **Virtual Try-On:** Integrate AR technology to allow users to visualize products.
 - **Mobile App:** Develop a mobile app to enhance access and push notifications.
 
 ## Database Design
+
 ### Database Model
 
 ![fitness_forge_models (1)](https://github.com/FabiMe/Fitness-Forge/assets/136444209/8fe31ed1-c421-4e26-b61f-7b4939f8ba3d)
@@ -377,6 +499,7 @@ This section categorizes the major dependencies of the project to provide a clea
 
 
 ## Testing
+
 ### Test Guide
 
 
@@ -466,6 +589,7 @@ Despite various configurations and settings adjustments, the issue persists.
 Given the persistent network error and the cloud development environment (Gitpod), the issue likely lies in network restrictions or SMTP traffic being blocked by the hosting environment. Gitpod might have strict network policies that prevent SMTP connections to external servers like Gmail.
 
 ## Deployment and Configuration
+
 ### Deployment on Heroku
 This project is deployed on Heroku, utilizing the following steps and tools:
 
@@ -565,7 +689,7 @@ Each method serves different purposes—forking for personal modifications witho
 - **Official Django Documentation**: Extensively used for general development.
 - **Boutique Ado CI Walkthrough**: Foundation for the project structure.
 
-### Basket Features
+### Shopping Bag Features
 - **Django Docs**: Guidance on creating custom template tags.
 - **FeelFreeToCode tutorial**: Syntax for displaying items in the shopping basket.
 
@@ -575,9 +699,6 @@ Each method serves different purposes—forking for personal modifications witho
 
 ### Custom Pages
 - **Cryce Truly tutorial**: Followed for implementing custom error pages in Django.
-
-### Forum Functionality
-- **StackOverflow**: Solutions for issues with form submissions in forum/views.py.
 
 ### Testing and Inspiration
 - **ChatGPT**: Used for copywriting and template inspiration.
@@ -622,4 +743,4 @@ Each method serves different purposes—forking for personal modifications witho
 
 ### Fonts and Icons
 - **Google Fonts**: Specifically the 'Lato' font designed by Łukasz Dziedzic.
-- **Iconify**: Source for all icons used including animated loading spinner.
+- **Favicon**: Source for all icons.
