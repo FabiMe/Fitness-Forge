@@ -1,4 +1,11 @@
 # Fitness Forge
+Developer: Fabian Meister
+
+Deployed Site: https://fitness-forge-a4f5eb7ec202.herokuapp.com/ 
+
+This Django based fictional e-commerce application is the result of the last of five portfolio projects required for Code Institute.
+
+Fitness-Forge is an online store dedicated to adventure seekers and fitness enthusiasts. Offering a unique selection of adventures, fitness try-outs, and tournaments, Fitness-Forge sells these experiences as vouchers, perfect for gifting or personal use. A standout feature is the 'Mystery Box,' which evaluates the total value of your purchase and adds complimentary mystery boxes to your order, enhancing the excitement and value. The website includes a user-friendly comment section on each product and a comprehensive FAQ section to assist shoppers. Registered users can log in to save their data, manage orders, access a personalized wishlist, and subscribe to a newsletter for the latest updates and offers. Fitness-Forge is designed to cater to both the seasoned athlete and the casual adventurer, providing an engaging and interactive shopping experience.
 
 ## Table of Contents
 - [UI/UX](#uiux)
@@ -39,30 +46,128 @@
   - [Content/Data](#contentdata)
 
 ## UI/UX
-### Agile
-The project follows Agile SCRUM methodology. Regular sprint planning, daily stand-ups, sprint reviews, and retrospectives were conducted. Each sprint lasted two weeks, focusing on delivering a potentially shippable product increment. Trello boards were utilized to manage backlogs and track sprint progress.
+### Agile Methodology - User Stories
+The realization of this project has been accomplished with the use of agile methodology. In order to visualize user stories and tasks as well as overall project progress, GitHub Projects has been used. GitHub Projects sees itself as “an adaptable, flexible tool for planning and tracking work on GitHub”.
+
+The user stories were created including a speaking title, acceptance criteria and required tasks. They were also prioritized in order to give a visual indication on which user stories to focus on first, with P0 being a “Must Have”, P1 being a “Should Have” and P2 being a “Nice to Have”.
+
+During the project the most commonly used views have been the “Backlog”, the “Priority board” and “My items”. Those have been adjusted to suit the need of a clear visibility of tasks and a good overview on the overall project progress. All others template views have been removed.
+
+#### Backlog View
+![image-20240504-152337](https://github.com/FabiMe/Fitness-Forge/assets/136444209/99a0196b-fb6f-458a-a0b8-7bdf4d7a7533)
+
+#### Priority board
+![image-20240504-152704](https://github.com/FabiMe/Fitness-Forge/assets/136444209/a9dc86c2-eee2-4619-b8e4-8ec3bf906411)
+
+#### My items View
+![image-20240504-152545](https://github.com/FabiMe/Fitness-Forge/assets/136444209/ce9f3d84-3dd4-427f-8ad7-6ec314088606)
+
+Generally speaking the realization of the project was a continuous process of planning, prioritizing implementing and testing functionalities covered in the user stories.
+The GitHub Projects can be accessed via: https://github.com/users/FabiMe/projects/6 
 
 ### Wireframes
+Wireframes are simplified, rough sketches of the basic structure of the website. Wireframes are created in an early state and should but might not cover all crucial functionalities and structures of the websites pages.  To create the wireframes of this project Figma has been used: 
 https://www.figma.com/file/QoQR6UBFHRPp7QnKICRWo0/Low-fi-Wireframe-Template-(Community)?type=design&node-id=576%3A1879&mode=dev&t=7Yd8G1LpaSzCgQu2-1
 
+* Home
+* Products Page
+* Product Details Page
+* Shopping Bag
+* Checkout
+* Order History
+* Account/Profile
+* Login/Register
+* FAQ
+
 ### Site Goals
-Fitness Forge aims to:
-- Provide a seamless shopping experience for fitness adventures.
-- Enable users to register for fitness events seamlessly.
-- Offer a platform where users can access personalized fitness advice and community support.
+The Fitness Forge Website aims to provide a seamless shopping experience for fitness adventures. It enables users to register for fitness events easily and offers a platform where users can plan future fitness adventures for themselves and others. Fitness Forge aims to maintain and improve general health and physical fitness and to elevate the customers skills.
+
+Users can select adventures and events from the categories CATEGORIES
+
+Once the user selects a specific adventure or event, he/she can adjust the quantity and personalize each adventure's attendees individually. The possibility to purchase adventures for multiple attendees makes the website to an ideal place to search for gifts and presents.
 
 ### 5 Planes of UX
-- **Strategy Plane:** Identified the need for a e-commerce platform targeting fitness enthusiasts.
-- **Scope Plane:** Functional requirements included a dynamic product catalog, user accounts, an event registration system, and blog functionality.
-- **Structure Plane:** Information architecture was designed to ensure ease of navigation and logical flow of content.
-- **Skeleton Plane:** Interface elements were laid out to optimize the user experience and improve accessibility.
-- **Surface Plane:** High-fidelity prototypes were designed to finalize the look and feel, emphasizing mobile-first design.
+- **Strategy Plane:** The project identified a clear need to create an e-commerce platform specifically for fitness enthusiasts. This insight guided the development process, ensuring the platform would attract and meet the demands of its target demographic.
+- **Scope Plane:** The project’s functional requirements were clearly defined to include a dynamic product catalog that allows for regular updates and additions, comprehensive user account functionalities, a robust event registration system to handle various fitness activities, and interactive comment features enabling community engagement.
+- **Structure Plane:** The design of the information architecture was a critical step, carefully planned to provide intuitive navigation and a logical flow of information. This framework supports users in finding and interacting with the content they need without unnecessary complexity or confusion.
+- **Skeleton Plane:**  In designing the interface, attention was paid to the arrangement of interface elements to optimize the overall user experience. This included thoughtful placement of navigation bars, product listings, and interactive elements to ensure high usability and easy access for all users, particularly considering diverse accessibility needs.
+- **Surface Plane:**  To finalize the platform's design, high-fidelity prototypes were crafted, focusing on a sleek, user-friendly interface that appeals to the modern consumer. These prototypes were instrumental in refining both the visual appeal and the functional layout, with a particular emphasis on ensuring a responsive, mobile-first design that performs well across various devices and screen sizes.
 
 ### Visual Design Choices
-The UI uses a monochromatic theme with vibrant accents to invoke energy and action, suitable for a fitness brand. Typography involves a combination of Lato for readability and bold, motivational call-to-actions. Responsive design practices ensure usability across devices.
+Based on the nature of the products and the target group, the overall design and the color scheme aim to reflect a modern and clean approach. The imposing, high quality product images are used to attract the target audience over visual input rather than an information overload.
+
+The color scheme uses a monochromatic theme (different shades of grey) with vibrant accents (green, light blue) to invoke energy and action. It relates to the “outdoor nature” of the product and the target group. For action components, green, blue and light blue accents pick up on a modern approach and additionally attract a young and active target group.
+
+The UI uses a monochromatic theme with vibrant accents to invoke energy and action, suitable for a fitness brand.Responsive design practices ensure usability across devices.
+
+Typography involves a combination of Lato - the main font used - for readability and bold, motivational call-to-actions and thus supports the idea of a minimalistic, clean look and feel.
+
+Responsive design practices ensure usability across devices.
 
 ### SEO and Marketing
-A comprehensive SEO strategy focusing on high-traffic keywords related to fitness products was implemented. Google AdWords and Facebook marketing campaigns were initiated to drive traffic and conversion. A monthly newsletter provides value through fitness tips and product updates to subscribed users.
+
+Initial Brainstorming of General Categories and short-termed and long-termed Keywords
+
+| Sport                  | Adventures               | Health                |
+|------------------------|--------------------------|-----------------------|
+| Special sports         | sport centric            | Food                  |
+| Tennis                 | outdoor adventure        | Recipe                |
+| Judo                   | Survival adventure       | Food and health classes |
+| Martial Arts Experience| Skateboard trip          | Fitness retreat       |
+| lace up your sneakers  | push your limits         | Fitness bootcamp      |
+| Table Tennis           | Embark on a journey      | Workshop              |
+| Amateur Tournaments    | rush of adrenaline       | Thrills, Skills & Nature |
+| Rock Climbing          | breathtaking             |                       |
+| Dive into Excellence   | unforgettable adventure  |                       |
+| Try-out                | Hike the Majestic Trails |                       |
+| Climbing               | Panoramic Overlooks      |                       |
+| Basketball             | Fly and Stay Packages    |                       |
+| Soccer                 | water adventures         |                       |
+|                        | Ride the wind            |                       |
+|                        | Elevate Your Performance |                       |
+|                        | Discover sport           |                       |
+|                        | Forge your path with us  |                       |
+
+## Research of initial keyword collection in Google Search
+- After an extensive research using Google Search’s built-in functionalities such as autocomplete proposals, the “People also ask” and the “Related Searches” section, the following keywords have been identified to be most relevant and promising in terms of SEO:
+
+| Sport                  | Adventures               | Health                   |
+|------------------------|--------------------------|--------------------------|
+| Boost your Skills      | Outdoor Adventure        | Food and Health Classes  |
+| Martial Arts Experience| Survival Adventure       | Fitness Retreat          |
+| Amateur Tournaments    | Breathtaking             | Fitness Bootcamp         |
+| Rock Climbing          | Unforgettable Adventure  | Thrills, Skills & Nature |
+| Discover Sport         | Panoramic Overlooks      |                          |
+| Elevate your Performance| Adrenaline Rush         |                          |
+|                        | Ride the Wind            |                          |
+
+## Determination of keyword volume and competition
+- Using www.wordtracker.com keyword volume and competition have been determined for some of the refined keyword ideas:
+![image-20240504-181130](https://github.com/FabiMe/Fitness-Forge/assets/136444209/005e9cff-5a88-4968-a4f0-d6896d8356ba)
+![image-20240504-181632](https://github.com/FabiMe/Fitness-Forge/assets/136444209/5e18e49b-7442-4cd1-9bad-d5474e965759)
+![image-20240504-181849](https://github.com/FabiMe/Fitness-Forge/assets/136444209/89dfef34-2aa3-459a-9967-536c710fa2db)
+![image-20240504-181456](https://github.com/FabiMe/Fitness-Forge/assets/136444209/1f547870-f001-4d98-b1a3-93eca333b2fc)
+
+## SEO Implementations in HTML
+
+Effective Search Engine Optimization (SEO) is critical for improving visibility and ensuring that your content reaches its intended audience. Below are the key SEO strategies implemented within the HTML structure of the website.
+
+### Use of Semantic HTML Elements
+- On both the homepage and product detail pages, we've strategically placed relevant keywords within headings and emphasized them using `<strong>` or `<em>` tags, carefully avoiding the practice of "keyword-stuffing."
+
+### Images
+- Image SEO has been enhanced by enriching the `alt` attributes of `<img>` tags with relevant keywords, which are crucial for search engines. Additionally, image file names have been renamed to include these keywords to further optimize searchability.
+
+### Descriptive Meta Tags
+- Within the `<head>` section of `base.html`, descriptive meta tags including `<meta name="description">` and `<meta name="keywords">` have been added. These tags provide search engines with a concise summary of the page's content and associated keywords.
+
+### XML Sitemap
+- An XML sitemap has been created to list important URLs within the website, aiding search engines in understanding the site's structure. This sitemap ensures that all relevant pages are crawled and content is easily discovered. It was generated using an online sitemap generator and is located at the root level of the project.
+
+### Robots.txt
+- The `robots.txt` file at the root of the project directory plays a vital role in managing search engine access. It allows search engines to crawl the website freely while specifying directories or files that should not be indexed. This not only helps in managing crawl traffic but also signals the website's quality, potentially improving search rankings.
+
+Implementing these SEO practices is part of our ongoing effort to enhance the accessibility and visibility of our website, ensuring that our content reaches its target audience efficiently.
 
 ## Features
 ### Existing Features
@@ -77,41 +182,168 @@ A comprehensive SEO strategy focusing on high-traffic keywords related to fitnes
 
 ## Database Design
 ### Database Model
-Uses Django's ORM with PostgreSQL. Models include:
-- `User`: Stores user profiles.
-- `Product`: Stores product details.
-- `Order`: Manages sales transactions.
-- `Event`: For managing event details.
 
-### Custom Model
-`UserProfile` extends Django's built-in User model to include additional fields like user bio and fitness preferences.
+![fitness_forge_models (1)](https://github.com/FabiMe/Fitness-Forge/assets/136444209/8fe31ed1-c421-4e26-b61f-7b4939f8ba3d)
 
-### CRUD
-- **Create:** Users can create accounts, add products to their cart, and register for events.
-- **Read:** Users can browse products and read other users' reviews.
-- **Update:** Users can update their profiles and modify orders.
-- **Delete:** Admins can remove outdated products or user accounts.
+- to create a Automatically Generated ERD Model are following steps crucial.
+
+- Uses Django's ORM with PostgreSQL. Models include:
+![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/722508d2-8890-47cf-91c3-ca3d77275d05)
+
+- This will create the bellow files and directories.
+
+![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/1f2af177-121c-45f0-93da-7ca0dacf2b32)
+
+- Create a blog application
+
+![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/e4a67d91-5ef6-4cbd-b449-4a478b81a0bf)
+
+- install Django
+
+![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/6822922e-6758-40b7-a0c3-de2383178b84)
+
+- in blog/models.py 
+
+![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/9eced74b-9261-4679-a4c5-6da9f4775541)
+
+- in mysite/settings.py
+
+![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/1d81af87-8c66-4e4d-a954-0f7e83e071db)
+
+- Run the project and migrate the models
+
+![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/b61c960f-f4e6-49dd-ad18-d445d32b06e4)
+
+- install django-extensions 
+
+![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/28514a57-5779-4805-85df-042cbdd95753)
+
+- Setup the package
+
+![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/c575987d-5557-4187-ba43-c6a8c64a3920)
+
+- Generate ERD Model
+
+![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/fefc1cc8-80c8-4355-bb55-a4050780b991)
+
+
+## Custom Models
+
+This section describes the three custom models implemented in the platform, each designed to enhance user interactivity and provide essential features to both users and admins. The models are segmented into individual apps with their own URLs and views to maintain clarity and modularity.
+
+### 1. Comment Model
+
+- **Purpose:** Allows users to leave comments on product detail pages, fostering a community-driven environment where users can share opinions and feedback.
+- **Functionality:** Users can submit comments directly on a product’s detail page. Each comment is stored and displayed after submission, pending visibility settings or moderation if needed.
+
+### 2. FAQ Model
+
+- **Purpose:** Provides a section for frequently asked questions where users can seek answers and submit their own questions.
+- **Functionality:** Users can submit questions to the FAQ section. Submitted questions are not immediately visible; they require admin approval before being displayed publicly. This ensures that all information in the FAQ is accurate and relevant.
+
+### 3. Wishlist Model
+
+- **Purpose:** Enables users to add products to a wishlist, allowing them to save their favorite items for later purchase or review.
+- **Functionality:** Users can add products to their wishlist from the product details page. This wishlist is accessible via the user’s profile, where they can view, edit, or remove items as desired.
+
+### Architecture
+
+Each of these models is housed in its own dedicated app within the Django project structure, including separate `models.py`, `views.py`, and `urls.py` files. This design approach:
+
+- **Enhances Maintainability:** Isolating functionality into separate apps makes the codebase easier to manage and debug.
+- **Improves Scalability:** As the platform grows, each app can be scaled or modified independently without affecting others.
+- **Simplifies Testing:** Individual apps can be tested in isolation, ensuring that each component functions correctly before integration.
+
+By using this modular architecture, the platform ensures that it remains both flexible and robust, catering to the evolving needs of its users while maintaining a clear organizational structure.
+
+## CRUD Operations
+
+This section outlines the Create, Read, Update, and Delete (CRUD) capabilities for both regular users and administrators within the platform.
+
+### Create
+
+- **Users:**
+  - Can create accounts to personalize their experience.
+  - Can add products to their shopping cart.
+  - Can register for events to participate in various activities.
+
+- **Admins:**
+  - Have the ability to create new products to keep the catalogue up-to-date.
+
+### Read
+
+- **Users:**
+  - Can browse all available products.
+  - Can read comments from other users on products, gaining insights and feedback.
+
+- **Admins:**
+  - Can view all existing products, overseeing the complete range of offerings.
+
+### Update
+
+- **Users:**
+  - Can update their profile information to keep their personal data current.
+  - Can modify their orders, making changes to their purchases as needed.
+
+- **Admins:**
+  - Can update product details to reflect changes such as pricing adjustments, descriptions, or stock levels.
+
+### Delete
+
+- **Admins:**
+  - Can remove outdated products to maintain a fresh and relevant product line.
+  - Can delete FAQs that are no longer applicable or update them to reflect current information.
+  - Can remove inappropriate or obsolete user comments to maintain a positive and useful community discourse.
+
+Each of these operations supports the platform's functionality and enhances the user experience, ensuring both usability and administrative control.
 
 ## Technologies Used
-### Work Environments and Hosting
-Developed using PyCharm, deployed on Heroku with Amazon S3 for static and media files.
 
-### Python Libraries
-- `Django`: The web framework for building the website.
-- `Pillow`: For image processing in Django.
+This section categorizes the major dependencies of the project to provide a clear understanding of each component's role within the application.
 
-### Django Libraries
-- `django-allauth`: For authentication, registration, and account management.
-- `django-crispy-forms`: To render Django forms in Bootstrap layout.
+### Web Framework and Extensions
+- **Django==3.2.25** - The core web framework.
+- **django-extensions==3.2.3** - Custom extensions for Django.
+- **django-storages==1.14.2** - A collection of custom storage backends for Django.
+- **django-crispy-forms==1.14.0** - Controls the rendering behavior of Django forms.
+- **django-allauth==0.41.0** - Integrated set of Django applications for authentication.
+- **django-countries==7.6.1** - Provides a country field for models.
 
-### Payment processing
-Integrated with Stripe and PayPal for handling secure credit card transactions.
+### Database and Data Processing
+- **dj-database-url==0.5.0** - Utility to configure the Django database using a URL.
+- **psycopg2-binary==2.9.9** - PostgreSQL adapter for Python.
+- **sqlparse==0.4.4** - A non-validating SQL parser for Python.
 
-### Emails/Newsletter
-Configured Django to use SendGrid for transactional emails and newsletters through Mailchimp integration.
+### Authentication and Security
+- **oauthlib==3.2.2** - A generic, spec-compliant library for OAuth.
+- **python3-openid==3.2.0** - Python 3 library for OpenID.
+- **defusedxml==0.7.1** - XML library for preventing XML attacks.
 
-### SEO/Marketing
-Implemented with Google Analytics for traffic analysis and Yoast for on-page SEO optimization.
+### Network and HTTP Utilities
+- **gunicorn==22.0.0** - WSGI HTTP server for UNIX.
+- **requests==2.31.0** - Elegant and simple HTTP library for Python.
+- **requests-oauthlib==2.0.0** - OAuthlib authentication support for Requests.
+- **urllib3==2.2.1** - HTTP client for Python.
+- **idna==3.7** - Supports the Internationalized Domain Names in Applications (IDNA) protocol.
+
+### AWS and File Handling
+- **boto3==1.34.98** - Framework for AWS API interactions including S3 storage.
+- **botocore==1.34.98** - Low-level interface to a growing number of Amazon Web Services.
+- **s3transfer==0.10.1** - Amazon S3 Transfer Manager for Python.
+
+### Image and Data Visualization
+- **pillow==10.3.0** - The Python Imaging Library adds image processing capabilities.
+- **pydotplus==2.0.2** - Python interface to Graphviz's Dot language.
+
+### Utilities and Miscellaneous
+- **asgiref==3.8.1** - ASGI toolkit for Django.
+- **certifi==2024.2.2** - Required for SSL certificate validation.
+- **charset-normalizer==3.3.2** - Helps in character encoding normalization.
+- **packaging==24.0** - Core utilities for Python packages.
+- **python-dateutil==2.9.0.post0** - Provides powerful extensions to the datetime module.
+- **pytz==2024.1** - World timezone definitions for Python.
+- **stripe==9.2.0** - Library for Stripe API interactions.
+- **typing_extensions==4.11.0** - Backported and experimental type hints for Python.
 
 ## Testing
 ### Test Guide
