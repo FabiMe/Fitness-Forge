@@ -7,10 +7,10 @@ from wishlist.models import Wishlist
 from checkout.models import Order
 from django.contrib.auth.forms import UserCreationForm  
 from django.contrib.auth import login
-from django.urls import path
+from django.core.mail import send_mail
+import logging
 
-
-
+logger = logging.getLogger(__name__)
 
 def signup(request):
     if request.method == 'POST':
@@ -20,12 +20,23 @@ def signup(request):
             user = form.save()
             logger.debug("User created successfully: %s", user.username)
             login(request, user)
+            try:
+                send_mail(
+                    'Welcome to Fitness Forge',
+                    'Thank you for signing up.',
+                    DEFAULT_FROM_EMAIL,
+                    [user.email],
+                    fail_silently=False,
+                )
+                logger.info("Welcome email sent to %s", user.email)
+            except Exception as e:
+                logger.error("Error sending email: %s", e)
             return redirect('some_success_url')
         else:
             logger.debug("Form is not valid. Errors: %s", form.errors)
     else:
         form = UserCreationForm()
-    return render(request, '/workspace/Fitness-Forge/profiles/templates/profiles/profile.html')
+    return render(request, 'profiles/profile.html', {'form': form})
 
 
 @login_required
@@ -37,7 +48,6 @@ def profile(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Profile updated successfully')
-            # Redirect to the same page to prevent re-submission
             return redirect('profile')
         else:
             messages.error(

@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+if os.path.isfile('env.py'):
+    import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
-ALLOWED_HOSTS = ['fitness-forge-a4f5eb7ec202.herokuapp.com', '8000-fabime-fitnessforge-jz57gwpp952.ws-eu111.gitpod.io']
+ALLOWED_HOSTS = ['fitness-forge-a4f5eb7ec202.herokuapp.com', '8000-fabime-fitnessforge-ui9dng1z24z.ws-eu114.gitpod.io']
 
 
 # Application definition
@@ -219,6 +221,7 @@ STRIPE_CURRENCY = 'usd'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
+
 
 
 if 'DEVELOPMENT' in os.environ:
