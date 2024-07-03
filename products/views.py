@@ -9,13 +9,8 @@ from .forms import ProductForm
 from comments.forms import CommentForm
 
 
-# Create your views here.
-
-
 def all_products(request):
-    """A view to show all products,
-    including sorting and search queries, excluding mystery boxes"""
-    # Excludes mystery boxes from product listings
+    """A view to show all products, including sorting and search queries, excluding mystery boxes"""
     products = Product.objects.filter(is_mystery_box=False)
     query = None
     categories = None
@@ -58,6 +53,7 @@ def all_products(request):
         "search_term": query,
         "current_categories": categories,
         "current_sorting": current_sorting,
+        "meta_description": "Browse our collection of products, filter by categories, and find the perfect item for you.",
     }
 
     return render(request, "products/products.html", context)
@@ -66,7 +62,6 @@ def all_products(request):
 def product_detail(request, pk):
     """A view to show individual product details, and handle comments"""
     product = get_object_or_404(Product, pk=pk)
-    # Retrieve all comments related to the product
     comments = product.comments.all()
     new_comment = None
 
@@ -75,21 +70,21 @@ def product_detail(request, pk):
         if comment_form.is_valid():
             new_comment = comment_form.save(commit=False)
             new_comment.product = product
-            new_comment.user = request.user  # Assumes the user is logged in
+            new_comment.user = request.user
             new_comment.save()
             messages.success(request, "Your comment has been added.")
-            # Correctly redirects after form submission
             return redirect("product_detail", pk=pk)
         else:
             messages.error(request, "Error adding your comment. Please check the form.")
     else:
-        comment_form = CommentForm()  # Provide an empty form for GET request
+        comment_form = CommentForm()
 
     context = {
         "product": product,
         "comments": comments,
         "new_comment": new_comment,
         "comment_form": comment_form,
+        "meta_description": f"Discover more about {product.name} and read reviews from other customers.",
     }
 
     return render(request, "products/product_detail.html", context)
@@ -106,15 +101,13 @@ def add_product(request):
             return redirect(reverse("add_product"))
         else:
             messages.error(
-                request, "Failed to add product." "Please ensure the form is valid."
+                request, "Failed to add product. Please ensure the form is valid."
             )
     else:
         form = ProductForm()
 
     template = "products/add_product.html"
-    context = {
-        "form": form,
-    }
+    context = {"form": form, "meta_description": "Add a new product to the store."}
 
     return render(request, template, context)
 
@@ -145,6 +138,7 @@ def edit_product(request, product_id):
     context = {
         "form": form,
         "product": product,
+        "meta_description": f"Edit the details of {product.name}.",
     }
 
     return render(request, template, context)

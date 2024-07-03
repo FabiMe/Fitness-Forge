@@ -37,7 +37,11 @@ def signup(request):
             logger.debug("Form is not valid. Errors: %s", form.errors)
     else:
         form = UserCreationForm()
-    return render(request, "profiles/profile.html", {"form": form})
+    context = {
+        "form": form,
+        "meta_description": "Sign up for an account at Fitness Forge to start your fitness journey.",
+    }
+    return render(request, "profiles/signup.html", context)
 
 
 @login_required
@@ -64,6 +68,7 @@ def profile(request):
         "orders": orders,
         "wishlist_items": wishlist_items,
         "on_profile_page": True,
+        "meta_description": "View and update your profile, see your order history and wishlist items.",
     }
 
     return render(request, template, context)
@@ -84,6 +89,7 @@ def order_history(request, order_number):
     context = {
         "order": order,
         "from_profile": True,
+        "meta_description": f"Order details for order number {order_number}.",
     }
 
     return render(request, template, context)

@@ -12,7 +12,6 @@ from bag.contexts import bag_contents
 import stripe
 import json
 
-
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
@@ -52,9 +51,6 @@ def checkout(request):
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
 
-    # Print Stripe keys to debug
-    print("Stripe Public Key:", stripe_public_key)
-    print("Stripe Secret Key:", stripe_secret_key)
     if request.method == "POST":
         bag = request.session.get("bag", {})
         form_data = {
@@ -99,7 +95,6 @@ def checkout(request):
                 "There was an error with your form."
                 "Please double check your information.",
             )
-
     else:
         bag = request.session.get("bag", {})
         if not bag:
@@ -129,6 +124,7 @@ def checkout(request):
         "stripe_public_key": stripe_public_key,
         "client_secret": intent.client_secret,
         "bag_items": current_bag["bag_items"],
+        "meta_description": "Proceed to checkout and complete your purchase.",
     }
 
     return render(request, template, context)
@@ -167,5 +163,8 @@ def checkout_success(request, order_number):
         del request.session["bag"]
 
     template = "checkout/checkout_success.html"
-    context = {"order": order}
+    context = {
+        "order": order,
+        "meta_description": "Order successfully processed. View your order details.",
+    }
     return render(request, template, context)

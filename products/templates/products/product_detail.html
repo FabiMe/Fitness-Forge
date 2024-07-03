@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}{{ product.name }}{% endblock %}
+{% block meta_description %}{{ meta_description }}{% endblock %}
+
 {% block content %}
 <div class="overlay"></div>
     <div class="container-fluid">

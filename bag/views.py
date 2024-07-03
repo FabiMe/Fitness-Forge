@@ -12,6 +12,7 @@ from products.models import Product
 def view_bag(request):
     """A view that renders the bag contents page
     with items and pricing details"""
+    context["meta_description"] = "View the items in your bag and proceed to checkout."
     context = bag_contents(request)
     return render(request, "bag/bag.html", context)
 

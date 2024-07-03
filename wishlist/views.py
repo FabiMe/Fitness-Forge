@@ -22,10 +22,14 @@ def add_to_wishlist(request, product_id):
 @login_required
 def view_wishlist(request):
     wishlist_items = Wishlist.objects.filter(user_profile=request.user.profile)
+    context = {
+        "wishlist_items": wishlist_items,
+        "meta_description": "View your wishlist items and manage your favorites.",
+    }
     return render(
         request,
-        "/workspace/Fitness-Forge/wishlist/templates/wishlist/wishlist.html",
-        {"wishlist_items": wishlist_items},
+        "wishlist/wishlist.html",
+        context,
     )
 
 

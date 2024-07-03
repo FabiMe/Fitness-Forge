@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}Checkout{% endblock %}
+{% block meta_description %}{{ meta_description }}{% endblock %}
+
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}

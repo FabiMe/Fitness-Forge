@@ -94,6 +94,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "bag.contexts.bag_contents",
+                "fitness_forge.context_processors.meta_descriptions",
             ],
             "builtins": [
                 "crispy_forms.templatetags.crispy_forms_tags",

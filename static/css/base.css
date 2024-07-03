@@ -422,7 +422,6 @@ input[type="text"]:focus, textarea:focus {
 
 /* Style for the image container to handle various image sizes */
 .card-img-top {
-    margin-top: 100px;
     width: 100%; /* Full width of the card */
     height: 400px; /* Fixed height for all images */
     object-fit: cover; /* Covers the dimension, might crop the image */

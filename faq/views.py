@@ -10,11 +10,15 @@ def faq_list(request):
     query = request.GET.get("q")
     if query:
         faqs = FAQ.objects.filter(
-            Q(question__icontains=query) | Q(answer__icontains=query)
+            Q(question__icontains=query) | Q(answer__icontains(query))
         )
+        meta_description = "Search results for FAQs."
     else:
         faqs = FAQ.objects.exclude(answer="").order_by("-created_at")
-    return render(request, "faq/faq.html", {"faqs": faqs})
+        meta_description = "Frequently asked questions about our services and products."
+    return render(
+        request, "faq/faq.html", {"faqs": faqs, "meta_description": meta_description}
+    )
 
 
 @login_required
@@ -32,4 +36,5 @@ def add_faq(request):
             return redirect("faq_list")
     else:
         form = FAQForm()
-    return render(request, "faq/add_faq.html", {"form": form})
+    context = {"form": form, "meta_description": "Add a new FAQ to help our users."}
+    return render(request, "faq/add_faq.html", context)
