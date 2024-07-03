@@ -15,7 +15,9 @@ MYSTERY_BOX_TIERS = {
 
 def get_mystery_box_tier(total):
     for tier, details in sorted(
-        MYSTERY_BOX_TIERS.items(), key=lambda x: x[1]["threshold"], reverse=True
+        MYSTERY_BOX_TIERS.items(),
+        key=lambda x: x[1]["threshold"],
+        reverse=True,
     ):
         if total >= details["threshold"]:
             return details
@@ -54,7 +56,9 @@ def bag_contents(request):
 
     mystery_box_details = get_mystery_box_tier(total)
     if mystery_box_details:
-        mystery_box = get_object_or_404(Product, sku=mystery_box_details["sku"])
+        mystery_box = get_object_or_404(
+            Product, sku=mystery_box_details["sku"]
+        )
         bag_items.append(
             {
                 "product": mystery_box,

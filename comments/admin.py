@@ -27,7 +27,9 @@ class CommentAdmin(admin.ModelAdmin):
             "Date Information",
             {
                 "fields": ("created_at",),
-                "classes": ("collapse",),  # This will make the section collapsible
+                "classes": (
+                    "collapse",
+                ),  # This will make the section collapsible
             },
         ),
     )

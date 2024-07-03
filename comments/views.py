@@ -15,7 +15,9 @@ def delete_comment(request, comment_id):
         comment.delete()
         messages.success(request, "Comment deleted!")
     else:
-        messages.error(request, "You do not have permission to delete this comment.")
+        messages.error(
+            request, "You do not have permission to delete this comment."
+        )
 
     # Redirect to a success page, or back to comment page with a message
     return redirect("product_detail")

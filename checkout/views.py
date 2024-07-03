@@ -40,7 +40,9 @@ def cache_checkout_data(request):
             "Sorry, your payment cannot be processed right now. "
             "Please try again later.",
         )
-        return HttpResponse(content=str(e), content_type="text/plain", status=400)
+        return HttpResponse(
+            content=str(e), content_type="text/plain", status=400
+        )
 
 
 def get_numeric_id(combined_id):
@@ -88,7 +90,9 @@ def checkout(request):
                 order_line_item.save()
 
             request.session["save_info"] = "save-info" in request.POST
-            return redirect("checkout_success", order_number=order.order_number)
+            return redirect(
+                "checkout_success", order_number=order.order_number
+            )
         else:
             messages.error(
                 request,
@@ -98,7 +102,9 @@ def checkout(request):
     else:
         bag = request.session.get("bag", {})
         if not bag:
-            messages.error(request, "There's nothing in your bag at the moment.")
+            messages.error(
+                request, "There's nothing in your bag at the moment."
+            )
             return redirect(reverse("products"))
 
         current_bag = bag_contents(request)

@@ -7,5 +7,7 @@ class FAQForm(forms.ModelForm):
         model = FAQ
         fields = ["question"]
         widgets = {
-            "question": forms.Textarea(attrs={"class": "form-control", "rows": 3}),
+            "question": forms.Textarea(
+                attrs={"class": "form-control", "rows": 3}
+            ),
         }

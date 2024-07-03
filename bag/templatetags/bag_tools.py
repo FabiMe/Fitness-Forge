@@ -33,4 +33,6 @@ def friendly_name(value):
     Replaces underscores with spaces and capitalizes the first letter of
     each word.
     """
-    return " ".join(word.capitalize() for word in value.replace("_", " ").split())
+    return " ".join(
+        word.capitalize() for word in value.replace("_", " ").split()
+    )

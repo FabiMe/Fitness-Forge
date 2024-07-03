@@ -13,7 +13,9 @@ def set_default_user(apps, schema_editor):
 def apply_migration(apps, schema_editor):
     FAQ = apps.get_model("faq", "FAQ")
     db_alias = schema_editor.connection.alias
-    FAQ.objects.using(db_alias).all().update(created_at=datetime.datetime.now())
+    FAQ.objects.using(db_alias).all().update(
+        created_at=datetime.datetime.now()
+    )
 
 
 class Migration(migrations.Migration):

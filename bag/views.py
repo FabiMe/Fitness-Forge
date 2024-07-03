@@ -12,7 +12,9 @@ from products.models import Product
 def view_bag(request):
     """A view that renders the bag contents page
     with items and pricing details"""
-    context["meta_description"] = "View the items in your bag and proceed to checkout."
+    context["meta_description"] = (
+        "View the items in your bag and proceed to checkout."
+    )
     context = bag_contents(request)
     return render(request, "bag/bag.html", context)
 
@@ -114,7 +116,9 @@ def save_customization(request):
     voucher_type = request.POST.get("voucher_type", "").strip()
 
     if not all([item_id, first_name, last_name, voucher_type]):
-        return JsonResponse({"status": "failed", "error": "Incomplete data provided."})
+        return JsonResponse(
+            {"status": "failed", "error": "Incomplete data provided."}
+        )
 
     request.session[f"customization_{item_id}"] = {
         "first_name": first_name,

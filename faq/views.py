@@ -15,9 +15,13 @@ def faq_list(request):
         meta_description = "Search results for FAQs."
     else:
         faqs = FAQ.objects.exclude(answer="").order_by("-created_at")
-        meta_description = "Frequently asked questions about our services and products."
+        meta_description = (
+            "Frequently asked questions about our services and products."
+        )
     return render(
-        request, "faq/faq.html", {"faqs": faqs, "meta_description": meta_description}
+        request,
+        "faq/faq.html",
+        {"faqs": faqs, "meta_description": meta_description},
     )
 
 
@@ -36,5 +40,8 @@ def add_faq(request):
             return redirect("faq_list")
     else:
         form = FAQForm()
-    context = {"form": form, "meta_description": "Add a new FAQ to help our users."}
+    context = {
+        "form": form,
+        "meta_description": "Add a new FAQ to help our users.",
+    }
     return render(request, "faq/add_faq.html", context)

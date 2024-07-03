@@ -40,10 +40,14 @@ def all_products(request):
         if "q" in request.GET:
             query = request.GET["q"]
             if not query:
-                messages.error(request, "You didn't enter any search criteria!")
+                messages.error(
+                    request, "You didn't enter any search criteria!"
+                )
                 return redirect(reverse("products"))
 
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            queries = Q(name__icontains=query) | Q(
+                description__icontains=query
+            )
             products = products.filter(queries)
 
     current_sorting = f"{sort}_{direction}"
@@ -75,7 +79,9 @@ def product_detail(request, pk):
             messages.success(request, "Your comment has been added.")
             return redirect("product_detail", pk=pk)
         else:
-            messages.error(request, "Error adding your comment. Please check the form.")
+            messages.error(
+                request, "Error adding your comment. Please check the form."
+            )
     else:
         comment_form = CommentForm()
 
@@ -101,13 +107,17 @@ def add_product(request):
             return redirect(reverse("add_product"))
         else:
             messages.error(
-                request, "Failed to add product. Please ensure the form is valid."
+                request,
+                "Failed to add product. Please ensure the form is valid.",
             )
     else:
         form = ProductForm()
 
     template = "products/add_product.html"
-    context = {"form": form, "meta_description": "Add a new product to the store."}
+    context = {
+        "form": form,
+        "meta_description": "Add a new product to the store.",
+    }
 
     return render(request, template, context)
 
@@ -128,7 +138,8 @@ def edit_product(request, product_id):
             return redirect(reverse("product_detail", args=[product.id]))
         else:
             messages.error(
-                request, "Failed to update product. Please ensure the form is valid."
+                request,
+                "Failed to update product. Please ensure the form is valid.",
             )
     else:
         form = ProductForm(instance=product)

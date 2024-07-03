@@ -55,7 +55,9 @@ def profile(request):
             messages.success(request, "Profile updated successfully")
             return redirect("profile")
         else:
-            messages.error(request, "Update failed. Please ensure the form is valid.")
+            messages.error(
+                request, "Update failed. Please ensure the form is valid."
+            )
     else:
         form = UserProfileForm(instance=profile)
 
