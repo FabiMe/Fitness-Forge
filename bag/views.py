@@ -4,23 +4,16 @@ from django.shortcuts import get_object_or_404, redirect, render, reverse
 from django.views.decorators.http import require_POST
 
 from products.models import Product
-
 from .contexts import bag_contents, generate_custom_id
 
-
 def view_bag(request):
-    """A view that renders the bag contents page
-    with items and pricing details"""
-    context["meta_description"] = (
-        "View the items in your bag and proceed to checkout."
-    )
+    """A view that renders the bag contents page with items and pricing details"""
     context = bag_contents(request)
+    context["meta_description"] = "View the items in your bag and proceed to checkout."
     return render(request, "bag/bag.html", context)
-
 
 @require_POST
 def add_to_bag(request, item_id):
-    # Check if product exists, throw 404 if not
     get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get("quantity", 1))
     redirect_url = request.POST.get("redirect_url", "/products/")
@@ -48,7 +41,6 @@ def add_to_bag(request, item_id):
     request.session["bag"] = bag
     messages.success(request, "Product successfully added to your bag.")
     return redirect(redirect_url)
-
 
 def adjust_bag(request, item_id):
     product = get_object_or_404(Product, pk=item_id)
@@ -78,7 +70,6 @@ def adjust_bag(request, item_id):
     request.session["bag"] = bag
     return redirect(reverse("view_bag"))
 
-
 @require_POST
 def remove_from_bag(request, key):
     bag = request.session.get("bag", {})
@@ -105,7 +96,6 @@ def remove_from_bag(request, key):
             )
         else:
             return redirect(reverse("view_bag"))
-
 
 @require_POST
 def save_customization(request):
