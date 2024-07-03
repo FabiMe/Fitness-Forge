@@ -5,15 +5,16 @@ from .models import UserProfile
 from .forms import UserProfileForm
 from wishlist.models import Wishlist
 from checkout.models import Order
-from django.contrib.auth.forms import UserCreationForm  
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.core.mail import send_mail
 import logging
 
 logger = logging.getLogger(__name__)
 
+
 def signup(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = UserCreationForm(request.POST)
         logger.debug("Form submitted with data: %s", request.POST)
         if form.is_valid():
@@ -22,8 +23,8 @@ def signup(request):
             login(request, user)
             try:
                 send_mail(
-                    'Welcome to Fitness Forge',
-                    'Thank you for signing up.',
+                    "Welcome to Fitness Forge",
+                    "Thank you for signing up.",
                     DEFAULT_FROM_EMAIL,
                     [user.email],
                     fail_silently=False,
@@ -31,40 +32,38 @@ def signup(request):
                 logger.info("Welcome email sent to %s", user.email)
             except Exception as e:
                 logger.error("Error sending email: %s", e)
-            return redirect('some_success_url')
+            return redirect("some_success_url")
         else:
             logger.debug("Form is not valid. Errors: %s", form.errors)
     else:
         form = UserCreationForm()
-    return render(request, 'profiles/profile.html', {'form': form})
+    return render(request, "profiles/profile.html", {"form": form})
 
 
 @login_required
 def profile(request):
     profile = get_object_or_404(UserProfile, user=request.user)
 
-    if request.method == 'POST':
+    if request.method == "POST":
         form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Profile updated successfully')
-            return redirect('profile')
+            messages.success(request, "Profile updated successfully")
+            return redirect("profile")
         else:
-            messages.error(
-                request, 'Update failed. Please ensure the form is valid.'
-            )
+            messages.error(request, "Update failed. Please ensure the form is valid.")
     else:
         form = UserProfileForm(instance=profile)
 
     orders = profile.orders.all()
     wishlist_items = Wishlist.objects.filter(user_profile=profile)
 
-    template = 'profiles/profile.html'
+    template = "profiles/profile.html"
     context = {
-        'form': form,
-        'orders': orders,
-        'wishlist_items': wishlist_items,
-        'on_profile_page': True
+        "form": form,
+        "orders": orders,
+        "wishlist_items": wishlist_items,
+        "on_profile_page": True,
     }
 
     return render(request, template, context)
@@ -73,15 +72,18 @@ def profile(request):
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
 
-    messages.info(request, (
-        f'This is a past confirmation for order number {order_number}. '
-        'A confirmation email was sent on the order date.'
-    ))
+    messages.info(
+        request,
+        (
+            f"This is a past confirmation for order number {order_number}. "
+            "A confirmation email was sent on the order date."
+        ),
+    )
 
-    template = 'checkout/checkout_success.html'
+    template = "checkout/checkout_success.html"
     context = {
-        'order': order,
-        'from_profile': True,
+        "order": order,
+        "from_profile": True,
     }
 
     return render(request, template, context)

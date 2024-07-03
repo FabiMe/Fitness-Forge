@@ -5,10 +5,10 @@ from products.models import Product
 
 class Wishlist(models.Model):
     user_profile = models.ForeignKey(
-        UserProfile, on_delete=models.CASCADE, related_name='wishlist'
+        UserProfile, on_delete=models.CASCADE, related_name="wishlist"
     )
     product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, related_name='wishlisted_by'
+        Product, on_delete=models.CASCADE, related_name="wishlisted_by"
     )
     added_date = models.DateTimeField(auto_now_add=True)
 

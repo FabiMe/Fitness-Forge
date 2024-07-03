@@ -4,25 +4,28 @@ from .models import Product, Category
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
-        'sku',
-        'name',
-        'category',
-        'price',
-        'is_mystery_box',
-        'rating',
-        'image',
+        "sku",
+        "name",
+        "category",
+        "price",
+        "is_mystery_box",
+        "rating",
+        "image",
     )
-    list_filter = ('is_mystery_box', 'category',)
-    search_fields = ('name', 'description', 'sku')
+    list_filter = (
+        "is_mystery_box",
+        "category",
+    )
+    search_fields = ("name", "description", "sku")
     # Allow direct editing of these fields
-    list_editable = ('is_mystery_box', 'price', 'rating')
-    ordering = ('sku',)
+    list_editable = ("is_mystery_box", "price", "rating")
+    ordering = ("sku",)
 
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
-        'friendly_name',
-        'name',
+        "friendly_name",
+        "name",
     )
 
 

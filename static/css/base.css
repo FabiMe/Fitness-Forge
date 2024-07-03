@@ -422,6 +422,7 @@ input[type="text"]:focus, textarea:focus {
 
 /* Style for the image container to handle various image sizes */
 .card-img-top {
+    margin-top: 100px;
     width: 100%; /* Full width of the card */
     height: 400px; /* Fixed height for all images */
     object-fit: cover; /* Covers the dimension, might crop the image */
@@ -599,6 +600,8 @@ ul.list-inline {
     .banner-text {
         font-size: 16px; /* Further reduce font size for readability */
     }
+
+
 }
 
 /* Improved header responsiveness for smaller devices */
@@ -609,6 +612,10 @@ ul.list-inline {
 
     .navbar-brand a {
         font-size: 18px; /* Further reduce font size for logo on smaller screens */
+    }
+
+    .card-img-top {
+        margin-top: 250px;
     }
 }
 
