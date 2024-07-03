@@ -1,6 +1,7 @@
-from django.db import migrations, models
-import django.db.models.deletion
 import datetime
+
+import django.db.models.deletion
+from django.db import migrations, models
 
 
 def set_default_user(apps, schema_editor):

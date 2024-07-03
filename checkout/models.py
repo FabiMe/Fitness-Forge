@@ -1,7 +1,9 @@
 import uuid
+
 from django.db import models
-from products.models import Product
 from django_countries.fields import CountryField
+
+from products.models import Product
 from profiles.models import UserProfile
 
 # Define Mystery Box Tiers and their price thresholds

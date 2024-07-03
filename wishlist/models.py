@@ -1,6 +1,7 @@
 from django.db import models
-from profiles.models import UserProfile
+
 from products.models import Product
+from profiles.models import UserProfile
 
 
 class Wishlist(models.Model):

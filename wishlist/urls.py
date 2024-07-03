@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import add_to_wishlist, view_wishlist, remove_from_wishlist
 
+from .views import add_to_wishlist, remove_from_wishlist, view_wishlist
 
 urlpatterns = [
     path(

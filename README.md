@@ -503,22 +503,48 @@ This section categorizes the major dependencies of the project to provide a clea
 ### Test Guide
 
 
-### Code Style and Flake8 Exceptions
+### Code Refactoring
 
-In this project, we adhere to PEP 8 style guidelines as enforced by Flake8, with a few deliberate exceptions. Notably, some line length errors (`E501`) reported by Flake8 have not been corrected in certain files, specifically within the migrations and settings directories.
+This project uses `flake8`, `black`, and `isort` for code linting, formatting, and import sorting to ensure code quality and consistency. The configuration for `black` has been adjusted to match the criteria of `flake8` by setting the line length to 79 characters.
 
-### Rationale
+### Linting, Formatting, and Import Sorting Tools
 
-- **Migrations:** The auto-generated nature of migration files often leads to longer lines, especially when defining models with multiple fields. Adjusting these lines manually is not practical as it could affect the clarity and functionality of the migrations.
+- **flake8**: A tool for checking the style guide enforcement, complexity, and bug detection.
+- **black**: An uncompromising code formatter that reformats entire files in place.
+- **isort**: A Python utility for sorting imports.
 
-- **Settings:** Configuration settings sometimes require long lines for clarity, especially when defining paths or URLs. Breaking these lines into smaller segments would reduce the readability and maintainability of the configuration.
+### Configuration
 
-### Conclusion
+The configuration for `black` is specified in the `pyproject.toml` file:
 
-We have reviewed these Flake8 warnings and determined that in these cases, adhering to the line length rule would compromise the code's clarity and functionality without providing substantial benefits. Thus, we have chosen to exclude these files from line length checks to maintain the quality and integrity of the codebase.
+```toml
+[tool.black]
+line-length = 79
+```
 
-![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/87251406-070b-4c48-8034-3766f916936c)
-![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/389a83ab-e88f-4341-9c83-192890aabcdc)
+### Running Linting, Formatting, and Import Sorting
+
+To run `flake8`, `black`, and `isort` on your codebase, use the following commands:
+
+1. **flake8**:
+    ```sh
+    flake8 .
+    ```
+![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/82063698-8c6c-4caf-a988-aa24b25224f5)
+
+2. **black**:
+    ```sh
+    black .
+    ```
+![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/20d5fa75-1d1c-4fa5-b784-24cad5788c43)
+
+3. **isort**:
+    ```sh
+    isort .
+    ```
+![image](https://github.com/FabiMe/Fitness-Forge/assets/136444209/cf1faaa4-5314-466c-85e4-d618af9f7d03)
+
+
  
 ### Browser Testing
 #### Performance, Accessibility, SEO, Best Practices (Lighthouse testing)

@@ -1,8 +1,10 @@
-from decimal import Decimal
-from django.shortcuts import get_object_or_404
-from products.models import Product
 import hashlib
 import json
+from decimal import Decimal
+
+from django.shortcuts import get_object_or_404
+
+from products.models import Product
 
 # Define mystery box tiers
 MYSTERY_BOX_TIERS = {

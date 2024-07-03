@@ -1,12 +1,11 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.shortcuts import reverse
 from django.contrib import messages
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render, reverse
 from django.views.decorators.http import require_POST
 
-from .contexts import bag_contents
-from .contexts import generate_custom_id
 from products.models import Product
+
+from .contexts import bag_contents, generate_custom_id
 
 
 def view_bag(request):

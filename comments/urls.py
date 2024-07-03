@@ -1,7 +1,8 @@
 from django.urls import path
-from products.views import product_detail
-from .views import delete_comment
 
+from products.views import product_detail
+
+from .views import delete_comment
 
 urlpatterns = [
     path("product/<int:pk>/", product_detail, name="product_detail"),
